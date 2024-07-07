@@ -43,25 +43,25 @@ class Character extends MovableObject {
 
     animateCharacterSwim() {
         setInterval (() => {
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
             }
 
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
 
-            if (this.world.keyboard.UP) {
+            if (this.world.keyboard.UP && this.y > -70) {
                 this.y -= this.speed;
             }
 
-            if (this.world.keyboard.DOWN) {
+            if (this.world.keyboard.DOWN && this.y < 300) {
                 this.y += this.speed;
             }
 
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x + 50;
         }, 1000 / 30);
     }
 
