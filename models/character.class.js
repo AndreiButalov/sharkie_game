@@ -70,11 +70,13 @@ class Character extends MovableObject {
         this.animateCharacterSwim();
 
         setInterval(() => {
-            let i = this.currentImage % this.SHARKIE_STAND.length;
-            let path = this.SHARKIE_STAND[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-        }, 220)
+            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN) {
+                let i = this.currentImage % this.SHARKIE_STAND.length;
+                let path = this.SHARKIE_STAND[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+        }, 230)
 
         setInterval(() => {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {                
@@ -84,8 +86,7 @@ class Character extends MovableObject {
                 this.currentImage++;
             }            
         }, 100);
-    }
-   
+    }   
     
     jump() {
 
