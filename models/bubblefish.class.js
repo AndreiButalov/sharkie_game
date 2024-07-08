@@ -25,10 +25,7 @@ class Bubblefish extends MovableObject {
     animateEnemy() {
         this.moveLeft();
         setInterval(() => {
-            let i = this.currentImage % this.BUBBLEFISH_SWIM.length;
-            let path = this.BUBBLEFISH_SWIM[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            this.playAnimation(this.BUBBLEFISH_SWIM);
         }, 200);
     }
 
