@@ -22,8 +22,30 @@ class Bubblefish extends MovableObject {
         this.animateEnemy();
     }
 
+    // moveDown() {
+    //     setInterval(() => {
+    //         this.y += 0.3;
+    //     }, 1000 / 60);
+    // }
+
+    // moveUp() {
+    //     setInterval(() => {
+    //         this.y -= 0.3;
+    //     }, 1000 / 60);
+    // }
+
     animateEnemy() {
-        this.moveLeft();
+        setInterval(() => {
+            this.moveLeft();
+            if (this.x <= -150) {
+                this.x = 720;
+                this.y = 60 + Math.random() * 300;
+                this.speed = 0.3 + Math.random() * 0.5;
+            }
+        }, 1000 / 60);
+        
+        // this.moveDown();
+        // this.moveUp();
         setInterval(() => {
             this.playAnimation(this.BUBBLEFISH_SWIM);
         }, 200);

@@ -29,7 +29,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;
-        requestAnimationFrame(function() {
+        requestAnimationFrame(function () {
             self.draw();
         });
     }
@@ -42,16 +42,28 @@ class World {
 
     addToMap(parameter) {
         if (parameter.otherDirection) {
-            this.ctx.save();
-            this.ctx.translate(parameter.width , 0);
-            this.ctx.scale(-1, 1);
-            parameter.x = parameter.x * -1;
+            this.flipImage(parameter);
         }
-        this.ctx.drawImage(parameter.img, parameter.x, parameter.y, parameter.width, parameter.height);
-        
+
+        parameter.draw(this.ctx);
+        parameter.drawFrame(this.ctx);
+
         if (parameter.otherDirection) {
-            parameter.x = parameter.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(parameter,)
         }
+    }
+
+
+    flipImage(parameter) {
+        this.ctx.save();
+        this.ctx.translate(parameter.width, 0);
+        this.ctx.scale(-1, 1);
+        parameter.x = parameter.x * -1;
+    }
+
+
+    flipImageBack(parameter) {
+        parameter.x = parameter.x * -1;
+        this.ctx.restore();
     }
 }
