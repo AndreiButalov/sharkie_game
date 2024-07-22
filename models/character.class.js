@@ -48,11 +48,19 @@ class Character extends MovableObject {
         'img/1.Sharkie/1.IDLE/18.png'
     ]
 
+    SHARKIE_HURT = [
+        'img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+    ]
+
+
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.SHARKIE_SWIM);
         this.loadImages(this.SHARKIE_STAND);
         this.loadImages(this.SHARKIE_DEAD);
+        this.loadImages(this.SHARKIE_HURT);
         this.animateCharacter();
     }
 
@@ -84,33 +92,18 @@ class Character extends MovableObject {
     animateCharacter() {
         this.animateCharacterSwim();
 
-        // if (this.isDead()) {
-        //     this.playAnimation(this.SHARKIE_DEAD);
-        // }
-
-        // setInterval(() => {
-        //     if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN) {
-        //         this.playAnimation(this.SHARKIE_STAND);
-        //     }
-        // }, 230)
-
-        // setInterval(() => {
-        //     if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {                
-        //         this.playAnimation(this.SHARKIE_SWIM);
-        //     }            
-        // }, 100);
-
-
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.SHARKIE_DEAD);
-            } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN) {
-                this.playAnimation(this.SHARKIE_STAND);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.SHARKIE_HURT);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.SHARKIE_SWIM);
+            } else {
+                this.playAnimation(this.SHARKIE_STAND);
             }
-        }, 100)
-         
+        }, 150)
+
     }
 
     jump() {
