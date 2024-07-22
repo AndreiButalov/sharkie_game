@@ -7,6 +7,7 @@ class MovableObject {
     currentImage = 0;
     speed = 0.2;
     otherDirection = false;
+    energy = 100;
 
     imageCache = {};
 
@@ -21,7 +22,7 @@ class MovableObject {
 
 
     drawFrame(ctx) {
-        if(this instanceof Character || this instanceof Bubblefish) {
+        if (this instanceof Character || this instanceof Bubblefish) {
             ctx.beginPath();
             ctx.lineWidth = '6';
             ctx.strokeStyle = 'red';
@@ -30,6 +31,25 @@ class MovableObject {
         }
     }
 
+
+    isColliding(obj) {
+        return this.x + this.width > obj.x &&
+            this.y + this.height > obj.y &&
+            this.x < obj.x &&
+            this.y < obj.y + obj.height
+    }
+
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0 ) {
+            this.energy = 0;
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
 
     loadImages(arr) {
         arr.forEach(path => {
@@ -46,7 +66,7 @@ class MovableObject {
 
     moveLeft() {
         this.x -= this.speed;
-        
+
     }
 
     moveUp() {

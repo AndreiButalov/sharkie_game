@@ -37,6 +37,7 @@ class Bubblefish extends MovableObject {
     animateEnemy() {
         setInterval(() => {
             this.moveLeft();
+            
             if (this.x <= -150) {
                 this.x = 720;
                 this.y = 60 + Math.random() * 300;
