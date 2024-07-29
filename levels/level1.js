@@ -29,8 +29,8 @@ const backgroundObjects = [
 const level1 = new Level(
     [
         new Bubblefish(),
-        new Bubblefish(),
-        new Bubblefish()
+        // new Bubblefish(),
+        // new Bubblefish()
     ],
     backgroundObjects
 );

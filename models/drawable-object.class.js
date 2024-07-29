@@ -1,8 +1,8 @@
 class DrawableObject {
     x = 0;
     y = 230;
-    height = 200;
-    width = 200;
+    height;
+    width;
     img;
     imageCache = {};
     currentImage = 0;
@@ -31,9 +31,9 @@ class DrawableObject {
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Bubblefish) {
             ctx.beginPath();
-            ctx.lineWidth = '6';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            // ctx.lineWidth = '6';
+            // ctx.strokeStyle = 'red';
+            // ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
     }
