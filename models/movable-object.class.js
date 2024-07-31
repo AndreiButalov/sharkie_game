@@ -10,8 +10,16 @@ class MovableObject extends DrawableObject {
         return (this.x + 40) + (this.width - 80) > obj.x &&
             (this.y + 95) + (this.height -140) > obj.y &&
             this.x + 40 < obj.x &&
-            this.y + 95 < obj.y + obj.height
+            this.y + 95 < (obj.y - 50) + obj.height
     }
+
+
+    // isCollidingEnemys(obj) {
+    //     return this.x + this.width > obj.x &&
+    //         this.y + this.height > obj.y &&
+    //         this.x < obj.x &&
+    //         this.y < obj.y + obj.height
+    // }
 
     // ctx.rect(this.x +40, this.y+95, this.width -80, this.height -140);
 

@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    bubbleFish = new GreenBubbleFish();
 
     level = level1
     canvas;
@@ -15,6 +16,7 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
+        // this.checkCollisionsEnemys();
     }
 
 
@@ -29,6 +31,19 @@ class World {
         }, 200);
     }
 
+
+    // checkCollisionsEnemys() {
+    //     setInterval(() => {
+    //         this.level.enemies.forEach((enemy) => {
+    //             if(this.bubbleFish.isCollidingEnemys(enemy)) {
+    //                 // this.character.hit();
+    //                 // this.statusBar.setPercentage(this.character.energy);
+    //                 // this.bubbleFish.y - 100;
+    //                 console.log(enemy);
+    //             }
+    //         })
+    //     }, 200);
+    // }
 
     setWorld() {
         this.character.world = this;
