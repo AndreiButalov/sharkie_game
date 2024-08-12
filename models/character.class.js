@@ -78,7 +78,7 @@ class Character extends MovableObject {
                 this.otherDirection = true;
             }
 
-            if (this.world.keyboard.UP && this.y > -70) {
+            if (this.world.keyboard.UP && this.y > -40) {
                 this.moveUp();
             }
 
