@@ -10,20 +10,23 @@ function init() {
     startView.innerHTML = /*html*/`
         <div class="content">
             <h1>SHARKIE</h1>        
+            <div class="start">
+                <button class="start_button" onclick="startGames()">START</button>
+            </div>
             <div class="controls">
-                <div class="start">
-                    <button class="start_button" onclick="startGames()">START</button>
-                </div>
+                <img class="sharkie_image" src="img/1.Sharkie/1.IDLE/1.png">
+
                 <div class="controls_menu">
                     <div>
-                        <img class="button button_arrows" src="img/6.Botones/Key/arrow keys.png" alt="">
-                        <span>MOBE SHARK</span>
+                        <img class="button_arrows" src="img/6.Botones/Key/arrow keys.png" alt="">
+                        <span>MOVE SHARK</span>
                     </div>
                     <div>
-                        <img class="button button_space" src="img/6.Botones/Key/Space Bar key.png" alt="">
+                        <img class="button_space" src="img/6.Botones/Key/Space Bar key.png" alt="">
                         <span>ATTACK</span>
                     </div>
                 </div>
+
             </div>
         </div>
     `;
