@@ -8,16 +8,21 @@ function init() {
 
     startView.innerHTML = '';
     startView.innerHTML = /*html*/`
-        <div class="controls">
-            <img class="button" src="img/6.Botones/Start/3.png">
-            <div>
-                <div>
-                    <img class="button" src="img/6.Botones/Key/arrow keys.png" alt="">
-                    <span>MOBE SHARK</span>
+        <div class="content">
+            <h1>SHARKIE</h1>        
+            <div class="controls">
+                <div class="start">
+                    <button class="start_button" onclick="startGames()">START</button>
                 </div>
-                <div>
-                    <img class="button" src="img/6.Botones/Key/Space Bar key.png" alt="">
-                    <span>ATTACK</span>
+                <div class="controls_menu">
+                    <div>
+                        <img class="button button_arrows" src="img/6.Botones/Key/arrow keys.png" alt="">
+                        <span>MOBE SHARK</span>
+                    </div>
+                    <div>
+                        <img class="button button_space" src="img/6.Botones/Key/Space Bar key.png" alt="">
+                        <span>ATTACK</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,6 +31,8 @@ function init() {
 }
 
 function startGames() {
+    let startView = document.getElementById('start_view');
+    startView.style.display = 'none';
     const canvas = document.getElementById('canvas');
     scaleCanvas(canvas);
     world = new World(canvas, keyboard);
