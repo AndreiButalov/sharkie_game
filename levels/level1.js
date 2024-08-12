@@ -8,6 +8,8 @@ function createBackgroundLayer(layerImages, initialOffset, step, repetitions) {
     return objects;
 }
 
+
+
 const waterLayers = ['img/3. Background/Layers/5. Water/D2.png', 'img/3. Background/Layers/5. Water/D1.png'];
 const fondo2Layers = ['img/3. Background/Layers/4.Fondo 2/D2.png', 'img/3. Background/Layers/4.Fondo 2/D1.png'];
 const fondo1Layers = ['img/3. Background/Layers/3.Fondo 1/D2.png', 'img/3. Background/Layers/3.Fondo 1/D1.png'];
@@ -18,6 +20,7 @@ const initialOffset = -720;
 const step = 720;
 const repetitions = 5;
 
+
 const backgroundObjects = [
     ...createBackgroundLayer(waterLayers, initialOffset, step, repetitions),
     ...createBackgroundLayer(fondo2Layers, initialOffset, step, repetitions),
@@ -25,6 +28,7 @@ const backgroundObjects = [
     ...createBackgroundLayer(floorLayers, initialOffset, step, repetitions),
     ...createBackgroundLayer(lightLayers, initialOffset, step, repetitions)
 ];
+
 
 const level1 = new Level(
     [

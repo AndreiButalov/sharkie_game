@@ -104,3 +104,38 @@ span {
 .button_space {
     height: 35px;
 }
+
+.control_menu_left {
+    display: flex;
+    align-items: center;
+}
+
+#controls_panel {
+    position: absolute;
+    width: 720px;
+    margin-top: 150px;
+    margin-right: 80px;
+    border-radius: 10px;   
+    display: flex;
+    justify-content: end; 
+}
+
+.button_group {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px; 
+}
+
+.buttons {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(250, 246, 26);
+    border: 3px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.buttons:hover {
+    background-color: rgb(50, 50, 117);
+    color: rgb(250, 246, 26);
+}

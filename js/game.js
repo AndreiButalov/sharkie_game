@@ -17,11 +17,11 @@ function init() {
                 <img class="sharkie_image" src="img/1.Sharkie/1.IDLE/1.png">
 
                 <div class="controls_menu">
-                    <div>
+                    <div class="control_menu_left">
                         <img class="button_arrows" src="img/6.Botones/Key/arrow keys.png" alt="">
                         <span>MOVE SHARK</span>
                     </div>
-                    <div>
+                    <div class="control_menu_left">
                         <img class="button_space" src="img/6.Botones/Key/Space Bar key.png" alt="">
                         <span>ATTACK</span>
                     </div>
@@ -31,7 +31,28 @@ function init() {
         </div>
     `;
 
+
+    let controls_panel = document.getElementById('controls_panel');
+
+    controls_panel.innerHTML = '';
+    controls_panel.innerHTML = /*html*/`
+        <div class="controls_panel_content">            
+            <div class="button_group">
+                <button class="buttons" onclick="sayHallo()"></button>
+                <button class="buttons" onclick="sayHallo()"></button>
+                <button class="buttons" onclick="sayHallo()"></button>                
+            </div>
+        </div>
+    `;
+
 }
+
+function sayHallo() {
+    console.log('hallo');
+    
+}
+
+
 
 function startGames() {
     let startView = document.getElementById('start_view');
