@@ -4,6 +4,7 @@
  }
 
 body {
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,4 +17,29 @@ canvas {
     background-color: black;
     width: 720px;
     height: 480px;
+}
+
+h1 {
+    height: 150px;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    display: flex;
+    justify-content: center;    align-items: center;
+}
+
+#start_view {
+    width: 720px;
+    height: 480px;
+    background-color: black;
+    position: absolute;
+    margin-top: 150px;    
+    background-image: url('img/3. Background/Legacy/Dark/1.png');
+    background-size: cover;
+}
+
+.button {
+    height: 50px;
+}
+
+.controls {
 }
