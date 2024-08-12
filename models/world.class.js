@@ -14,7 +14,6 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
-        // this.startView();
         this.setWorld();
         this.checkCollisions();
     }
@@ -34,18 +33,6 @@ class World {
 
     setWorld() {
         this.character.world = this;
-    }
-
-
-    startView() {
-        this.ctx.fillStyle = '#eeaa00';
-        this.ctx.fillRect(220, 100, 200, 75);
-        this.ctx.fillStyle = '#001122';
-        this.ctx.textAlign = 'center';
-        this.ctx.font = '25px arial';
-        this.ctx.fillText('Start Game', 320, 145, 200);
-        // this.ctx.background = ('img/3. Background/Layers/5. Water/D1.png')
-        // this.draw()
     }
 
 
