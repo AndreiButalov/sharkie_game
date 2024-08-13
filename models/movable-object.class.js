@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     energy = 100;
     lastHit = 0;
+    camera_xx = 0;
 
 
     isColliding(obj) {

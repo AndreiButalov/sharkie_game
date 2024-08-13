@@ -30,12 +30,10 @@ const backgroundObjects = [
 ];
 
 
-const level1 = new Level(
-    [
-        new GreenBubbleFish(),
-        new GreenBubbleFish(),
-        new GreenBubbleFish()
-    ],
-    backgroundObjects
+const fishIntervals = [720, 1440, 2160, 2880, 3600];
+
+const fishArray = fishIntervals.flatMap(interval =>
+    Array(3).fill().map(() => new GreenBubbleFish(interval))
 );
 
+const level1 = new Level(fishArray, backgroundObjects);
