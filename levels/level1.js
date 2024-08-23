@@ -1,5 +1,7 @@
 let level1;
 
+let endBoss  = new EndBoss();
+
 const initialOffset = -720;
 const step = 720;
 const repetitions = 5;
@@ -35,11 +37,11 @@ const backgroundObjects = [
 
 
 
-
 const fishArray = fishIntervals.flatMap(interval =>
     Array(2).fill().map(() => new GreenBubbleFish(interval))
 );
 
+fishArray.push(endBoss)
     level1 = new Level(fishArray, backgroundObjects);
 }
 
