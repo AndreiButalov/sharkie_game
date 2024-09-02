@@ -114,8 +114,5 @@ class Character extends MovableObject {
         }, 150)
 
     }
-
-    // jump() {
-
-    // }
+    
 }

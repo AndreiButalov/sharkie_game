@@ -30,6 +30,7 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
+    // bubbleFish
     // isColliding(obj) {
     //     return (this.x + 30) + (this.width - 70) > obj.x &&     //R  L
     //         (this.y + 95) + (this.height - 140) > obj.y &&      //T  B
@@ -37,12 +38,15 @@ class MovableObject extends DrawableObject {
     //         this.y + 95 < (obj.y - 30) + obj.height             //B  T
     // }
 
-
+    //Boss
     isColliding(obj) {
-        return (this.x + 30) + (this.width - 70) > obj.x &&     //R  L
-            (this.y + 95) + (this.height - 140) > obj.y &&      //T  B
-            this.x + 30 < obj.x &&                              //L  R
-            this.y + 95 < (obj.y - this.offset.bottom) + obj.height             //B  T
+        console.log(this.y);
+        console.log(obj.y);
+        
+        return this.x - 25 + this.width > obj.x + 25 &&     //R  L
+            this.y + this.height > obj.y &&  //T  B
+            this.x  < obj.x &&                              //L  R
+            this.y < obj.y + obj.height           //B  T
     }
 
 

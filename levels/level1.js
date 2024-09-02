@@ -38,7 +38,7 @@ const backgroundObjects = [
 
 
 const fishArray = fishIntervals.flatMap(interval =>
-    Array(2).fill().map(() => new GreenBubbleFish(interval))
+    Array(0).fill().map(() => new GreenBubbleFish(interval))
 );
 
 fishArray.push(endBoss)
