@@ -1,6 +1,7 @@
 class World {
     character = new Character();
     bubbleFish = new GreenBubbleFish();
+    endBoss = new EndBoss();
 
     level = level1
     canvas;
@@ -17,10 +18,11 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
+        this.checkCollisionsBoss();
     }
 
 
-    checkCollisions() {
+    checkCollisions() {        
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
@@ -28,6 +30,17 @@ class World {
                     this.statusBar.setPercentage(this.character.energy);
                 }
             })
+        }, 200);        
+    }
+
+
+    checkCollisionsBoss() {
+        setInterval(() => {
+            const enemy = this.level.endBoss; 
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
         }, 200);
     }
 
@@ -42,13 +55,14 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
-
+        
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0);
-
+        
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.level.endBoss); ////
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;
@@ -69,7 +83,7 @@ class World {
         }
 
         parameter.draw(this.ctx);
-        parameter.drawFrame(this.ctx);
+        // parameter.drawFrame(this.ctx);
 
 
         if (parameter.otherDirection) {

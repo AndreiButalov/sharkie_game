@@ -5,12 +5,12 @@ class Bubblefish extends MovableObject {
     // x = 720;
     
     offset = {
-        top: 0,
+        top: 10,
         left: 0,
         bottom: 0,
-        right: 30
+        right: 0
     }
     
-
+    
 
 }

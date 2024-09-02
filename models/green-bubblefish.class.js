@@ -23,8 +23,7 @@ class GreenBubbleFish extends Bubblefish {
     }
     
 
-    animateEnemy() {
-       
+    animateEnemy() {       
         setInterval(() => {
             this.moveLeft();            
         }, 1000 / 60);    

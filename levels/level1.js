@@ -1,6 +1,7 @@
 let level1;
+let endBoss = new EndBoss();
 
-let endBoss  = new EndBoss();
+
 
 const initialOffset = -720;
 const step = 720;
@@ -27,22 +28,21 @@ function createBackgroundLayer(layerImages, initialOffset, step, repetitions) {
 
 function initialGames() {
 
-const backgroundObjects = [
-    ...createBackgroundLayer(waterLayers, initialOffset, step, repetitions),
-    ...createBackgroundLayer(fondo2Layers, initialOffset, step, repetitions),
-    ...createBackgroundLayer(fondo1Layers, initialOffset, step, repetitions),
-    ...createBackgroundLayer(floorLayers, initialOffset, step, repetitions),
-    ...createBackgroundLayer(lightLayers, initialOffset, step, repetitions)
-];
+    const backgroundObjects = [
+        ...createBackgroundLayer(waterLayers, initialOffset, step, repetitions),
+        ...createBackgroundLayer(fondo2Layers, initialOffset, step, repetitions),
+        ...createBackgroundLayer(fondo1Layers, initialOffset, step, repetitions),
+        ...createBackgroundLayer(floorLayers, initialOffset, step, repetitions),
+        ...createBackgroundLayer(lightLayers, initialOffset, step, repetitions)
+    ];
 
 
+    const fishArray = fishIntervals.flatMap(interval =>
+        Array(1).fill().map(() => new GreenBubbleFish(interval))
+    );
 
-const fishArray = fishIntervals.flatMap(interval =>
-    Array(0).fill().map(() => new GreenBubbleFish(interval))
-);
-
-fishArray.push(endBoss)
-    level1 = new Level(fishArray, backgroundObjects);
+    // fishArray.push(endBoss)
+    level1 = new Level(fishArray, backgroundObjects, endBoss);
 }
 
 
@@ -69,10 +69,10 @@ fishArray.push(endBoss)
 /////////////////////////////////////////////////////////////////////////////
 
 /**
- * 
- * 
- * variant 1 für einfache initialisirung level 2 Fische 
- * 
+ *
+ *
+ * variant 1 für einfache initialisirung level 2 Fische
+ *
  */
 
 // let level1;
