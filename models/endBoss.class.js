@@ -9,7 +9,7 @@ class EndBoss extends MovableObject {
     offset = {
         top: 220,
         left: 25,
-        ridht: 40,
+        right: 40,
         bottom: 40
     }
 

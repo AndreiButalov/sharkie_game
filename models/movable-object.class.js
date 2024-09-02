@@ -34,17 +34,17 @@ class MovableObject extends DrawableObject {
     isColliding(obj) {
         return this.x - this.offset.right + this.width > obj.x + obj.offset.left &&     //R  L
             this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&      //T  B
-            this.x - this.offset.left < obj.x &&                              //L  R
+            this.x - this.offset.left < obj.x + obj.width - obj.offset.right &&                              //L  R
             this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom             //B  T
     }
-    
 
-    isCollidingBoss(obj) {        
-        return this.x - this.offset.right + this.width > obj.x + obj.offset.left &&     //R  ridth      obj  left //40
-            this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&  //T  B   bottom            obj.top// 40
-            this.x - this.offset.left  < obj.x + obj.width - obj.offset.ridht &&                              //L  R // 55
-            this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom      //B  T top obj bottom // 120
-    }
+
+    // isCollidingBoss(obj) {        
+    //     return this.x - this.offset.right + this.width > obj.x + obj.offset.left &&     //R  ridth      obj  left //40
+    //         this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&  //T  B   bottom            obj.top// 40
+    //         this.x - this.offset.left  < obj.x + obj.width - obj.offset.right &&                              //L  R // 55
+    //         this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom      //B  T top obj bottom // 120
+    // }
 
 
     hit() {

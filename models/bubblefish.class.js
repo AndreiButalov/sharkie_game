@@ -7,8 +7,8 @@ class Bubblefish extends MovableObject {
     offset = {
         top: 10,
         left: 0,
-        bottom: 0,
-        right: 0
+        right: 115,
+        bottom: 0
     }
     
     
