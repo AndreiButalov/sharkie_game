@@ -68,7 +68,8 @@ class World {
         }
 
         parameter.draw(this.ctx);
-        // parameter.drawFrame(this.ctx);
+        parameter.drawFrame(this.ctx);
+
 
         if (parameter.otherDirection) {
             this.flipImageBack(parameter,)

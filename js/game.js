@@ -4,13 +4,14 @@ let keyboard = new Keyboard();
 
 
 function init() {
-    let startView = document.getElementById('start_view');
-    startView.innerHTML = '';
-    startView.innerHTML = startViewGenerate();
+    startGames()
+    // let startView = document.getElementById('start_view');
+    // startView.innerHTML = '';
+    // startView.innerHTML = startViewGenerate();
 
-    let controls_panel = document.getElementById('controls_panel');
-    controls_panel.innerHTML = '';
-    controls_panel.innerHTML = controlsPanelGenerate();
+    // let controls_panel = document.getElementById('controls_panel');
+    // controls_panel.innerHTML = '';
+    // controls_panel.innerHTML = controlsPanelGenerate();
 }
 
 

@@ -1,40 +1,54 @@
 class MovableObject extends DrawableObject {
-    
+
     speed = 0.2;
     otherDirection = false;
     energy = 100;
     lastHit = 0;
     camera_xx = 0;
 
+    // applySwim
+    frequency = 0;
+    amplitude = 0;
 
-    isColliding(obj) {
-        return (this.x + 40) + (this.width - 80) > obj.x &&
-            (this.y + 95) + (this.height -140) > obj.y &&
-            this.x + 40 < obj.x &&
-            this.y + 95 < (obj.y - 50) + obj.height
+    speedY = 0;
+    accleraration = 1;
+
+
+    // applyGravity() {
+    //     setInterval(() => {
+    //         this.y -= this.speedY;
+    //         this.speedY -= this.accleraration;
+    //     }, 1000 / 25);
+    // }
+
+
+
+    offset = {
+        top: 0,
+        left: 0,
+        ridht: 0,
+        bottom: 0
     }
 
-
-    // isCollidingEnemys(obj) {
-    //     return this.x + this.width > obj.x &&
-    //         this.y + this.height > obj.y &&
-    //         this.x < obj.x &&
-    //         this.y < obj.y + obj.height
-    // }
-
-    // ctx.rect(this.x +40, this.y+95, this.width -80, this.height -140);
-
     // isColliding(obj) {
-    //     return this.x + this.width > obj.x &&
-    //         this.y + this.height > obj.y &&
-    //         this.x < obj.x &&
-    //         this.y < obj.y + obj.height
+    //     return (this.x + 30) + (this.width - 70) > obj.x &&     //R  L
+    //         (this.y + 95) + (this.height - 140) > obj.y &&      //T  B
+    //         this.x + 30 < obj.x &&                              //L  R
+    //         this.y + 95 < (obj.y - 30) + obj.height             //B  T
     // }
+
+
+    isColliding(obj) {
+        return (this.x + 30) + (this.width - 70) > obj.x &&     //R  L
+            (this.y + 95) + (this.height - 140) > obj.y &&      //T  B
+            this.x + 30 < obj.x &&                              //L  R
+            this.y + 95 < (obj.y - this.offset.bottom) + obj.height             //B  T
+    }
 
 
     hit() {
         this.energy -= 5;
-        if (this.energy < 0 ) {
+        if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
@@ -53,12 +67,21 @@ class MovableObject extends DrawableObject {
         return timepassed < 0.5;
     }
 
-    
+
+    applySwim() {
+        let time = 0;
+        setInterval(() => {
+            this.y = this.initialY + Math.sin(time) * this.amplitude;
+            time += this.frequency;
+        }, 1000 / 25);
+    }
+
+
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
     }
-    
+
 
     moveLeft() {
         this.x -= this.speed;

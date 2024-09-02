@@ -1,5 +1,8 @@
 class GreenBubbleFish extends Bubblefish {
 
+    frequency = 0.09;
+    amplitude = 12;
+
     BUBBLEFISH_SWIM = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
@@ -8,23 +11,24 @@ class GreenBubbleFish extends Bubblefish {
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png',
     ];
 
-
     constructor(x) {
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.x = x;
+        this.initialY = 60 + Math.random() * 300;
+        this.y = this.initialY;
         this.loadImages(this.BUBBLEFISH_SWIM);
-        // this.x = 200 + Math.random() * 370;
-        this.y = 60 + Math.random() * 300;
         this.speed = 0.3 + Math.random() * 0.5;
+        this.applySwim();
         this.animateEnemy();
     }
+    
 
-   
     animateEnemy() {
+       
         setInterval(() => {
             this.moveLeft();            
-        }, 1000 / 60);
-        
+        }, 1000 / 60);    
+
         setInterval(() => {
             this.playAnimation(this.BUBBLEFISH_SWIM);
         }, 200);

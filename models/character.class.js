@@ -5,6 +5,13 @@ class Character extends MovableObject {
     height = 200;
     width = 200;
 
+    offset = {
+        top: 120,
+        left: 40,
+        bottom: 40,
+        right: 40
+    }
+
     SHARKIE_SWIM = [
         'img/1.Sharkie/3.Swim/1.png',
         'img/1.Sharkie/3.Swim/2.png',
