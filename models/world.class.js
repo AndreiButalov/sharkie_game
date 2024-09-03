@@ -1,14 +1,16 @@
 class World {
-    character = new Character();
-    bubbleFish = new GreenBubbleFish();
-    endBoss = new EndBoss();
 
     level = level1
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
+    character = new Character();
+    bubbleFish = new GreenBubbleFish();
+    endBoss = new EndBoss();
     statusBar = new StatusBar();
+    coinBar = new CoinBar();
+    poisonBar = new PoisonBar();
     
 
     constructor(canvas, keyboard) {
@@ -18,7 +20,6 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
-        this.checkCollisionsBoss();
     }
 
 
@@ -26,26 +27,24 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
+                    this.checkIsColliding()
                 }
             })
-        }, 200);        
-    }
-
-
-    checkCollisionsBoss() {
+        }, 200);    
+        
         setInterval(() => {
             const enemy = this.level.endBoss; 
             if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+                this.checkIsColliding()
             }
         }, 200);
     }
 
 
-    
+    checkIsColliding() {
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.energy);
+    }
 
 
     setWorld() {
@@ -59,13 +58,16 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         
-        this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusBar);
-        this.ctx.translate(this.camera_x, 0);
-        
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.level.endBoss); ////
+
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.addToMap(this.coinBar);
+        this.addToMap(this.poisonBar);
+        this.ctx.translate(this.camera_x, 0);
+        
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;
@@ -74,11 +76,13 @@ class World {
         });
     }
 
+
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
+
 
     addToMap(parameter) {
         if (parameter.otherDirection) {
@@ -87,8 +91,6 @@ class World {
 
         parameter.draw(this.ctx);
         // parameter.drawFrame(this.ctx);
-
-
         if (parameter.otherDirection) {
             this.flipImageBack(parameter,)
         }

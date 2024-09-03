@@ -19,19 +19,10 @@ class GreenBubbleFish extends Bubblefish {
         this.loadImages(this.BUBBLEFISH_SWIM);
         this.speed = 0.3 + Math.random() * 0.5;
         this.applySwim();
-        this.animateEnemy();
-    }
+        this.animateEnemy(this.BUBBLEFISH_SWIM);
+    }   
+
     
-
-    animateEnemy() {       
-        setInterval(() => {
-            this.moveLeft();            
-        }, 1000 / 60);    
-
-        setInterval(() => {
-            this.playAnimation(this.BUBBLEFISH_SWIM);
-        }, 200);
-    }
 }
 
 

@@ -1,14 +1,13 @@
-class StatusBar extends DrawableObject {
-
-    percentage = 100;
+class PoisonBar extends DrawableObject {
+    percentage = 0;
 
     IMAGES = [
-        'img/4. Marcadores/orange/0_  copia.png',
-        'img/4. Marcadores/orange/20_ copia 2.png',
-        'img/4. Marcadores/orange/40_  copia.png',
-        'img/4. Marcadores/orange/60_  copia.png',
-        'img/4. Marcadores/orange/80_  copia.png',
-        'img/4. Marcadores/orange/100_  copia.png'
+        'img/4. Marcadores/orange/0_ copia.png',
+        'img/4. Marcadores/orange/20_ copia.png',
+        'img/4. Marcadores/orange/40_ copia.png',
+        'img/4. Marcadores/orange/60_ copia.png',
+        'img/4. Marcadores/orange/80_ copia.png',
+        'img/4. Marcadores/orange/100_ copia.png',
     ];
 
 
@@ -16,7 +15,7 @@ class StatusBar extends DrawableObject {
         super();
         this.loadImages(this.IMAGES);
         this.x = 10;
-        this.y = 55;
+        this.y = -5;
         this.width = 180;
         this.height = 50;
         this.setPercentage(100);
@@ -45,5 +44,4 @@ class StatusBar extends DrawableObject {
             return 0;
         }
     }
-
 }

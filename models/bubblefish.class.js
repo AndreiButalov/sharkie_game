@@ -2,7 +2,6 @@ class Bubblefish extends MovableObject {
     
     height = 100;
     width = 100;  
-    // x = 720;
     
     offset = {
         top: 10,
@@ -12,5 +11,14 @@ class Bubblefish extends MovableObject {
     }
     
     
+    animateEnemy(image) {       
+        setInterval(() => {
+            this.moveLeft();            
+        }, 1000 / 60);    
+
+        setInterval(() => {
+            this.playAnimation(image);
+        }, 200);
+    }
 
 }
