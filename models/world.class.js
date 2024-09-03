@@ -5,12 +5,14 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+
     character = new Character();
     bubbleFish = new GreenBubbleFish();
     endBoss = new EndBoss();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
+    coin = new Coin();
     
 
     constructor(canvas, keyboard) {
@@ -38,6 +40,8 @@ class World {
                 this.checkIsColliding()
             }
         }, 200);
+
+
     }
 
 
@@ -60,8 +64,11 @@ class World {
         
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
-        this.addToMap(this.level.endBoss); ////
-
+        this.addToMap(this.level.endBoss);
+        this.addObjectsToMap(this.level.coin);
+        this.addToMap(this.level.poison);
+        
+        
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);

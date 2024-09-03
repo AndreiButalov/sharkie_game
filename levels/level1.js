@@ -1,5 +1,7 @@
 let level1;
 let endBoss = new EndBoss();
+// let coin = new Coin();
+let poison = new Poison();
 
 
 
@@ -41,8 +43,13 @@ function initialGames() {
         Array(1).fill().map(() => new GreenBubbleFish(interval))
     );
 
+
+    const coinArray = fishIntervals.flatMap(interval =>
+        Array(2).fill().map(() => new Coin(interval))
+    );
+
     // fishArray.push(endBoss)
-    level1 = new Level(fishArray, backgroundObjects, endBoss);
+    level1 = new Level(fishArray, backgroundObjects, endBoss, coinArray, poison);
 }
 
 
