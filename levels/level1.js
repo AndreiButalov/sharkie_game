@@ -9,6 +9,7 @@ const initialOffset = -720;
 const step = 720;
 const repetitions = 5;
 const fishIntervals = [750, 1440, 2160, 2880, 3500];
+const coinIntervals = [750, 1440, 2060, 2680, 3000];
 
 const waterLayers = ['img/3. Background/Layers/5. Water/D2.png', 'img/3. Background/Layers/5. Water/D1.png'];
 const fondo2Layers = ['img/3. Background/Layers/4.Fondo 2/D2.png', 'img/3. Background/Layers/4.Fondo 2/D1.png'];
@@ -44,10 +45,12 @@ function initialGames() {
     );
 
 
-    const coinArray = fishIntervals.flatMap(interval =>
-        Array(2).fill().map(() => new Coin(interval))
+    const coinArray = coinIntervals.flatMap(interval =>
+        Array(1).fill().map(() => new Coin(interval))
     );
 
+    // console.log(endBoss.x);
+    
     // fishArray.push(endBoss)
     level1 = new Level(fishArray, backgroundObjects, endBoss, coinArray, poison);
 }

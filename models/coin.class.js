@@ -6,7 +6,7 @@ class Coin extends MovableObject {
     frequency = 0.09;
     amplitude = 4;
 
-    x = 200;
+    // x = 200;
 
     IMAGES = [
         'img/4. Marcadores/1. Coins/1.png',
@@ -15,9 +15,10 @@ class Coin extends MovableObject {
         'img/4. Marcadores/1. Coins/4.png',
     ];
 
-    constructor() {
+    constructor(x) {
         super().loadImage('img/4. Marcadores/1. Coins/1.png');
         this.loadImages(this.IMAGES);
+        this.x = x
         this.initialY = 60 + Math.random() * 300;
         this.y = this.initialY;
         this.applySwim();

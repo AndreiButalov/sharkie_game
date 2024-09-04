@@ -3,7 +3,7 @@ class EndBoss extends MovableObject {
     height = 400;
     width = 400;
     y = 0;
-    x = 3600;
+    x = 500;
 
 
     offset = {
@@ -30,15 +30,28 @@ class EndBoss extends MovableObject {
         'img/2.Enemy/3 Final Enemy/2.floating/13.png'
     ]
 
+    BOSS_INTRODUCE = [
+        'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/3.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/4.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/5.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/6.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/7.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/8.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/9.png',
+        'img/2.Enemy/3 Final Enemy/1.Introduce/10.png',
+    ]
+
 
     constructor(){
         super().loadImage('img/2.Enemy/3 Final Enemy/2.floating/1.png');
         this.loadImages(this.BOSS_SWIM);
         this.bossAnimate();   
-    }
+    } 
     
     
-    bossAnimate() {
+    bossAnimate() {        
         setInterval(() => {
             this.playAnimation(this.BOSS_SWIM);            
         }, 200);

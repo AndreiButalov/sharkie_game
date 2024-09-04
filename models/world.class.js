@@ -55,7 +55,7 @@ class World {
         this.character.world = this;
     }
 
-
+    
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
         this.ctx.translate(this.camera_x, 0);

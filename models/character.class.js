@@ -4,7 +4,6 @@ class Character extends MovableObject {
     speed = 6;
     height = 200;
     width = 200;
-    
 
     offset = {
         top: 120,
@@ -72,7 +71,7 @@ class Character extends MovableObject {
         this.loadImages(this.SHARKIE_STAND);
         this.loadImages(this.SHARKIE_DEAD);
         this.loadImages(this.SHARKIE_HURT);
-        this.animateCharacter();
+        this.animateCharacter();        
     }
 
 
