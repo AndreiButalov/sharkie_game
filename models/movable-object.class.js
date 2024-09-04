@@ -9,8 +9,8 @@ class MovableObject extends DrawableObject {
     frequency = 0;
     amplitude = 0;
 
-    speedY = 0;
-    accleraration = 4;
+    // speedY = 0;
+    // accleraration = 4;
 
     offset = {
         top: 0,
@@ -19,19 +19,19 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
     
-    applyGravity() {
-        setInterval(() => {
-            if (this.speedY < 0) {
-                // this.y -= this.speedY;
-                this.speedY -= this.accleraration;
-            }
-        }, 1000 / 25);
-    }
+    // applyGravity() {
+    //     setInterval(() => {
+    //         if (this.speedY < 0) {
+    //             // this.y -= this.speedY;
+    //             this.speedY -= this.accleraration;
+    //         }
+    //     }, 1000 / 25);
+    // }
 
 
-    isAboveGround() {
-        return this.y < 120;
-    }
+    // isAboveGround() {
+    //     return this.y < 120;
+    // }
 
 
     isColliding(obj) {

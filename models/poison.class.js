@@ -32,10 +32,10 @@ class Poison extends MovableObject {
         this.x = x + 80;
         this.y = y + 90;
         // this.speedY = 30;
-        this.applyGravity();
+        // this.applyGravity();
 
         setInterval(() => {
-            this.x += 17;
+            this.x += 15;
         }, 50)
     }
 }
