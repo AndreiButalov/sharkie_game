@@ -1,7 +1,7 @@
 let level1;
 let endBoss = new EndBoss();
 // let coin = new Coin();
-let poison = new Poison();
+// let poison = new Poison();
 
 
 
@@ -52,7 +52,7 @@ function initialGames() {
     // console.log(endBoss.x);
     
     // fishArray.push(endBoss)
-    level1 = new Level(fishArray, backgroundObjects, endBoss, coinArray, poison);
+    level1 = new Level(fishArray, backgroundObjects, endBoss, coinArray);
 }
 
 

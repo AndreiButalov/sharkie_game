@@ -13,6 +13,7 @@ class World {
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
     coin = new Coin();
+    poisons = [new Poison()];
     
 
     constructor(canvas, keyboard) {
@@ -21,29 +22,55 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
+        this.one();
     }
 
 
-    checkCollisions() {        
+    one() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.checkIsColliding()
-                }
-            })
-        }, 200);    
-        
+            
+            // console.log(this.character.x);
+            
+            if (this.character.x > 150) {
+                console.log('hallo');
+                
+                
+            } 
+            
+        }, 200)       
+    }
+
+
+    run() {        
         setInterval(() => {
-            const enemy = this.level.endBoss; 
-            if (this.character.isColliding(enemy)) {
-                this.checkIsColliding()
-            }
+           this.checkCollisions();
+           this.checkPoison();
         }, 200);
 
 
     }
 
+    checkPoison() {
+        if(this.keyboard.SPACE) {
+            let poison = new Poison(this.character.x, this.character.y); 
+            this.poisons.push(poison)
+        }
+    }
+
+    checkCollisions() {
+        const enemy = this.level.endBoss; 
+
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.checkIsColliding()
+            }
+        })
+        
+        if (this.character.isColliding(enemy)) {
+            this.checkIsColliding()
+        }
+    }
 
     checkIsColliding() {
         this.character.hit();
@@ -66,7 +93,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.level.endBoss);
         this.addObjectsToMap(this.level.coin);
-        this.addToMap(this.level.poison);
+        this.addObjectsToMap(this.poisons);
         
         
         this.ctx.translate(-this.camera_x, 0);
