@@ -6,8 +6,6 @@ class Coin extends MovableObject {
     frequency = 0.09;
     amplitude = 4;
 
-    // x = 200;
-
     IMAGES = [
         'img/4. Marcadores/1. Coins/1.png',
         'img/4. Marcadores/1. Coins/2.png',

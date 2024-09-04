@@ -29,12 +29,7 @@ class World {
 
     one() {
         setInterval(() => {
-            
-            // console.log(this.character.x);
-            
             if (this.character.x > 150) {
-                console.log('hallo');
-                
                 
             } 
             
@@ -53,6 +48,9 @@ class World {
 
     checkPoison() {
         if(this.keyboard.SPACE) {
+            console.log(this.character.x);
+            console.log(this.character.y);
+            
             let poison = new Poison(this.character.x, this.character.y); 
             this.poisons.push(poison)
         }

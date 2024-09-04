@@ -2,11 +2,6 @@ class Poison extends MovableObject {
     width = 50;
     height = 60;
 
-    // frequency = 0.09;
-    // amplitude = 4;
-
-    // x = 400;
-
     IMAGES = [
         'img/4. Marcadores/Posión/Animada/1.png',
         'img/4. Marcadores/Posión/Animada/2.png',
@@ -23,11 +18,8 @@ class Poison extends MovableObject {
         this.loadImages(this.IMAGES);
         this.x = x;
         this.y = y;
-        // this.initialY = 60 + Math.random() * 300;
-        // this.y = this.initialY;
-        // this.applySwim();
         this.poisonAnimate();
-        this.trow(100, 150)
+        this.trow(x, y)
     }
 
     poisonAnimate() {
@@ -37,12 +29,13 @@ class Poison extends MovableObject {
     } 
 
     trow (x, y) {
-        this.x = x;
-        this.y = y;
-        this.speedY = 30;
+        this.x = x + 80;
+        this.y = y + 90;
+        // this.speedY = 30;
         this.applyGravity();
+
         setInterval(() => {
-            this.x += 10;
+            this.x += 17;
         }, 50)
     }
 }
