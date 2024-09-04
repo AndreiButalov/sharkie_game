@@ -30,7 +30,7 @@ class World {
     one() {
         setInterval(() => {
             if (this.character.x > 150) {
-                
+
             } 
             
         }, 200)       
@@ -91,6 +91,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.level.endBoss);
         this.addObjectsToMap(this.level.coin);
+        this.addObjectsToMap(this.level.poisonButtle)
         this.addObjectsToMap(this.poisons);
         
         

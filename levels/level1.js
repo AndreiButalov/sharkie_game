@@ -49,10 +49,16 @@ function initialGames() {
         Array(1).fill().map(() => new Coin(interval))
     );
 
+    const poisonArray = coinIntervals.flatMap(interval =>
+        Array(1).fill().map(() => new PoisonCollect(interval))
+    );
+
+
+
     // console.log(endBoss.x);
     
     // fishArray.push(endBoss)
-    level1 = new Level(fishArray, backgroundObjects, endBoss, coinArray);
+    level1 = new Level(fishArray, backgroundObjects, endBoss, coinArray, poisonArray);
 }
 
 
