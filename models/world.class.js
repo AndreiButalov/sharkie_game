@@ -48,9 +48,6 @@ class World {
 
     checkPoison() {
         if(this.keyboard.SPACE) {
-            console.log(this.character.x);
-            console.log(this.character.y);
-            
             let poison = new Poison(this.character.x, this.character.y); 
             this.poisons.push(poison)
         }
@@ -87,11 +84,11 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         
-        this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.level.endBoss);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisonButtle)
+        this.addToMap(this.character);
         this.addObjectsToMap(this.poisons);
         
         
