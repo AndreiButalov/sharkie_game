@@ -5,67 +5,85 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    endBoss;
 
     character = new Character();
     bubbleFish = new GreenBubbleFish();
-    endBoss = new EndBoss();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
     coin = new Coin();
     poisons = [new Poison()];
-    
+    barrier = new Barrier();
+
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
+        this.endBossArrival();
         this.setWorld();
         this.run();
-        this.one();
     }
 
 
-    one() {
-        setInterval(() => {
-            if (this.character.x > 150) {
-
-            } 
-            
-        }, 200)       
+    endBossArrival() {
+        let bossSpawned = false;
+        const spawnBoss = setInterval(() => {
+            if (this.character.x >= 3200 && !bossSpawned) {
+                this.endBoss = new EndBoss();
+                bossSpawned = true;
+                clearInterval(spawnBoss);
+            }
+        }, 200);
     }
 
 
-    run() {        
+    run() {
         setInterval(() => {
-           this.checkCollisions();
-           this.checkPoison();
+            this.checkCollisions();
+            this.checkPoison();
         }, 200);
 
 
     }
 
+
     checkPoison() {
-        if(this.keyboard.SPACE) {
-            let poison = new Poison(this.character.x, this.character.y); 
+        if (this.keyboard.SPACE) {
+            let poison = new Poison(this.character.x, this.character.y);
             this.poisons.push(poison)
         }
     }
 
-    checkCollisions() {
-        const enemy = this.level.endBoss; 
 
+    checkCollisions() {
+        this.checkCollisionsEmemies();
+        this.checkCollisionsBoss();
+    }
+
+
+    checkCollisionsEmemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.checkIsColliding()
             }
         })
-        
-        if (this.character.isColliding(enemy)) {
-            this.checkIsColliding()
+    }
+
+
+    checkCollisionsBoss() {
+        if (this.endBoss) {
+
+            const enemy = this.endBoss;
+            if (this.character.isColliding(enemy)) {
+                this.checkIsColliding()
+            }
         }
     }
+
 
     checkIsColliding() {
         this.character.hit();
@@ -77,27 +95,32 @@ class World {
         this.character.world = this;
     }
 
-    
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
-        
+
         this.addObjectsToMap(this.level.enemies);
-        this.addToMap(this.level.endBoss);
         this.addObjectsToMap(this.level.coin);
-        this.addObjectsToMap(this.level.poisonButtle)
+        this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
+        this.addToMap(this.barrier);
+
+        if (this.endBoss) {
+            this.addToMap(this.endBoss);
+        }
+
         this.addObjectsToMap(this.poisons);
-        
-        
+
+
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.poisonBar);
         this.ctx.translate(this.camera_x, 0);
-        
+
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

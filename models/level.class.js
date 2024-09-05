@@ -3,14 +3,12 @@ class Level {
     enemies;
     backgroundObjects;
     coin;
-    endBoss;
     poisonButtle;
-    level_end_x = 3600; // muss man ändern
+    level_end_x = 3600;
 
-    constructor(enemies, backgroundObjects, endBoss, coin, poisonButtle) {
+    constructor(enemies, backgroundObjects, coin, poisonButtle) {
         this.enemies =  enemies;
         this.backgroundObjects = backgroundObjects;
-        this.endBoss = endBoss;
         this.coin = coin;
         this.poisonButtle = poisonButtle;
     }
