@@ -60,9 +60,9 @@ class World {
 
 
     checkCollisions() {
-        // console.log(this.objectsCollection);
         this.checkCollisionsEmemies();
         this.checkCollisionsBoss();
+        this.checkCollisionsObject();
     }
 
 
@@ -76,7 +76,7 @@ class World {
 
 
 ////////////////////
-    checkObjectCollection() {
+    checkCollisionsObject() {
         const objects = this.objectsCollection;
         if (this.character.isColliding(objects)) {
             this.checkIsColliding();
@@ -110,12 +110,11 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
-
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
-        ////////////
+
         this.addToMap(this.barrierDown);
         this.addToMap(this.barrierDownUp);
 
@@ -124,6 +123,7 @@ class World {
             this.addToMap(this.endBoss);
         }
 
+        
         this.addObjectsToMap(this.poisons);
 
         this.ctx.translate(-this.camera_x, 0);
