@@ -1,4 +1,4 @@
-class PoisonCollect extends MovableObject {
+class PoisonCollect extends ObjectCollection {
     width = 50;
     height = 60;
 

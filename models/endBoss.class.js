@@ -30,6 +30,7 @@ class EndBoss extends MovableObject {
         'img/2.Enemy/3 Final Enemy/2.floating/13.png'
     ]
 
+
     BOSS_INTRODUCE = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
@@ -61,18 +62,18 @@ class EndBoss extends MovableObject {
         }, 2000);
     }
 
+
     bossArrivalAnimate() {
         this.arrivalInterval = setInterval(() => {
             this.playAnimation(this.BOSS_INTRODUCE);
         }, 200);
     }
+
     
     bossSwimAnimate() {        
         this.swimInterval = setInterval(() => {
             this.playAnimation(this.BOSS_SWIM);            
         }, 200);
     }
-
-
 
 }

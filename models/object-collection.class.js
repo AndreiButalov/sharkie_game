@@ -1,0 +1,3 @@
+class ObjectCollection extends MovableObject {
+
+}

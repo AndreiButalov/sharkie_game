@@ -14,8 +14,10 @@ class World {
     poisonBar = new PoisonBar();
     coin = new Coin();
     poisons = [new Poison()];
-    barrier = new Barrier();
-
+    // barrier = new Barrier();
+    barrierDown = new BarrierDown();
+    barrierDownUp = new BarrierDownUp();
+    objectsCollection = new ObjectCollection();
 
 
     constructor(canvas, keyboard) {
@@ -46,20 +48,19 @@ class World {
             this.checkCollisions();
             this.checkPoison();
         }, 200);
-
-
     }
 
 
     checkPoison() {
         if (this.keyboard.SPACE) {
             let poison = new Poison(this.character.x, this.character.y);
-            this.poisons.push(poison)
+            this.poisons.push(poison);
         }
     }
 
 
     checkCollisions() {
+        // console.log(this.objectsCollection);
         this.checkCollisionsEmemies();
         this.checkCollisionsBoss();
     }
@@ -68,18 +69,26 @@ class World {
     checkCollisionsEmemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.checkIsColliding()
+                this.checkIsColliding();
             }
         })
     }
 
 
+////////////////////
+    checkObjectCollection() {
+        const objects = this.objectsCollection;
+        if (this.character.isColliding(objects)) {
+            this.checkIsColliding();
+        }
+    }
+///////////////////
+
     checkCollisionsBoss() {
         if (this.endBoss) {
-
             const enemy = this.endBoss;
             if (this.character.isColliding(enemy)) {
-                this.checkIsColliding()
+                this.checkIsColliding();
             }
         }
     }
@@ -106,14 +115,16 @@ class World {
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
-        this.addToMap(this.barrier);
+        ////////////
+        this.addToMap(this.barrierDown);
+        this.addToMap(this.barrierDownUp);
+
 
         if (this.endBoss) {
             this.addToMap(this.endBoss);
         }
 
         this.addObjectsToMap(this.poisons);
-
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
@@ -127,6 +138,7 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+
     }
 
 
@@ -143,7 +155,7 @@ class World {
         }
 
         parameter.draw(this.ctx);
-        // parameter.drawFrame(this.ctx);
+        parameter.drawFrame(this.ctx);
         if (parameter.otherDirection) {
             this.flipImageBack(parameter,)
         }
