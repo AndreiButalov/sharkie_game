@@ -111,7 +111,6 @@ class World {
     addPoison(buttle) {
         this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
         this.poisonCount++;
-        this.poisonCollect.setPoisonCount(this.poisonCount);
         // console.log("Poison hinzugefügt! Aktueller Poison-Zähler: " + this.poisonCount);
 
     }

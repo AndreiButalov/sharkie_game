@@ -40,10 +40,5 @@ class PoisonCollect extends ObjectCollection {
             this.playAnimation(this.IMAGES)
         }, 200)
     }
-
-
-    setPoisonCount(count) {
-        this.poisonCount = count;
-    }
     
 }
