@@ -6,6 +6,8 @@ class World {
     keyboard;
     camera_x = 0;
     endBoss;
+    poisonCount = 0;
+    coinCount = 0;
 
     character = new Character();
     bubbleFish = new GreenBubbleFish();
@@ -13,11 +15,12 @@ class World {
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
     coin = new Coin();
-    poisons = [new Poison()];
+    throwPoisons = [new Poison()];
     // barrier = new Barrier();
     barrierDown = new BarrierDown();
     barrierDownUp = new BarrierDownUp();
     objectsCollection = new ObjectCollection();
+    poisonCollect = new PoisonCollect();
 
 
     constructor(canvas, keyboard) {
@@ -54,7 +57,7 @@ class World {
     checkPoison() {
         if (this.keyboard.SPACE) {
             let poison = new Poison(this.character.x, this.character.y);
-            this.poisons.push(poison);
+            this.throwPoisons.push(poison);
         }
     }
 
@@ -62,7 +65,8 @@ class World {
     checkCollisions() {
         this.checkCollisionsEmemies();
         this.checkCollisionsBoss();
-        this.checkCollisionsObject();
+        this.checkCollisionsButtle();
+        this.checkCollisionsCoin();
     }
 
 
@@ -75,14 +79,24 @@ class World {
     }
 
 
-////////////////////
-    checkCollisionsObject() {
-        const objects = this.objectsCollection;
-        if (this.character.isColliding(objects)) {
-            this.checkIsColliding();
-        }
+    checkCollisionsButtle() {
+
+        this.level.poisonButtle.forEach((buttle) => {
+            if (this.character.isCollidingPoison(buttle)) {
+                this.addPoison(buttle);
+            }
+        })
     }
-///////////////////
+
+
+    checkCollisionsCoin() {
+        this.level.coin.forEach((coin) => {
+            if (this.character.isCollidingPoison(coin)) {
+                this.addCoin();
+            }
+        })
+    }
+
 
     checkCollisionsBoss() {
         if (this.endBoss) {
@@ -91,6 +105,22 @@ class World {
                 this.checkIsColliding();
             }
         }
+    }
+
+
+    addPoison(buttle) {
+        this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
+        this.poisonCount++;
+        this.poisonCollect.setPoisonCount(this.poisonCount);
+        // console.log("Poison hinzugefügt! Aktueller Poison-Zähler: " + this.poisonCount);
+
+    }
+
+
+    addCoin() {
+        this.coinCount++;
+        this.level.coin = this.level.coin.filter((coin) => !this.character.isCollidingPoison(coin));
+        // console.log("Coin gesammelt! Aktueller Münzzähler: " + this.coinCount);
     }
 
 
@@ -115,16 +145,16 @@ class World {
         this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
 
-        this.addToMap(this.barrierDown);
-        this.addToMap(this.barrierDownUp);
+        // this.addToMap(this.barrierDown);
+        // this.addToMap(this.barrierDownUp);
 
 
         if (this.endBoss) {
             this.addToMap(this.endBoss);
         }
 
-        
-        this.addObjectsToMap(this.poisons);
+
+        this.addObjectsToMap(this.throwPoisons);
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
@@ -155,7 +185,7 @@ class World {
         }
 
         parameter.draw(this.ctx);
-        parameter.drawFrame(this.ctx);
+        // parameter.drawFrame(this.ctx);
         if (parameter.otherDirection) {
             this.flipImageBack(parameter,)
         }
