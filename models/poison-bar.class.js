@@ -18,30 +18,13 @@ class PoisonBar extends DrawableObject {
         this.y = -5;
         this.width = 180;
         this.height = 50;
-        this.setPercentage(100);
+        this.setPercentage(0);
     }
 
 
-    setPercentage(percentage) {
-        this.percentage = percentage;
-        let path  = this.IMAGES[this.resolveImagesIndex()];
-        this.img = this.imageCache[path];
-    }
-
-
-    resolveImagesIndex(){
-        if(this.percentage == 100) {
-            return 5;
-        } else if (this.percentage > 80) {
-            return 4;
-        } else if (this.percentage > 60) {
-            return 3
-        } else if (this.percentage > 40) {
-            return 2;
-        } else if (this.percentage > 20) {
-            return 1;
-        } else {
-            return 0;
-        }
+    setPercentage(poisonCount) {
+        let imageIndex = Math.floor(poisonCount / 2);  
+        imageIndex = Math.min(imageIndex, this.IMAGES.length - 1);
+        this.img = this.imageCache[this.IMAGES[imageIndex]];
     }
 }

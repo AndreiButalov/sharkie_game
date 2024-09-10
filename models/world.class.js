@@ -80,10 +80,10 @@ class World {
 
 
     checkCollisionsButtle() {
-
         this.level.poisonButtle.forEach((buttle) => {
             if (this.character.isCollidingPoison(buttle)) {
                 this.addPoison(buttle);
+                this.poisonBar.setPercentage(this.poisonCount);
             }
         })
     }
@@ -93,8 +93,9 @@ class World {
         this.level.coin.forEach((coin) => {
             if (this.character.isCollidingPoison(coin)) {
                 this.addCoin();
+                this.coinBar.setPercentage(this.coinCount);
             }
-        })
+        });
     }
 
 
@@ -111,7 +112,6 @@ class World {
     addPoison(buttle) {
         this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
         this.poisonCount++;
-        // console.log("Poison hinzugefügt! Aktueller Poison-Zähler: " + this.poisonCount);
 
     }
 
@@ -119,7 +119,6 @@ class World {
     addCoin() {
         this.coinCount++;
         this.level.coin = this.level.coin.filter((coin) => !this.character.isCollidingPoison(coin));
-        // console.log("Coin gesammelt! Aktueller Münzzähler: " + this.coinCount);
     }
 
 
