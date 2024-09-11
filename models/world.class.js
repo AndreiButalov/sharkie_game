@@ -15,7 +15,7 @@ class World {
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
     coin = new Coin();
-    throwPoisons = [new Poison()];
+    throwPoisons = [new PoisonAttack()];
     // barrier = new Barrier();
     barrierDown = new BarrierDown();
     barrierDownUp = new BarrierDownUp();
@@ -56,8 +56,11 @@ class World {
 
     trowPoison() {
         if (this.keyboard.SPACE) {
-            let poison = new Poison(this.character.x, this.character.y);
-            this.throwPoisons.push(poison);
+            this.character.blowBubble();
+            setTimeout(() => {
+                let poison = new PoisonAttack(this.character.x + 100, this.character.y);
+                this.throwPoisons.push(poison);
+            }, 400)
         }
     }
 
@@ -106,11 +109,6 @@ class World {
                 this.checkIsColliding();
             }
         }
-    }
-
-
-    attackBottle() {
-
     }
 
 

@@ -22,6 +22,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/3.Swim/6.png',
     ]
 
+
     SHARKIE_DEAD = [
         'img/1.Sharkie/6.dead/1.Poisoned/1.png',
         'img/1.Sharkie/6.dead/1.Poisoned/2.png',
@@ -36,6 +37,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/6.dead/1.Poisoned/11.png',
         'img/1.Sharkie/6.dead/1.Poisoned/12.png',
     ]
+
 
     SHARKIE_STAND = [
         'img/1.Sharkie/1.IDLE/1.png',
@@ -58,10 +60,35 @@ class Character extends MovableObject {
         'img/1.Sharkie/1.IDLE/18.png'
     ]
 
+
     SHARKIE_HURT = [
         'img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
         'img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
         'img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+    ]
+
+
+    IMAGES_BUBBLE = [
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png',
+    ]
+
+
+    IMAGES_ATTACK = [
+        'img/1.Sharkie/4.Attack/Fin slap/1.png',
+        'img/1.Sharkie/4.Attack/Fin slap/2.png',
+        'img/1.Sharkie/4.Attack/Fin slap/3.png',
+        'img/1.Sharkie/4.Attack/Fin slap/4.png',
+        'img/1.Sharkie/4.Attack/Fin slap/5.png',
+        'img/1.Sharkie/4.Attack/Fin slap/6.png',
+        'img/1.Sharkie/4.Attack/Fin slap/7.png',
+        'img/1.Sharkie/4.Attack/Fin slap/8.png'
     ]
 
 
@@ -71,7 +98,9 @@ class Character extends MovableObject {
         this.loadImages(this.SHARKIE_STAND);
         this.loadImages(this.SHARKIE_DEAD);
         this.loadImages(this.SHARKIE_HURT);
-        this.animateCharacter();        
+        this.loadImages(this.IMAGES_BUBBLE);
+        this.loadImages(this.IMAGES_ATTACK);
+        this.animateCharacter();
     }
 
 
@@ -94,6 +123,11 @@ class Character extends MovableObject {
                 this.moveDown();
             }
 
+            // if (this.world.keyboard.D ) {
+            //     console.log('hallo');
+                
+            // }
+
             this.world.camera_x = -this.x + 50;
         }, 1000 / 30);
     }
@@ -115,5 +149,23 @@ class Character extends MovableObject {
         }, 150)
 
     }
-    
+
+
+    blowBubble() {
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i < this.IMAGES_BUBBLE.length) {
+                this.img = this.imageCache[this.IMAGES_BUBBLE[i]];
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 40);
+    }
+
+
+    sharkieAttack() {
+
+    }
+
 }
