@@ -33,8 +33,17 @@ class MovableObject extends DrawableObject {
     }
 
 
-    hit() {
+    hitCharacter() {
         this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+
+    hitBubblefish() {
         if (this.energy < 0) {
             this.energy = 0;
         } else {

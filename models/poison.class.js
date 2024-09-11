@@ -13,6 +13,8 @@ class Poison extends MovableObject {
         'img/4. Marcadores/Posión/Animada/8.png'        
     ];
 
+    // bubble img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png
+
     constructor(x, y) {
         super().loadImage('img/4. Marcadores/Posión/Animada/1.png');
         this.loadImages(this.IMAGES);

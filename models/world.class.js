@@ -49,12 +49,12 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkPoison();
+            this.trowPoison();
         }, 200);
     }
 
 
-    checkPoison() {
+    trowPoison() {
         if (this.keyboard.SPACE) {
             let poison = new Poison(this.character.x, this.character.y);
             this.throwPoisons.push(poison);
@@ -65,7 +65,7 @@ class World {
     checkCollisions() {
         this.checkCollisionsEmemies();
         this.checkCollisionsBoss();
-        this.checkCollisionsButtle();
+        this.checkCollisionsBottle();
         this.checkCollisionsCoin();
     }
 
@@ -79,7 +79,7 @@ class World {
     }
 
 
-    checkCollisionsButtle() {
+    checkCollisionsBottle() {
         this.level.poisonButtle.forEach((buttle) => {
             if (this.character.isCollidingPoison(buttle)) {
                 this.addPoison(buttle);
@@ -109,6 +109,11 @@ class World {
     }
 
 
+    attackBottle() {
+
+    }
+
+
     addPoison(buttle) {
         this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
         this.poisonCount++;
@@ -123,7 +128,7 @@ class World {
 
 
     checkIsColliding() {
-        this.character.hit();
+        this.character.hitCharacter();
         this.statusBar.setPercentage(this.character.energy);
     }
 
