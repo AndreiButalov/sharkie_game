@@ -5,6 +5,9 @@ class Character extends MovableObject {
     height = 200;
     width = 200;
 
+    isAttacking = false; // Statusvariable für die Attack-Animation
+    attackStartTime = 0;
+
     offset = {
         top: 120,
         left: 50,
@@ -123,10 +126,9 @@ class Character extends MovableObject {
                 this.moveDown();
             }
 
-            // if (this.world.keyboard.D ) {
-            //     console.log('hallo');
-                
-            // }
+            if (this.world.keyboard.D) {
+                this.sharkieAttack();
+            }
 
             this.world.camera_x = -this.x + 50;
         }, 1000 / 30);
@@ -165,7 +167,34 @@ class Character extends MovableObject {
 
 
     sharkieAttack() {
+       
+        if (this.isAttacking) return; // Verhindere, dass die Attack-Animation erneut gestartet wird
 
+        this.isAttacking = true; // Setze den Status auf "angreifend"
+        this.attackStartTime = Date.now(); // Setze den Start-Zeitstempel
+        this.moving = false; // Stoppe die Bewegung
+        this.playAnimation(this.IMAGES_ATTACK); // Setze die Attack-Animation
+
+        const frameDuration = 100; // Dauer jedes Frames in Millisekunden
+        const totalDuration = frameDuration * this.IMAGES_ATTACK.length; // Gesamtdauer der Animation
+
+        const animate = () => {
+            const elapsed = Date.now() - this.attackStartTime; // Berechne die vergangene Zeit
+
+            if (elapsed >= totalDuration) {
+                this.playAnimation(this.SHARKIE_STAND); // Setze die Animation auf Stand zurück
+                this.moving = true; // Erlaube wieder Bewegung
+                this.isAttacking = false; // Setze den Status auf "nicht angreifend"
+                return; // Beende die Animation
+            }
+
+            const frameIndex = Math.floor(elapsed / frameDuration); // Berechne den aktuellen Frame-Index
+            this.img = this.imageCache[this.IMAGES_ATTACK[frameIndex]]; // Setze das aktuelle Bild
+
+            requestAnimationFrame(animate); // Fordere das nächste Frame an
+        };
+
+        requestAnimationFrame(animate); // Starte die Animati
     }
 
 }
