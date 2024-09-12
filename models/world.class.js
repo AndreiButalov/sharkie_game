@@ -54,22 +54,19 @@ class World {
     }
 
 
-    trowPoison() {
-        if (this.keyboard.SPACE) {
-            this.character.blowBubble();
-            setTimeout(() => {
-                let poison = new PoisonAttack(this.character.x + 100, this.character.y);
-                this.throwPoisons.push(poison);
-            }, 400)
-        }
-    }
-
-
     checkCollisions() {
         this.checkCollisionsEmemies();
         this.checkCollisionsBoss();
         this.checkCollisionsBottle();
         this.checkCollisionsCoin();
+        this.checkCollisionsBubble();
+        this.checkCollisionsBossBubble();
+    }
+
+
+    checkIsColliding() {
+        this.character.hitCharacter();
+        this.statusBar.setPercentage(this.character.energy);
     }
 
 
@@ -112,6 +109,45 @@ class World {
     }
 
 
+    checkCollisionsBubble() {
+        this.level.enemies.forEach((enemy) => {
+            this.throwPoisons.forEach((trowPoison) => {
+                if (trowPoison.isCollidingBubble(enemy)) {
+                    this.downBubble(trowPoison);
+                }
+            })
+        })
+    }
+
+
+    checkCollisionsBossBubble() {
+        if (this.endBoss) {
+            const enemy = this.endBoss;
+            this.throwPoisons.forEach((trowPoison) => {
+                if (trowPoison.isCollidingBubble(enemy)) {
+                    this.downBubble(trowPoison);
+                }
+            })            
+        }
+    }
+
+
+    downBubble(trowPoison) {
+        this.throwPoisons = this.throwPoisons.filter((item) => item !== trowPoison);
+    }
+
+
+    trowPoison() {
+        if (this.keyboard.SPACE) {
+            this.character.blowBubble();
+            setTimeout(() => {
+                let poison = new PoisonAttack(this.character.x + 100, this.character.y);
+                this.throwPoisons.push(poison);
+            }, 400)
+        }
+    }
+
+
     addPoison(buttle) {
         this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
         this.poisonCount++;
@@ -122,12 +158,6 @@ class World {
     addCoin() {
         this.coinCount++;
         this.level.coin = this.level.coin.filter((coin) => !this.character.isCollidingPoison(coin));
-    }
-
-
-    checkIsColliding() {
-        this.character.hitCharacter();
-        this.statusBar.setPercentage(this.character.energy);
     }
 
 

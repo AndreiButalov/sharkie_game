@@ -33,6 +33,14 @@ class MovableObject extends DrawableObject {
     }
 
 
+    isCollidingBubble(obj) {
+        return this.x  + this.width > obj.x &&
+        this.y + this.height  > obj.y &&
+        this.x  < obj.x &&
+        this.y  < obj.y + obj.height
+    }
+
+
     hitCharacter() {
         this.energy -= 5;
         if (this.energy < 0) {
