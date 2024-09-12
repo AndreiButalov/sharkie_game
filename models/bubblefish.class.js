@@ -9,6 +9,14 @@ class Bubblefish extends MovableObject {
         right: 135,
         bottom: 0
     }
+
+
+    constructor() {
+        super();
+        this.initialY = 60 + Math.random() * 300;
+        this.y = this.initialY;
+        this.applySwim(); 
+    }
     
     
     animateEnemy(image) {       

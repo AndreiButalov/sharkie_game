@@ -29,6 +29,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.endBossArrival();
+        this.bubbleFishTransition();
         this.setWorld();
         this.run();
     }
@@ -43,6 +44,19 @@ class World {
                 clearInterval(spawnBoss);
             }
         }, 200);
+    }
+
+
+    bubbleFishTransition() {
+        setInterval(() => {
+            this.level.enemies.forEach((fish) => {
+                if ((fish.x - this.character.x) < 350) {
+                    console.log('hallo');
+                    
+                    this.bubbleFish.getTransition();
+                }                
+            })      
+        }, 200)
     }
 
 
@@ -127,7 +141,7 @@ class World {
                 if (trowPoison.isCollidingBubble(enemy)) {
                     this.downBubble(trowPoison);
                 }
-            })            
+            })
         }
     }
 
@@ -149,15 +163,19 @@ class World {
 
 
     addPoison(buttle) {
-        this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
-        this.poisonCount++;
+        if (this.poisonCount <= 4) {
+            this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
+            this.poisonCount++;
+        }
 
     }
 
 
     addCoin() {
-        this.coinCount++;
-        this.level.coin = this.level.coin.filter((coin) => !this.character.isCollidingPoison(coin));
+        if (this.coinCount <= 4) {
+            this.coinCount++;
+            this.level.coin = this.level.coin.filter((coin) => !this.character.isCollidingPoison(coin));
+        }
     }
 
 
