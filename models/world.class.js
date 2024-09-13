@@ -50,13 +50,11 @@ class World {
     bubbleFishTransition() {
         setInterval(() => {
             this.level.enemies.forEach((fish) => {
-                if ((fish.x - this.character.x) < 350) {
-                    console.log('hallo');
-                    
-                    this.bubbleFish.getTransition();
-                }                
-            })      
-        }, 200)
+                if ((fish.x - this.character.x) < 550 && fish instanceof GreenBubbleFish) {
+                    fish.triggerTransition();
+                }
+            });
+        }, 200);
     }
 
 

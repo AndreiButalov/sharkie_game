@@ -7,9 +7,8 @@ class Bubblefish extends MovableObject {
         top: 10,
         left: 0,
         right: 135,
-        bottom: 0
+        bottom: -10
     }
-
 
     constructor() {
         super();
@@ -18,13 +17,12 @@ class Bubblefish extends MovableObject {
         this.applySwim(); 
     }
     
-    
     animateEnemy(image) {       
-        setInterval(() => {
-            this.moveLeft();            
+        this.swimAnimation = setInterval(() => {
+            this.moveLeft();         
         }, 1000 / 60);    
 
-        setInterval(() => {
+        this.playSwim = setInterval(() => {
             this.playAnimation(image);
         }, 200);
     }
