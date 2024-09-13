@@ -3,7 +3,7 @@ class GreenBubbleFish extends Bubblefish {
     frequency = 0.09;
     amplitude = 12;
 
-    isInTransition = false; // Statusvariable für den Übergang
+    isInTransition = false;
 
     BUBBLEFISH_SWIM = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
