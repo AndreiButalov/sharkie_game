@@ -22,6 +22,7 @@ class World {
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
     redBubbleFish = new RedBubbleFish();
+    jellyFish = new JellyFish();
 
 
     constructor(canvas, keyboard) {
@@ -202,6 +203,7 @@ class World {
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
+        this.addToMap(this.jellyFish);
 
         // this.addToMap(this.barrierDown);
         // this.addToMap(this.barrierDownUp);
