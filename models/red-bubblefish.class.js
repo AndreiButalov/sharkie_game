@@ -2,8 +2,8 @@ class RedBubbleFish extends Bubblefish {
 
     frequency = 0.09;
     amplitude = 14;
-
     isInTransition = false;
+
 
     BUBBLEFISH_SHWIM = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png',
@@ -41,9 +41,7 @@ class RedBubbleFish extends Bubblefish {
         this.loadImages(this.BUBBLEFISH_SHWIM);
         this.loadImages(this.BUBBLEFISH_TRANSITION);
         this.loadImages(this.BUBBLEFISH_TRANSITION_SHWIM);
-        this.animateEnemy();
+        
     }
-
-
 
 }

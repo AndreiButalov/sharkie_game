@@ -51,11 +51,21 @@ class World {
     bubbleFishTransition() {
         setInterval(() => {
             this.level.enemies.forEach((fish) => {
-                if (((fish.x - this.character.x) < 550 && fish instanceof GreenBubbleFish) || ((fish.x - this.character.x) < 550 && fish instanceof RedBubbleFish)) {
+                if ( this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) {
                     fish.triggerTransition();
                 }                
             });
         }, 200);
+    }
+
+
+    isGreenBubbleFish(fish) {
+        return fish.x - this.character.x < 550 && fish instanceof GreenBubbleFish;
+    }
+
+
+    isRedBubbleFish(fish) {
+        return fish.x - this.character.x < 550 && fish instanceof RedBubbleFish;
     }
 
 
