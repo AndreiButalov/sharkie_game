@@ -3,7 +3,8 @@ let level1;
 const initialOffset = -720;
 const step = 719;
 const repetitions = 5;
-const fishIntervals = [750, 1440, 2160, 2880, 3500];
+const greenFishIntervals = [750, 1440, 2160, 2880, 3500];
+const redFishIntervals = [800, 1240, 2160, 2880, 3500];
 const coinIntervals = [750, 1440, 2060, 2680, 3000];
 
 const waterLayers = ['img/3. Background/Layers/5. Water/D2.png', 'img/3. Background/Layers/5. Water/D1.png'];
@@ -34,9 +35,19 @@ function initialGames() {
         ...createBackgroundLayer(lightLayers, initialOffset, step, repetitions)
     ];
 
-    const fishArray = fishIntervals.flatMap(interval =>
+    const greenFishArray = greenFishIntervals.flatMap(interval =>
         Array(1).fill().map(() => new GreenBubbleFish(interval))
     );
+
+
+    const redFishArray = redFishIntervals.flatMap(interval =>
+        Array(1).fill().map(() => new RedBubbleFish(interval))
+    );
+
+    const enemiesFishsArray = [
+        ...greenFishArray,
+        ...redFishArray
+    ]
 
     const coinArray = coinIntervals.flatMap(interval =>
         Array(1).fill().map(() => new Coin(interval))
@@ -46,7 +57,7 @@ function initialGames() {
         Array(1).fill().map(() => new PoisonCollect(interval))
     );
     
-    level1 = new Level(fishArray, backgroundObjects, coinArray, poisonArray);
+    level1 = new Level(enemiesFishsArray, backgroundObjects, coinArray, poisonArray);
 }
 
 

@@ -21,6 +21,7 @@ class World {
     barrierDownUp = new BarrierDownUp();
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
+    redBubbleFish = new RedBubbleFish();
 
 
     constructor(canvas, keyboard) {
@@ -191,6 +192,7 @@ class World {
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
+        // this.addToMap(this.redBubbleFish);
 
         // this.addToMap(this.barrierDown);
         // this.addToMap(this.barrierDownUp);
