@@ -15,8 +15,7 @@ class Bubblefish extends MovableObject {
         this.initialY = 60 + Math.random() * 300;
         this.y = this.initialY;
         this.applySwim(); 
-    }
-    
+    }   
     
 
     
