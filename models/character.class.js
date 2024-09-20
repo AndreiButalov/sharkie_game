@@ -136,9 +136,9 @@ class Character extends MovableObject {
                 this.moveDown();
             }
 
-            if (this.world.keyboard.D) {
-                this.sharkieAttack();
-            }
+            // if (this.world.keyboard.D) {
+            //     this.sharkieAttack();
+            // }
 
             this.world.camera_x = -this.x + 50;
         }, 1000 / 30);
@@ -155,10 +155,13 @@ class Character extends MovableObject {
                 this.playAnimation(this.SHARKIE_HURT);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.SHARKIE_SWIM);
+            } else if (this.world.keyboard.D) {
+                this.playAnimation(this.IMAGES_ATTACK);
+                
             } else {
                 this.playAnimation(this.SHARKIE_STAND);
             }
-        }, 150)
+        }, 100)
 
     }
 
@@ -176,35 +179,35 @@ class Character extends MovableObject {
     }
 
 
-    sharkieAttack() {
+    // sharkieAttack() {
        
-        if (this.isAttacking) return; 
+    //     if (this.isAttacking) return; 
 
-        this.isAttacking = true; 
-        this.attackStartTime = Date.now(); 
-        this.moving = false; 
-        this.playAnimation(this.IMAGES_ATTACK); 
+    //     this.isAttacking = true; 
+    //     this.attackStartTime = Date.now(); 
+    //     this.moving = false; 
+    //     this.playAnimation(this.IMAGES_ATTACK); 
 
-        const frameDuration = 100; 
-        const totalDuration = frameDuration * this.IMAGES_ATTACK.length;
+    //     const frameDuration = 100; 
+    //     const totalDuration = frameDuration * this.IMAGES_ATTACK.length;
 
-        const animate = () => {
-            const elapsed = Date.now() - this.attackStartTime; 
+    //     const animate = () => {
+    //         const elapsed = Date.now() - this.attackStartTime; 
 
-            if (elapsed >= totalDuration) {
-                this.playAnimation(this.SHARKIE_STAND);
-                this.moving = true; 
-                this.isAttacking = false; 
-                return; 
-            }
+    //         if (elapsed >= totalDuration) {
+    //             this.playAnimation(this.SHARKIE_STAND);
+    //             this.moving = true; 
+    //             this.isAttacking = false; 
+    //             return; 
+    //         }
 
-            const frameIndex = Math.floor(elapsed / frameDuration); 
-            this.img = this.imageCache[this.IMAGES_ATTACK[frameIndex]];
+    //         const frameIndex = Math.floor(elapsed / frameDuration); 
+    //         this.img = this.imageCache[this.IMAGES_ATTACK[frameIndex]];
 
-            requestAnimationFrame(animate);
-        };
+    //         requestAnimationFrame(animate);
+    //     };
 
-        requestAnimationFrame(animate); 
-    }
+    //     requestAnimationFrame(animate); 
+    // }
 
 }

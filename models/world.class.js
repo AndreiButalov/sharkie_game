@@ -160,12 +160,17 @@ class World {
 
 
     trowPoison() {
+        console.log(this.poisonCount);
+        
         if (this.keyboard.SPACE) {
-            this.character.blowBubble();
-            setTimeout(() => {
-                let poison = new PoisonAttack(this.character.x + 100, this.character.y);
-                this.throwPoisons.push(poison);
-            }, 400)
+            if(this.poisonCount > 0) {
+                this.character.blowBubble();
+                setTimeout(() => {
+                    let poison = new PoisonAttack(this.character.x + 100, this.character.y);
+                    this.throwPoisons.push(poison);
+                    this.poisonCount--;
+                }, 400)
+            }
         }
     }
 
@@ -175,7 +180,6 @@ class World {
             this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
             this.poisonCount++;
         }
-
     }
 
 
