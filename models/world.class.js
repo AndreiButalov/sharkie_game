@@ -16,6 +16,7 @@ class World {
     poisonBar = new PoisonBar();
     coin = new Coin();
     throwPoisons = [new PoisonAttack()];
+    throwBubble = [new BubbleAttack()];
     // barrier = new Barrier();
     barrierDown = new BarrierDown();
     barrierDownUp = new BarrierDownUp();
@@ -50,9 +51,9 @@ class World {
     bubbleFishTransition() {
         setInterval(() => {
             this.level.enemies.forEach((fish) => {
-                if ( this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) {
+                if (this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) {
                     fish.triggerTransition();
-                }                
+                }
             });
         }, 200);
     }
@@ -161,15 +162,18 @@ class World {
 
     trowPoison() {
         console.log(this.poisonCount);
-        
+
         if (this.keyboard.SPACE) {
-            if(this.poisonCount > 0) {
-                this.character.blowBubble();
-                setTimeout(() => {
-                    let poison = new PoisonAttack(this.character.x + 100, this.character.y);
-                    this.throwPoisons.push(poison);
-                    this.poisonCount--;
-                }, 400)
+            if (this.poisonCount > 0) {
+                this.character.blowBubble(this.character.IMAGES_BUBBLE_POISON);
+                let poison = new PoisonAttack(this.character.x + 100, this.character.y);
+                this.throwPoisons.push(poison);
+                this.poisonCount--;
+            } else {
+                this.character.blowBubble(this.character.IMAGES_BUBBLE);
+                let bubble = new BubbleAttack(this.character.x + 100, this.character.y);
+                this.throwBubble.push(bubble);
+
             }
         }
     }
@@ -216,6 +220,7 @@ class World {
 
 
         this.addObjectsToMap(this.throwPoisons);
+        this.addObjectsToMap(this.throwBubble);
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);

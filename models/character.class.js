@@ -81,7 +81,7 @@ class Character extends MovableObject {
     ]
 
 
-    IMAGES_BUBBLE = [
+    IMAGES_BUBBLE_POISON = [
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png',
@@ -90,6 +90,18 @@ class Character extends MovableObject {
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png',
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png',
+    ]
+
+
+    IMAGES_BUBBLE = [
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
     ]
 
 
@@ -111,6 +123,7 @@ class Character extends MovableObject {
         this.loadImages(this.SHARKIE_STAND);
         this.loadImages(this.SHARKIE_DEAD);
         this.loadImages(this.SHARKIE_HURT);
+        this.loadImages(this.IMAGES_BUBBLE_POISON);
         this.loadImages(this.IMAGES_BUBBLE);
         this.loadImages(this.IMAGES_ATTACK);
         this.animateCharacter();
@@ -166,16 +179,17 @@ class Character extends MovableObject {
     }
 
 
-    blowBubble() {
+    blowBubble(arr) {
         let i = 0;
         const interval = setInterval(() => {
-            if (i < this.IMAGES_BUBBLE.length) {
-                this.img = this.imageCache[this.IMAGES_BUBBLE[i]];
+            if (i < arr.length) {
+                this.img = this.imageCache[arr[i]];
                 i++;
             } else {
                 clearInterval(interval);
             }
         }, 40);
+        // this.playAnimation(this.IMAGES_BUBBLE);
     }
 
 

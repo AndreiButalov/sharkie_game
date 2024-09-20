@@ -3,14 +3,14 @@ class PoisonAttack extends MovableObject {
     height = 60;
 
 
-    IMAGES = [
+    IMAGES_POISON = [
         'img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png'        
     ];
-    
+      
 
     constructor(x, y) {
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png');
-        this.loadImages(this.IMAGES);        
+        this.loadImages(this.IMAGES_POISON);        
         this.x = x;
         this.y = y;        
         this.poisonAnimate();
@@ -20,7 +20,7 @@ class PoisonAttack extends MovableObject {
     
     poisonAnimate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES)
+            this.playAnimation(this.IMAGES_POISON)
         }, 200)
     }   
 

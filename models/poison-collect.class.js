@@ -29,7 +29,7 @@ class PoisonCollect extends ObjectCollection {
         this.loadImages(this.IMAGES)
         this.initialY = 350 + Math.random() * 50;
         this.y = this.initialY;
-        this.x = 460 + Math.random() * 3000;        
+        this.x = 200 + Math.random() * 3000;        
         this.applySwim();
         this.poisonAnimate();
     }
