@@ -35,7 +35,7 @@ class RedBubbleFish extends Bubblefish {
     constructor(x) {
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png');
         this.x = x;        
-        this.speed = 0.7 + Math.random() * 0.2;
+        this.speed = 0.5 + Math.random() * 0.2;
         this.initialY = 60 + Math.random() * 300;
         this.y = this.initialY;        
         this.loadImages(this.BUBBLEFISH_SHWIM);

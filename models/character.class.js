@@ -5,7 +5,7 @@ class Character extends MovableObject {
     height = 200;
     width = 200;
 
-    isAttacking = false; // Statusvariable für die Attack-Animation
+    isAttacking = false;
     attackStartTime = 0;
 
     offset = {
@@ -68,6 +68,16 @@ class Character extends MovableObject {
         'img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
         'img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
         'img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+    ]
+
+
+    SHARKIE_POISONED = [
+        'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/5.png',
+        
     ]
 
 
@@ -168,33 +178,33 @@ class Character extends MovableObject {
 
     sharkieAttack() {
        
-        if (this.isAttacking) return; // Verhindere, dass die Attack-Animation erneut gestartet wird
+        if (this.isAttacking) return; 
 
-        this.isAttacking = true; // Setze den Status auf "angreifend"
-        this.attackStartTime = Date.now(); // Setze den Start-Zeitstempel
-        this.moving = false; // Stoppe die Bewegung
-        this.playAnimation(this.IMAGES_ATTACK); // Setze die Attack-Animation
+        this.isAttacking = true; 
+        this.attackStartTime = Date.now(); 
+        this.moving = false; 
+        this.playAnimation(this.IMAGES_ATTACK); 
 
-        const frameDuration = 100; // Dauer jedes Frames in Millisekunden
-        const totalDuration = frameDuration * this.IMAGES_ATTACK.length; // Gesamtdauer der Animation
+        const frameDuration = 100; 
+        const totalDuration = frameDuration * this.IMAGES_ATTACK.length;
 
         const animate = () => {
-            const elapsed = Date.now() - this.attackStartTime; // Berechne die vergangene Zeit
+            const elapsed = Date.now() - this.attackStartTime; 
 
             if (elapsed >= totalDuration) {
-                this.playAnimation(this.SHARKIE_STAND); // Setze die Animation auf Stand zurück
-                this.moving = true; // Erlaube wieder Bewegung
-                this.isAttacking = false; // Setze den Status auf "nicht angreifend"
-                return; // Beende die Animation
+                this.playAnimation(this.SHARKIE_STAND);
+                this.moving = true; 
+                this.isAttacking = false; 
+                return; 
             }
 
-            const frameIndex = Math.floor(elapsed / frameDuration); // Berechne den aktuellen Frame-Index
-            this.img = this.imageCache[this.IMAGES_ATTACK[frameIndex]]; // Setze das aktuelle Bild
+            const frameIndex = Math.floor(elapsed / frameDuration); 
+            this.img = this.imageCache[this.IMAGES_ATTACK[frameIndex]];
 
-            requestAnimationFrame(animate); // Fordere das nächste Frame an
+            requestAnimationFrame(animate);
         };
 
-        requestAnimationFrame(animate); // Starte die Animati
+        requestAnimationFrame(animate); 
     }
 
 }

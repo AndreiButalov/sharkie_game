@@ -11,10 +11,17 @@ class JellyFish extends Bubblefish {
     ]
 
 
-    constructor() {
+    BUBBLEFISH_DEAD = [
+        'img/2.Enemy/2 Jelly fish/Dead/green/g1.png',
+        'img/2.Enemy/2 Jelly fish/Dead/green/g2.png',
+        'img/2.Enemy/2 Jelly fish/Dead/green/g3.png',
+        'img/2.Enemy/2 Jelly fish/Dead/green/g4.png',
+    ]
+
+
+    constructor(x) {
         super().loadImage('img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
         this.loadImages(this.BUBBLEFISH_SHWIM);
-        this.x = 200;
-        this.y = 300;
+        this.x = x;
     }
 }

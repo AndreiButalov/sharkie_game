@@ -21,8 +21,6 @@ class World {
     barrierDownUp = new BarrierDownUp();
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
-    redBubbleFish = new RedBubbleFish();
-    jellyFish = new JellyFish();
 
 
     constructor(canvas, keyboard) {
@@ -66,7 +64,7 @@ class World {
 
 
     isRedBubbleFish(fish) {
-        return fish.x - this.character.x < 550 && fish instanceof RedBubbleFish;
+        return fish.x - this.character.x < 450 && fish instanceof RedBubbleFish;
     }
 
 
@@ -203,7 +201,6 @@ class World {
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
-        this.addToMap(this.jellyFish);
 
         // this.addToMap(this.barrierDown);
         // this.addToMap(this.barrierDownUp);

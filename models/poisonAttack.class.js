@@ -14,7 +14,7 @@ class PoisonAttack extends MovableObject {
         this.x = x;
         this.y = y;        
         this.poisonAnimate();
-        this.trow(x, y)
+        this.trow(x, y);
     }
 
     

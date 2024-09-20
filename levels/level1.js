@@ -3,8 +3,10 @@ let level1;
 const initialOffset = -720;
 const step = 719;
 const repetitions = 5;
+
 const greenFishIntervals = [750, 1440, 2160, 2880, 3500];
 const redFishIntervals = [800, 1240, 2160, 2880, 3500];
+const jellyFishIntervals = [200, 1240, 2160, 2880, 3500];
 const coinIntervals = [750, 1440, 2060, 2680, 3000];
 
 const waterLayers = ['img/3. Background/Layers/5. Water/D2.png', 'img/3. Background/Layers/5. Water/D1.png'];
@@ -35,18 +37,25 @@ function initialGames() {
         ...createBackgroundLayer(lightLayers, initialOffset, step, repetitions)
     ];
 
+
     const greenFishArray = greenFishIntervals.flatMap(interval =>
         Array(1).fill().map(() => new GreenBubbleFish(interval))
     );
-
 
     const redFishArray = redFishIntervals.flatMap(interval =>
         Array(1).fill().map(() => new RedBubbleFish(interval))
     );
 
+    const jellyFishArray = redFishIntervals.flatMap(interval =>
+        Array(1).fill().map(() => new JellyFish(interval))
+    );
+
+
+
     const enemiesFishsArray = [
         ...greenFishArray,
-        ...redFishArray
+        ...redFishArray,
+        ...jellyFishArray
     ]
 
     const coinArray = coinIntervals.flatMap(interval =>
