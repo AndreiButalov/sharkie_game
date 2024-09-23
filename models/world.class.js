@@ -160,13 +160,8 @@ class World {
             });
         });        
     }
-
-
-    jellyFishDisable(enemy) {
-        this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
-    }
-
-
+    
+    
     checkCollisionsBossPoisonBubble() {
         if (this.endBoss) {
             const enemy = this.endBoss;
@@ -178,7 +173,12 @@ class World {
         }
     }
 
+    
+    jellyFishDisable(enemy) {
+        this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
+    }
 
+    
     downBubblePoison(trowPoison) {
         this.throwPoisons = this.throwPoisons.filter((item) => item !== trowPoison);
     }

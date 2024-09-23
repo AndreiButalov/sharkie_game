@@ -123,6 +123,7 @@ class Character extends MovableObject {
         this.loadImages(this.SHARKIE_STAND);
         this.loadImages(this.SHARKIE_DEAD);
         this.loadImages(this.SHARKIE_HURT);
+        this.loadImages(this.SHARKIE_POISONED);
         this.loadImages(this.IMAGES_BUBBLE_POISON);
         this.loadImages(this.IMAGES_BUBBLE);
         this.loadImages(this.IMAGES_ATTACK);
@@ -161,17 +162,15 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.SHARKIE_DEAD);
             } else if (this.isHurt()) {
-                this.playAnimation(this.SHARKIE_HURT);
+                this.playAnimation(this.SHARKIE_HURT);                
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.SHARKIE_SWIM);
             } else if (this.world.keyboard.D) {
                 this.playAnimation(this.IMAGES_ATTACK);
-
             } else {
                 this.playAnimation(this.SHARKIE_STAND);
             }
-        }, 100)
-
+        }, 100);
     }
 
 
