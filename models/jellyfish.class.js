@@ -1,18 +1,8 @@
-class JellyFish extends MovableObject {
+class JellyFish extends Enemies {
 
     frequency = 0.09;
     amplitude = 12;
     isDead = false;
-    height = 100;
-    width = 100;  
-
-
-    offset = {
-        top: 10,
-        left: 0,
-        right: 135,
-        bottom: -10
-    }
 
 
     JELLYFISH_SHWIM = [
@@ -36,10 +26,7 @@ class JellyFish extends MovableObject {
         this.loadImages(this.JELLYFISH_SHWIM);
         this.loadImages(this.JELLYFISH_DEAD);
         this.x = x;
-        this.initialY = 60 + Math.random() * 300;
-        this.y = this.initialY;
         this.animateJellyFish();
-        this.applySwim()
     }
 
 
@@ -59,7 +46,7 @@ class JellyFish extends MovableObject {
         }, 200);
     }
 
-    
+
     jellyFishDead() {
         this.isDead = true;
     }

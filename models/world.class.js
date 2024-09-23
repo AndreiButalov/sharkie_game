@@ -172,13 +172,12 @@ class World {
             })
         }
     }
-
+    
     
     jellyFishDisable(enemy) {
         this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
     }
 
-    
     downBubblePoison(trowPoison) {
         this.throwPoisons = this.throwPoisons.filter((item) => item !== trowPoison);
     }
