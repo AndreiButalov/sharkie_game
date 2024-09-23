@@ -151,11 +151,19 @@ class World {
                 if (bubble.isCollidingBubble(enemy)) {
                     if (enemy instanceof JellyFish) {
                         this.downBubble(bubble);
-                        this.jellyFish.jellyFishDead();
+                        enemy.jellyFishDead();
+                        setTimeout(() => {
+                            this.jellyFishDisable(enemy);
+                        }, 1000)
                     }
                 }
-            })
-        })        
+            });
+        });        
+    }
+
+
+    jellyFishDisable(enemy) {
+        this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
     }
 
 

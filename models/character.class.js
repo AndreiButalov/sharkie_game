@@ -77,7 +77,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
         'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
         'img/1.Sharkie/5.Hurt/1.Poisoned/5.png',
-        
+
     ]
 
 
@@ -149,10 +149,6 @@ class Character extends MovableObject {
                 this.moveDown();
             }
 
-            // if (this.world.keyboard.D) {
-            //     this.sharkieAttack();
-            // }
-
             this.world.camera_x = -this.x + 50;
         }, 1000 / 30);
     }
@@ -170,7 +166,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.SHARKIE_SWIM);
             } else if (this.world.keyboard.D) {
                 this.playAnimation(this.IMAGES_ATTACK);
-                
+
             } else {
                 this.playAnimation(this.SHARKIE_STAND);
             }
@@ -193,35 +189,6 @@ class Character extends MovableObject {
     }
 
 
-    // sharkieAttack() {
-       
-    //     if (this.isAttacking) return; 
 
-    //     this.isAttacking = true; 
-    //     this.attackStartTime = Date.now(); 
-    //     this.moving = false; 
-    //     this.playAnimation(this.IMAGES_ATTACK); 
-
-    //     const frameDuration = 100; 
-    //     const totalDuration = frameDuration * this.IMAGES_ATTACK.length;
-
-    //     const animate = () => {
-    //         const elapsed = Date.now() - this.attackStartTime; 
-
-    //         if (elapsed >= totalDuration) {
-    //             this.playAnimation(this.SHARKIE_STAND);
-    //             this.moving = true; 
-    //             this.isAttacking = false; 
-    //             return; 
-    //         }
-
-    //         const frameIndex = Math.floor(elapsed / frameDuration); 
-    //         this.img = this.imageCache[this.IMAGES_ATTACK[frameIndex]];
-
-    //         requestAnimationFrame(animate);
-    //     };
-
-    //     requestAnimationFrame(animate); 
-    // }
 
 }
