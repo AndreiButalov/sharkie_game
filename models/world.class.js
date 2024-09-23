@@ -11,6 +11,7 @@ class World {
 
     character = new Character();
     bubbleFish = new GreenBubbleFish();
+    jellyFish = new JellyFish();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
@@ -82,8 +83,9 @@ class World {
         this.checkCollisionsBoss();
         this.checkCollisionsBottle();
         this.checkCollisionsCoin();
+        this.checkCollisionsPoisonBubble();
+        this.checkCollisionsBossPoisonBubble();
         this.checkCollisionsBubble();
-        this.checkCollisionsBossBubble();
     }
 
 
@@ -103,10 +105,10 @@ class World {
 
 
     checkCollisionsBottle() {
-        this.level.poisonButtle.forEach((buttle) => {
-            if (this.character.isCollidingPoison(buttle)) {
-                this.addPoison(buttle);
-                this.poisonBar.setPercentage(this.poisonCount);
+        this.poisonBar.setPercentage(this.poisonCount);
+        this.level.poisonButtle.forEach((bottle) => {
+            if (this.character.isCollidingPoison(bottle)) {
+                this.addPoison(bottle);
             }
         })
     }
@@ -132,37 +134,54 @@ class World {
     }
 
 
-    checkCollisionsBubble() {
+    checkCollisionsPoisonBubble() {
         this.level.enemies.forEach((enemy) => {
             this.throwPoisons.forEach((trowPoison) => {
                 if (trowPoison.isCollidingBubble(enemy)) {
-                    this.downBubble(trowPoison);
+                    this.downBubblePoison(trowPoison);
                 }
             })
         })
     }
 
 
-    checkCollisionsBossBubble() {
+    checkCollisionsBubble() {
+        this.level.enemies.forEach((enemy) => {
+            this.throwBubble.forEach((bubble) => {
+                if (bubble.isCollidingBubble(enemy)) {
+                    if (enemy instanceof JellyFish) {
+                        this.downBubble(bubble);
+                        this.jellyFish.jellyFishDead();
+                    }
+                }
+            })
+        })        
+    }
+
+
+    checkCollisionsBossPoisonBubble() {
         if (this.endBoss) {
             const enemy = this.endBoss;
             this.throwPoisons.forEach((trowPoison) => {
                 if (trowPoison.isCollidingBubble(enemy)) {
-                    this.downBubble(trowPoison);
+                    this.downBubblePoison(trowPoison);
                 }
             })
         }
     }
 
 
-    downBubble(trowPoison) {
+    downBubblePoison(trowPoison) {
         this.throwPoisons = this.throwPoisons.filter((item) => item !== trowPoison);
     }
 
 
-    trowPoison() {
-        console.log(this.poisonCount);
+    downBubble(bubble) {
+        this.throwBubble = this.throwBubble.filter((item) => item !== bubble);
+    }
 
+
+    trowPoison() {
         if (this.keyboard.SPACE) {
             if (this.poisonCount > 0) {
                 this.character.blowBubble(this.character.IMAGES_BUBBLE_POISON);
@@ -173,7 +192,6 @@ class World {
                 this.character.blowBubble(this.character.IMAGES_BUBBLE);
                 let bubble = new BubbleAttack(this.character.x + 100, this.character.y);
                 this.throwBubble.push(bubble);
-
             }
         }
     }

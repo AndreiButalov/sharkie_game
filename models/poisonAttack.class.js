@@ -1,4 +1,5 @@
 class PoisonAttack extends MovableObject {
+
     width = 50;
     height = 60;
 
@@ -13,15 +14,13 @@ class PoisonAttack extends MovableObject {
         this.loadImages(this.IMAGES_POISON);        
         this.x = x;
         this.y = y;        
-        this.poisonAnimate();
+        this.poisonAnimate(this.IMAGES_POISON);
         this.trow(x, y);
     }
 
     
-    poisonAnimate() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_POISON)
-        }, 200)
+    poisonAnimate(image) {
+        this.playAnimation(image);
     }   
 
 
@@ -30,7 +29,7 @@ class PoisonAttack extends MovableObject {
         this.y = y + 90;       
 
         setInterval(() => {
-            this.x += 10;
+            this.x += 3;// speeed
         }, 50)
     }
 }

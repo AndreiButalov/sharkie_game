@@ -1,5 +1,7 @@
 class BubbleAttack extends PoisonAttack {
     
+   
+
     IMAGES_BUBBLE = [
         'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png',
     ];
@@ -9,16 +11,9 @@ class BubbleAttack extends PoisonAttack {
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
         this.loadImages(this.IMAGES_BUBBLE);        
         this.x = x;
-        this.y = y; 
-        this.poisonAnimate();
-        this.trow(x, y);       
-        
-    }
-
-    poisonAnimate() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_BUBBLE)
-        }, 200)
+        this.y = y;  
+        this.trow(x, y );  
+        this.poisonAnimate(this.IMAGES_BUBBLE); 
     } 
 
 }
