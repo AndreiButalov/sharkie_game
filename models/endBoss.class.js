@@ -76,4 +76,10 @@ class EndBoss extends MovableObject {
         }, 200);
     }
 
+
+    playEndBossIsDead() {
+        console.log('boss ist dead');
+        
+    }
+
 }

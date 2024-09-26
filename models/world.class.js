@@ -107,7 +107,7 @@ class World {
         this.checkCollisionsBottle();
         this.checkCollisionsCoin();
         this.checkCollisionsBubblefishBubble();
-        this.checkCollisionsBossPoisonBubble();
+        this.checkCollisionsBossAttack();
         this.checkCollisionsJellyfishBubble();
     }
 
@@ -194,25 +194,50 @@ class World {
     }
 
 
-    checkCollisionsBossPoisonBubble() {
+    checkCollisionsBossAttack() {
         if (this.endBoss) {
             const enemy = this.endBoss;
-            this.throwPoisons.forEach((trowPoison) => {
-                if (trowPoison.isCollidingBubble(enemy)) {
-                    this.downBubblePoison(trowPoison);
-                }
-            })
+            checkBossPoisonAttack(enemy);
+            checkBossBubbleAttack(enemy);
         }
+    }
+
+
+    checkBossPoisonAttack(enemy) {
+        this.throwPoisons.forEach((trowPoison) => {
+            if (trowPoison.isCollidingBubble(enemy)) {
+                enemy.energyEnemie -= 20;
+                this.downBubblePoison(trowPoison);
+                if (enemy.energyEnemie <= 0) {
+                    enemy.playEndBossIsDead();
+                }
+            }
+        });
+    }
+
+
+    checkBossBubbleAttack(enemy) {
+        this.throwBubble.forEach((bubble) => {
+            if (bubble.isCollidingBubble(enemy)) {
+                enemy.energyEnemie -= 5;
+                this.downBubblePoison(bubble);
+                if (enemy.energyEnemie <= 0) {
+                    enemy.playEndBossIsDead();
+                }
+            }
+        })
     }
 
 
     checkHitEnemiesPoisonAttack(enemy) {
         enemy.energyEnemie -= 100;
-        if (enemy.energyEnemie <= 0) {
-            this.enemyDisable(enemy);
+        if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {////jellyFish
+            if (enemy.energyEnemie <= 0) {
+                enemy.playBubbleFishDead();
+                this.enemyDisable(enemy);
+            }
         }
     }
-
 
 
     checkHitEnemiesBubbleAttack(enemy) {
@@ -232,7 +257,7 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((fish) => {
                 if ((this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) && fish.isDead == false) {//////isDead
-                    fish.triggerTransition(); 
+                    fish.triggerTransition();
                 }
             });
         }, 200);
