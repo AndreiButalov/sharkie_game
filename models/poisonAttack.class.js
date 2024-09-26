@@ -2,6 +2,8 @@ class PoisonAttack extends MovableObject {
 
     width = 50;
     height = 60;
+    frequency = 0.09;
+    amplitude = 2;
 
 
     IMAGES_POISON = [
@@ -16,6 +18,7 @@ class PoisonAttack extends MovableObject {
         this.y = y;        
         this.poisonAnimate(this.IMAGES_POISON);
         this.trow(x, y);
+        this.bubbleSwim();
     }
 
     
@@ -24,12 +27,21 @@ class PoisonAttack extends MovableObject {
     }   
 
 
+    bubbleSwim() {
+        let time = 0;
+        setInterval(() => {
+            this.y = this.y + Math.sin(time) * this.amplitude;
+            time += this.frequency;
+        }, 1000 / 25);
+    }
+
+
     trow (x, y) {
         this.x = x + 80;
-        this.y = y + 90;       
+        this.y = y + 80;      
 
         setInterval(() => {
             this.x += 3;// speeed
-        }, 50)
+        }, 50);
     }
 }
