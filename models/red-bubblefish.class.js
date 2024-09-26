@@ -3,6 +3,7 @@ class RedBubbleFish extends Bubblefish {
     frequency = 0.09;
     amplitude = 14;
     isInTransition = false;
+    isDead = false;
 
 
     BUBBLEFISH_SHWIM = [
@@ -33,7 +34,7 @@ class RedBubbleFish extends Bubblefish {
 
 
     BUBBLEFISH_DEAD = [
-        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.png',
+        // 'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.3.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.2.png'
     ];

@@ -186,7 +186,7 @@ class World {
                     if (bubble.isCollidingBubble(enemy)) {
                         this.downBubble(bubble);
                         enemy.jellyFishDead();
-                        this.jellyFishDisable(enemy);
+                        this.enemyDisable(enemy);
                     }
                 });
             }
@@ -209,7 +209,7 @@ class World {
     checkHitEnemiesPoisonAttack(enemy) {
         enemy.energyEnemie -= 100;
         if (enemy.energyEnemie <= 0) {
-            this.jellyFishDisable(enemy);
+            this.enemyDisable(enemy);
         }
     }
 
@@ -221,10 +221,9 @@ class World {
         } else {
             enemy.energyEnemie -= 100 / 3;
         }
-
         if (enemy.energyEnemie <= 0) {
-            // this.jellyFishDisable(enemy);
-            enemy.playBubbleFishDead(enemy);
+            enemy.playBubbleFishDead();
+            this.enemyDisable(enemy);
         }
     }
 
@@ -232,7 +231,7 @@ class World {
     bubbleFishTransition() {
         setInterval(() => {
             this.level.enemies.forEach((fish) => {
-                if (this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) {//////isDead
+                if ((this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) && fish.isDead == false) {//////isDead
                     fish.triggerTransition(); 
                 }
             });
@@ -250,7 +249,7 @@ class World {
     }
 
 
-    jellyFishDisable(enemy) {
+    enemyDisable(enemy) {
         setTimeout(() => {
             this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
         }, 1000)
