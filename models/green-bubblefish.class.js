@@ -32,6 +32,13 @@ class GreenBubbleFish extends Bubblefish {
     ];
 
 
+    BUBBLEFISH_DEAD = [
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png',
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png',
+        'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going down to the floor after the Fin Slap attack).png'
+    ];
+
+
     constructor(x) {
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.x = x;        
@@ -41,5 +48,6 @@ class GreenBubbleFish extends Bubblefish {
         this.loadImages(this.BUBBLEFISH_SHWIM);
         this.loadImages(this.BUBBLEFISH_TRANSITION);
         this.loadImages(this.BUBBLEFISH_TRANSITION_SHWIM);
+        this.loadImages(this.BUBBLEFISH_DEAD);
     }
 }

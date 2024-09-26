@@ -1,6 +1,5 @@
 class Bubblefish extends Enemies {
 
-
     constructor() {
         super();        
         this.animateEnemy();        
@@ -46,6 +45,13 @@ class Bubblefish extends Enemies {
             if (!this.isInTransition) {
                 this.playAnimation(this.BUBBLEFISH_SHWIM);
             }
+        }, 200);
+    }
+
+
+    playBubbleFishDead() {       
+        setInterval(() => {
+            this.playAnimation(this.BUBBLEFISH_DEAD);
         }, 200);
     }
 

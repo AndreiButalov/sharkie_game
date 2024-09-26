@@ -223,7 +223,8 @@ class World {
         }
 
         if (enemy.energyEnemie <= 0) {
-            this.jellyFishDisable(enemy);
+            // this.jellyFishDisable(enemy);
+            enemy.playBubbleFishDead(enemy);
         }
     }
 
@@ -231,8 +232,8 @@ class World {
     bubbleFishTransition() {
         setInterval(() => {
             this.level.enemies.forEach((fish) => {
-                if (this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) {
-                    fish.triggerTransition();
+                if (this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) {//////isDead
+                    fish.triggerTransition(); 
                 }
             });
         }, 200);
