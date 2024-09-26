@@ -10,7 +10,7 @@ class World {
     coinCount = 0;
 
     character = new Character();
-    bubbleFish = new GreenBubbleFish();
+    greenBubbleFish = new GreenBubbleFish();
     jellyFish = new JellyFish();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
@@ -23,6 +23,7 @@ class World {
     barrierDownUp = new BarrierDownUp();
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
+
 
 
     constructor(canvas, keyboard) {
@@ -136,12 +137,30 @@ class World {
 
     checkCollisionsPoisonBubble() {
         this.level.enemies.forEach((enemy) => {
-            this.throwPoisons.forEach((trowPoison) => {
-                if (trowPoison.isCollidingBubble(enemy)) {
-                    this.downBubblePoison(trowPoison);
-                }
-            })
-        })
+            if (enemy instanceof GreenBubbleFish) {
+                this.throwPoisons.forEach((trowPoison) => {
+                    if (trowPoison.isCollidingBubble(enemy)) {
+                        this.downBubblePoison(trowPoison);
+                        enemy.hitCharacter();
+                        enemy.energyEnemie -= 100;   
+                        if (enemy.energyEnemie <= 0) {
+                            this.jellyFishDisable(enemy);
+                        }
+                    }
+                });
+    
+                this.throwBubble.forEach((bubble) => {
+                    if (bubble.isCollidingBubble(enemy)) {
+                        this.downBubble(bubble);
+                        enemy.hitCharacter();
+                        enemy.energyEnemie -= 50;    
+                        if (enemy.energyEnemie <= 0) {
+                            this.jellyFishDisable(enemy);
+                        }
+                    }
+                });
+            }
+        });
     }
 
 
@@ -158,10 +177,10 @@ class World {
                     }
                 }
             });
-        });        
+        });
     }
-    
-    
+
+
     checkCollisionsBossPoisonBubble() {
         if (this.endBoss) {
             const enemy = this.endBoss;
@@ -172,8 +191,8 @@ class World {
             })
         }
     }
-    
-    
+
+
     jellyFishDisable(enemy) {
         this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
     }

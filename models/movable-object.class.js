@@ -3,6 +3,7 @@ class MovableObject extends DrawableObject {
     speed = 0.2;
     otherDirection = false;
     energy = 100;
+    energyEnemie = 100;
     lastHit = 0;
     camera_xx = 0;
 
@@ -52,8 +53,8 @@ class MovableObject extends DrawableObject {
 
 
     // hitBubblefish() {
-    //     if (this.energy < 0) {
-    //         this.energy = 0;
+    //     if (this.energyEnemie < 0) {
+    //         this.energyEnemie = 0;
     //     } else {
     //         this.lastHit = new Date().getTime();
     //     }
