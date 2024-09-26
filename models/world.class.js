@@ -10,8 +10,8 @@ class World {
     coinCount = 0;
 
     character = new Character();
-    greenBubbleFish = new GreenBubbleFish();
-    jellyFish = new JellyFish();
+    // greenBubbleFish = new GreenBubbleFish();
+    // jellyFish = new JellyFish();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
@@ -38,6 +38,49 @@ class World {
     }
 
 
+    setWorld() {
+        this.character.world = this;
+    }
+
+
+    draw() {
+        this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
+        this.ctx.translate(this.camera_x, 0);
+
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.coin);
+        this.addObjectsToMap(this.level.poisonButtle);
+        this.addToMap(this.character);
+
+        // this.addToMap(this.barrierDown);
+        // this.addToMap(this.barrierDownUp);
+
+
+        if (this.endBoss) {
+            this.addToMap(this.endBoss);
+        }
+
+
+        this.addObjectsToMap(this.throwPoisons);
+        this.addObjectsToMap(this.throwBubble);
+
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.addToMap(this.coinBar);
+        this.addToMap(this.poisonBar);
+        this.ctx.translate(this.camera_x, 0);
+
+        this.ctx.translate(-this.camera_x, 0);
+
+        let self = this;
+        requestAnimationFrame(function () {
+            self.draw();
+        });
+
+    }
+
+
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
@@ -47,27 +90,6 @@ class World {
                 clearInterval(spawnBoss);
             }
         }, 200);
-    }
-
-
-    bubbleFishTransition() {
-        setInterval(() => {
-            this.level.enemies.forEach((fish) => {
-                if (this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) {
-                    fish.triggerTransition();
-                }
-            });
-        }, 200);
-    }
-
-
-    isGreenBubbleFish(fish) {
-        return fish.x - this.character.x < 550 && fish instanceof GreenBubbleFish;
-    }
-
-
-    isRedBubbleFish(fish) {
-        return fish.x - this.character.x < 450 && fish instanceof RedBubbleFish;
     }
 
 
@@ -84,9 +106,9 @@ class World {
         this.checkCollisionsBoss();
         this.checkCollisionsBottle();
         this.checkCollisionsCoin();
-        this.checkCollisionsPoisonBubble();
+        this.checkCollisionsBubblefishBubble();
         this.checkCollisionsBossPoisonBubble();
-        this.checkCollisionsBubble();
+        this.checkCollisionsJellyfishBubble();
     }
 
 
@@ -135,28 +157,21 @@ class World {
     }
 
 
-    checkCollisionsPoisonBubble() {
+    checkCollisionsBubblefishBubble() {
         this.level.enemies.forEach((enemy) => {
-            if (enemy instanceof GreenBubbleFish) {
-                this.throwPoisons.forEach((trowPoison) => {
-                    if (trowPoison.isCollidingBubble(enemy)) {
-                        this.downBubblePoison(trowPoison);
-                        enemy.hitCharacter();
-                        enemy.energyEnemie -= 100;   
-                        if (enemy.energyEnemie <= 0) {
-                            this.jellyFishDisable(enemy);
-                        }
-                    }
-                });
-    
+            this.throwPoisons.forEach((trowPoison) => {
+                if (trowPoison.isCollidingBubble(enemy)) {
+                    this.downBubblePoison(trowPoison);
+                    enemy.hitEnemies();
+                    this.checkHitEnemiesPoisonAttack(enemy);
+                }
+            });
+            if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {
                 this.throwBubble.forEach((bubble) => {
                     if (bubble.isCollidingBubble(enemy)) {
                         this.downBubble(bubble);
-                        enemy.hitCharacter();
-                        enemy.energyEnemie -= 50;    
-                        if (enemy.energyEnemie <= 0) {
-                            this.jellyFishDisable(enemy);
-                        }
+                        enemy.hitEnemies();
+                        this.checkHitEnemiesBubbleAttack(enemy);
                     }
                 });
             }
@@ -164,19 +179,17 @@ class World {
     }
 
 
-    checkCollisionsBubble() {
+    checkCollisionsJellyfishBubble() {
         this.level.enemies.forEach((enemy) => {
-            this.throwBubble.forEach((bubble) => {
-                if (bubble.isCollidingBubble(enemy)) {
-                    if (enemy instanceof JellyFish) {
+            if (enemy instanceof JellyFish) {
+                this.throwBubble.forEach((bubble) => {
+                    if (bubble.isCollidingBubble(enemy)) {
                         this.downBubble(bubble);
                         enemy.jellyFishDead();
-                        setTimeout(() => {
-                            this.jellyFishDisable(enemy);
-                        }, 1000)
+                        this.jellyFishDisable(enemy);
                     }
-                }
-            });
+                });
+            }
         });
     }
 
@@ -193,9 +206,55 @@ class World {
     }
 
 
-    jellyFishDisable(enemy) {
-        this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
+    checkHitEnemiesPoisonAttack(enemy) {
+        enemy.energyEnemie -= 100;
+        if (enemy.energyEnemie <= 0) {
+            this.jellyFishDisable(enemy);
+        }
     }
+
+
+
+    checkHitEnemiesBubbleAttack(enemy) {
+        if (enemy instanceof GreenBubbleFish) {
+            enemy.energyEnemie -= 50;
+        } else {
+            enemy.energyEnemie -= 100 / 3;
+        }
+
+        if (enemy.energyEnemie <= 0) {
+            this.jellyFishDisable(enemy);
+        }
+    }
+
+
+    bubbleFishTransition() {
+        setInterval(() => {
+            this.level.enemies.forEach((fish) => {
+                if (this.isGreenBubbleFish(fish) || this.isRedBubbleFish(fish)) {
+                    fish.triggerTransition();
+                }
+            });
+        }, 200);
+    }
+
+
+    isGreenBubbleFish(fish) {
+        return fish.x - this.character.x < 550 && fish instanceof GreenBubbleFish;
+    }
+
+
+    isRedBubbleFish(fish) {
+        return fish.x - this.character.x < 450 && fish instanceof RedBubbleFish;
+    }
+
+
+    jellyFishDisable(enemy) {
+        setTimeout(() => {
+            this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
+        }, 1000)
+    }
+
 
     downBubblePoison(trowPoison) {
         this.throwPoisons = this.throwPoisons.filter((item) => item !== trowPoison);
@@ -236,49 +295,6 @@ class World {
             this.coinCount++;
             this.level.coin = this.level.coin.filter((coin) => !this.character.isCollidingPoison(coin));
         }
-    }
-
-
-    setWorld() {
-        this.character.world = this;
-    }
-
-
-    draw() {
-        this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
-        this.ctx.translate(this.camera_x, 0);
-
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.coin);
-        this.addObjectsToMap(this.level.poisonButtle);
-        this.addToMap(this.character);
-
-        // this.addToMap(this.barrierDown);
-        // this.addToMap(this.barrierDownUp);
-
-
-        if (this.endBoss) {
-            this.addToMap(this.endBoss);
-        }
-
-
-        this.addObjectsToMap(this.throwPoisons);
-        this.addObjectsToMap(this.throwBubble);
-
-        this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusBar);
-        this.addToMap(this.coinBar);
-        this.addToMap(this.poisonBar);
-        this.ctx.translate(this.camera_x, 0);
-
-        this.ctx.translate(-this.camera_x, 0);
-
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
-
     }
 
 

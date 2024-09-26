@@ -52,13 +52,13 @@ class MovableObject extends DrawableObject {
     }
 
 
-    // hitBubblefish() {
-    //     if (this.energyEnemie < 0) {
-    //         this.energyEnemie = 0;
-    //     } else {
-    //         this.lastHit = new Date().getTime();
-    //     }
-    // }
+    hitEnemies() {
+        if (this.energyEnemie < 0) {
+            this.energyEnemie = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
 
 
     isDead() {
