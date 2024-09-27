@@ -34,7 +34,6 @@ class RedBubbleFish extends Bubblefish {
 
 
     BUBBLEFISH_DEAD = [
-        // 'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.3.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.2.png'
     ];

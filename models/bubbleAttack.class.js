@@ -1,6 +1,4 @@
-class BubbleAttack extends PoisonAttack {
-    
-   
+class BubbleAttack extends PoisonAttack {   
 
     IMAGES_BUBBLE = [
         'img/1.Sharkie/4.Attack/Bubble trap/Bubble.png',
