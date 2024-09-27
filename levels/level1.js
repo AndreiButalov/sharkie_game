@@ -4,10 +4,15 @@ const initialOffset = -720;
 const step = 719;
 const repetitions = 5;
 
-const greenFishIntervals = [750, 1440, 2160, 2880, 3500];
-const redFishIntervals = [800, 1240, 2160, 2880, 3500];
+// const greenFishIntervals = [750, 1440, 2160, 2880, 3500];
+// const redFishIntervals = [800, 1240, 2160, 2880, 3500];
+// const jellyFishIntervals = [1500, 1240, 2160, 2880, 3500];
+// const coinIntervals = [750, 1440, 2060, 2680, 3000];
+
+const greenFishIntervals = [2750, 1440, 2160, 2880, 3500];
+const redFishIntervals = [2800, 1240, 2160, 2880, 3500];
 const jellyFishIntervals = [1500, 1240, 2160, 2880, 3500];
-const coinIntervals = [750, 1440, 2060, 2680, 3000];
+const coinIntervals = [2750, 1440, 2060, 2680, 3000];
 
 const waterLayers = ['img/3. Background/Layers/5. Water/D2.png', 'img/3. Background/Layers/5. Water/D1.png'];
 const fondo2Layers = ['img/3. Background/Layers/4.Fondo 2/D2.png', 'img/3. Background/Layers/4.Fondo 2/D1.png'];

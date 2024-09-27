@@ -86,7 +86,7 @@ class World {
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
-            if (this.character.x >= 3200 && !bossSpawned) {
+            if (this.character.x >= 300 && !bossSpawned) {//3200
                 this.endBoss = new EndBoss();
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;

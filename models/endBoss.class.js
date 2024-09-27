@@ -1,9 +1,14 @@
 class EndBoss extends MovableObject {
-    
+
     height = 400;
     width = 400;
     y = 0;
-    x = 3700;
+    // x = 3700;
+    x = 700;
+
+    frequency = 0.09;
+    amplitudeX = 11;
+    amplitudeY = 4;
 
 
     offset = {
@@ -74,21 +79,42 @@ class EndBoss extends MovableObject {
     ];
 
 
-    constructor(){
+    constructor() {
         super().loadImage('img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
         this.loadImages(this.BOSS_SWIM);
         this.loadImages(this.BOSS_INTRODUCE);
-        this.startBossAnimation(); 
-    } 
+        this.loadImages(this.BOSS_ATTACK);
+        this.startBossAnimation();
+    }
 
-    
+
     startBossAnimation() {
         this.bossArrivalAnimate();
-        
+
         setTimeout(() => {
-            clearInterval(this.arrivalInterval);  
-            this.bossSwimAnimate(); 
+            clearInterval(this.arrivalInterval);
+            this.bossSwimAnimate();
         }, 2000);
+    }
+
+
+    bossAttack() {
+        let time = 0;
+        setInterval(() => {
+            this.x = this.x - Math.sin(time) * this.amplitudeX;
+            this.y = this.y + Math.sin(time) * this.amplitudeY;
+            time += this.frequency;
+        }, 1000 / 25);
+    }
+
+
+    bossAttackMinus() {
+        let time = 0;
+        setInterval(() => {
+            this.x = this.x - Math.sin(time) * this.amplitudeX;
+            this.y = this.y - Math.sin(time) * this.amplitudeY;
+            time += this.frequency;
+        }, 1000 / 25);
     }
 
 
@@ -98,17 +124,63 @@ class EndBoss extends MovableObject {
         }, 200);
     }
 
+
+    bossSwimAnimate() {
+        this.startSwimmingAnimation();
     
-    bossSwimAnimate() {        
+        setTimeout(() => {
+            this.startAttackAnimation();
+        }, 3000);
+    
+        setTimeout(() => {
+            this.resetToSwimming();
+        }, 8200);
+    
+        setTimeout(() => {
+            this.startSecondAttackAnimation();
+        }, 12000);
+    }
+
+    
+    startSwimmingAnimation() {
         this.swimInterval = setInterval(() => {
-            this.playAnimation(this.BOSS_SWIM);            
+            this.playAnimation(this.BOSS_SWIM);
+        }, 200);
+    }
+
+    
+    startAttackAnimation() {
+        clearInterval(this.swimInterval);
+        this.bossAttack();
+        this.attackInterval = setInterval(() => {
+            this.playAnimation(this.BOSS_ATTACK);
+        }, 200);
+    }
+    
+
+    resetToSwimming() {
+        clearInterval(this.attackInterval);
+        this.y = 0;            
+        this.amplitudeX = 0;            
+        this.amplitudeY = 0;            
+        this.startSwimmingAnimation();
+    }
+
+    
+    startSecondAttackAnimation() {
+        clearInterval(this.swimInterval);
+        this.amplitudeX = 11;
+        this.amplitudeY = 4;
+        this.bossAttackMinus();
+        this.attackInterval = setInterval(() => {
+            this.playAnimation(this.BOSS_ATTACK);
         }, 200);
     }
 
 
     playEndBossIsDead() {
         console.log('boss ist dead');
-        
+
     }
 
 }
