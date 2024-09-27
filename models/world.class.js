@@ -6,13 +6,12 @@ class World {
     keyboard;
     camera_x = 0;
     endBoss;
+    statusBarBoss;
     poisonCount = 0;
     coinCount = 0;
 
     character = new Character();
-    // greenBubbleFish = new GreenBubbleFish();
-    // jellyFish = new JellyFish();
-    statusBar = new StatusBar();
+    statusBar = new StatusBar();  
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
     coin = new Coin();
@@ -67,6 +66,9 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        if (this.statusBarBoss) {
+            this.addToMap(this.statusBarBoss);
+        }
         this.addToMap(this.coinBar);
         this.addToMap(this.poisonBar);
         this.ctx.translate(this.camera_x, 0);
@@ -86,6 +88,7 @@ class World {
         const spawnBoss = setInterval(() => {
             if (this.character.x >= 3200 && !bossSpawned) {
                 this.endBoss = new EndBoss();
+                this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
                 clearInterval(spawnBoss);
             }
@@ -197,8 +200,8 @@ class World {
     checkCollisionsBossAttack() {
         if (this.endBoss) {
             const enemy = this.endBoss;
-            checkBossPoisonAttack(enemy);
-            checkBossBubbleAttack(enemy);
+            this.checkBossPoisonAttack(enemy);
+            this.checkBossBubbleAttack(enemy);
         }
     }
 
@@ -207,6 +210,7 @@ class World {
         this.throwPoisons.forEach((trowPoison) => {
             if (trowPoison.isCollidingBubble(enemy)) {
                 enemy.energyEnemie -= 20;
+                this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubblePoison(trowPoison);
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
@@ -220,7 +224,8 @@ class World {
         this.throwBubble.forEach((bubble) => {
             if (bubble.isCollidingBubble(enemy)) {
                 enemy.energyEnemie -= 5;
-                this.downBubblePoison(bubble);
+                this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
+                this.downBubble(bubble);
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
                 }
