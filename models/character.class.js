@@ -13,7 +13,7 @@ class Character extends MovableObject {
         left: 50,
         bottom: 40,
         right: 40
-    }
+    };
 
 
     SHARKIE_SWIM = [
@@ -23,7 +23,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/3.Swim/4.png',
         'img/1.Sharkie/3.Swim/5.png',
         'img/1.Sharkie/3.Swim/6.png',
-    ]
+    ];
 
 
     SHARKIE_DEAD = [
@@ -39,7 +39,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/6.dead/1.Poisoned/10.png',
         'img/1.Sharkie/6.dead/1.Poisoned/11.png',
         'img/1.Sharkie/6.dead/1.Poisoned/12.png',
-    ]
+    ];
 
 
     SHARKIE_STAND = [
@@ -61,14 +61,14 @@ class Character extends MovableObject {
         'img/1.Sharkie/1.IDLE/16.png',
         'img/1.Sharkie/1.IDLE/17.png',
         'img/1.Sharkie/1.IDLE/18.png'
-    ]
+    ];
 
 
     SHARKIE_HURT = [
         'img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
         'img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
         'img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
-    ]
+    ];
 
 
     SHARKIE_POISONED = [
@@ -78,7 +78,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
         'img/1.Sharkie/5.Hurt/1.Poisoned/5.png',
 
-    ]
+    ];
 
 
     IMAGES_BUBBLE_POISON = [
@@ -90,7 +90,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png',
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png',
-    ]
+    ];
 
 
     IMAGES_BUBBLE = [
@@ -102,7 +102,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
         'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
-    ]
+    ];
 
 
     IMAGES_ATTACK = [
@@ -114,7 +114,7 @@ class Character extends MovableObject {
         'img/1.Sharkie/4.Attack/Fin slap/6.png',
         'img/1.Sharkie/4.Attack/Fin slap/7.png',
         'img/1.Sharkie/4.Attack/Fin slap/8.png'
-    ]
+    ];
 
 
     constructor() {
