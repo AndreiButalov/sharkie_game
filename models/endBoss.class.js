@@ -158,7 +158,7 @@ class EndBoss extends MovableObject {
             } else if (this.isHurt()) {
                 this.playAnimation(this.BOSS_HURT);
             } else {
-                this.playAnimation(this.BOSS_DEAD);
+                this.isBossDead(this.swimInterval);
             }
         }, 200);
     }
@@ -174,12 +174,17 @@ class EndBoss extends MovableObject {
                 } else if (this.isHurt()) {
                     this.playAnimation(this.BOSS_HURT);
                 } else {
-                    this.amplitudeX = 0;
-                    this.amplitudeY = 0;
-                    this.playAnimation(this.BOSS_DEAD);
+                    this.isBossDead(this.attackInterval);
                 }
             }, 200);
         }
+    }
+
+
+    isBossDead() {
+        this.amplitudeX = 2;
+        this.amplitudeY = 2;
+        this.playAnimation(this.BOSS_DEAD);//570
     }
 
 
@@ -206,9 +211,7 @@ class EndBoss extends MovableObject {
                 } else if (this.isHurt()) {
                     this.playAnimation(this.BOSS_HURT);
                 } else {
-                    this.amplitudeX = 0;
-                    this.amplitudeY = 2;
-                    this.playAnimation(this.BOSS_DEAD);
+                    this.isBossDead(this.attackInterval);
                 }
             }, 200);
         }

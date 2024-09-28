@@ -224,7 +224,7 @@ class World {
     checkBossBubbleAttack(enemy) {
         this.throwBubble.forEach((bubble) => {
             if (bubble.isCollidingBubble(enemy)) {
-                enemy.energyEnemie -= 10;
+                enemy.energyEnemie -= 50;
                 enemy.hitEnemies();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
