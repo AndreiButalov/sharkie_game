@@ -212,6 +212,7 @@ class World {
                 enemy.energyEnemie -= 20;
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubblePoison(trowPoison);
+                this.endBoss.playEndBossIsHurt();
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
                 }
@@ -223,9 +224,10 @@ class World {
     checkBossBubbleAttack(enemy) {
         this.throwBubble.forEach((bubble) => {
             if (bubble.isCollidingBubble(enemy)) {
-                enemy.energyEnemie -= 5;
+                enemy.energyEnemie -= 50;
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
+                this.endBoss.playEndBossIsHurt();
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
                 }
