@@ -210,9 +210,9 @@ class World {
         this.throwPoisons.forEach((trowPoison) => {
             if (trowPoison.isCollidingBubble(enemy)) {
                 enemy.energyEnemie -= 20;
+                enemy.hitEnemies();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubblePoison(trowPoison);
-                this.endBoss.playEndBossIsHurt();
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
                 }
@@ -224,10 +224,10 @@ class World {
     checkBossBubbleAttack(enemy) {
         this.throwBubble.forEach((bubble) => {
             if (bubble.isCollidingBubble(enemy)) {
-                enemy.energyEnemie -= 50;
+                enemy.energyEnemie -= 10;
+                enemy.hitEnemies();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
-                this.endBoss.playEndBossIsHurt();
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
                 }
@@ -268,33 +268,6 @@ class World {
                 }
             });
         }, 200);
-    }
-
-
-    isGreenBubbleFish(fish) {
-        return fish.x - this.character.x < 550 && fish instanceof GreenBubbleFish;
-    }
-
-
-    isRedBubbleFish(fish) {
-        return fish.x - this.character.x < 450 && fish instanceof RedBubbleFish;
-    }
-
-
-    enemyDisable(enemy) {
-        setTimeout(() => {
-            this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
-        }, 1000)
-    }
-
-
-    downBubblePoison(trowPoison) {
-        this.throwPoisons = this.throwPoisons.filter((item) => item !== trowPoison);
-    }
-
-
-    downBubble(bubble) {
-        this.throwBubble = this.throwBubble.filter((item) => item !== bubble);
     }
 
 
@@ -361,5 +334,32 @@ class World {
     flipImageBack(parameter) {
         parameter.x = parameter.x * -1;
         this.ctx.restore();
+    }
+
+
+    isGreenBubbleFish(fish) {
+        return fish.x - this.character.x < 550 && fish instanceof GreenBubbleFish;
+    }
+
+
+    isRedBubbleFish(fish) {
+        return fish.x - this.character.x < 450 && fish instanceof RedBubbleFish;
+    }
+
+
+    enemyDisable(enemy) {
+        setTimeout(() => {
+            this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
+        }, 1000)
+    }
+
+
+    downBubblePoison(trowPoison) {
+        this.throwPoisons = this.throwPoisons.filter((item) => item !== trowPoison);
+    }
+
+
+    downBubble(bubble) {
+        this.throwBubble = this.throwBubble.filter((item) => item !== bubble);
     }
 }

@@ -10,7 +10,6 @@ class EndBoss extends MovableObject {
     amplitudeX = 11;
     amplitudeY = 4;
     isDead = false;
-    isHurt = false;
 
 
     offset = {
@@ -21,7 +20,7 @@ class EndBoss extends MovableObject {
     }
 
 
-    BOSS_SWIM = [
+    BOSS_SHWIM = [
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
         'img/2.Enemy/3 Final Enemy/2.floating/2.png',
         'img/2.Enemy/3 Final Enemy/2.floating/3.png',
@@ -81,7 +80,7 @@ class EndBoss extends MovableObject {
 
     constructor() {
         super().loadImage('img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
-        this.loadImages(this.BOSS_SWIM);
+        this.loadImages(this.BOSS_SHWIM);
         this.loadImages(this.BOSS_INTRODUCE);
         this.loadImages(this.BOSS_ATTACK);
         this.loadImages(this.BOSS_DEAD);
@@ -97,6 +96,13 @@ class EndBoss extends MovableObject {
             clearInterval(this.arrivalInterval);
             this.bossSwimAnimate();
         }, 2000);
+    }
+
+
+    bossArrivalAnimate() {
+        this.arrivalInterval = setInterval(() => {
+            this.playAnimation(this.BOSS_INTRODUCE);
+        }, 200);
     }
 
 
@@ -120,41 +126,37 @@ class EndBoss extends MovableObject {
     }
 
 
-    bossArrivalAnimate() {
-        this.arrivalInterval = setInterval(() => {
-            this.playAnimation(this.BOSS_INTRODUCE);
-        }, 200);
+    bossSwimAnimate() {
+        this.startSwimmingAnimation();
+        this.firstAttack();
     }
 
 
-    bossSwimAnimate() {
-        this.startSwimmingAnimation();
+    firstAttack() {
+        setTimeout(() => {
+            this.startAttackAnimation();
+        }, 3000);
 
-        // setTimeout(() => {
-        //     this.startAttackAnimation();
-        // }, 3000);
+        setTimeout(() => {
+            this.resetToSwimming();
+        }, 8200);
 
-        // setTimeout(() => {
-        //     this.resetToSwimming();
-        // }, 8200);
+        setTimeout(() => {
+            this.startSecondAttackAnimation();
+        }, 12000);
 
-        // setTimeout(() => {
-        //     this.startSecondAttackAnimation();
-        // }, 12000);
-
-        // setTimeout(() => {
-        //     this.resetToSwimming();
-        // }, 17300);
-
+        setTimeout(() => {
+            this.resetToSwimming();
+        }, 17300);
     }
 
 
     startSwimmingAnimation() {
         this.swimInterval = setInterval(() => {
-            if (!this.isDead) {
-                this.playAnimation(this.BOSS_SWIM);
-            } else if(this.isHurt) {
-                this.playAnimation(this.BOSS_HURT);/////
+            if (!this.isDead && !this.isHurt()) {
+                this.playAnimation(this.BOSS_SHWIM);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.BOSS_HURT);
             } else {
                 this.playAnimation(this.BOSS_DEAD);
             }
@@ -167,8 +169,10 @@ class EndBoss extends MovableObject {
             clearInterval(this.swimInterval);
             this.bossAttack();
             this.attackInterval = setInterval(() => {
-                if (!this.isDead) {
+                if (!this.isDead && !this.isHurt()) {
                     this.playAnimation(this.BOSS_ATTACK);
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.BOSS_HURT);
                 } else {
                     this.amplitudeX = 0;
                     this.amplitudeY = 0;
@@ -197,8 +201,10 @@ class EndBoss extends MovableObject {
             this.amplitudeY = 4;
             this.bossAttackMinus();
             this.attackInterval = setInterval(() => {
-                if (!this.isDead) {
+                if (!this.isDead && !this.isHurt()) {
                     this.playAnimation(this.BOSS_ATTACK);
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.BOSS_HURT);
                 } else {
                     this.amplitudeX = 0;
                     this.amplitudeY = 2;
@@ -212,10 +218,4 @@ class EndBoss extends MovableObject {
     playEndBossIsDead() {
         this.isDead = true;
     }
-
-
-    playEndBossIsHurt() {
-        this.isHurt = true;
-    }
-
 }
