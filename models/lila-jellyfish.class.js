@@ -1,6 +1,8 @@
 class LilaJellyFish extends JellyFish {
-    frequency = 0.09;
-    amplitude = 12;
+
+    frequency = 0.05;
+    amplitude = 10;
+    speed = 0.1;
 
     JELLYFISH_SHWIM = [
         'img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png',
