@@ -17,7 +17,7 @@ class Coin extends ObjectCollection {
         super().loadImage('img/4. Marcadores/1. Coins/1.png');
         this.loadImages(this.IMAGES);
         this.x = x
-        this.initialY = 60 + Math.random() * 300;
+        this.initialY = 90 + Math.random() * 300;
         this.y = this.initialY;
         this.applySwim();
         this.coinAnimate();
