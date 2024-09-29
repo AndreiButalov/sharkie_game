@@ -9,6 +9,7 @@ class World {
     statusBarBoss;
     poisonCount = 0;
     coinCount = 0;
+    finalBackground;
 
     character = new Character();
     statusBar = new StatusBar();
@@ -46,14 +47,14 @@ class World {
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
+        this.addObjectsToMap(this.throwPoisons);
+        this.addObjectsToMap(this.throwBubble);
         this.addObjectsToMap(this.level.barriers);
 
         if (this.endBoss) {
             this.addToMap(this.endBoss);
         }
 
-        this.addObjectsToMap(this.throwPoisons);
-        this.addObjectsToMap(this.throwBubble);
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
@@ -65,6 +66,10 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.ctx.translate(-this.camera_x, 0);
+        if(this.finalBackground) {
+            this.addToMap(this.finalBackground);
+
+        }
 
         let self = this;
         requestAnimationFrame(function () {
@@ -96,12 +101,16 @@ class World {
             this.trowPoison();
         }, 200);
     }
-
+//////////////////////////
 
     checkEndLevel() {
         console.log(this.endBoss.endLevel);
+        if(this.endBoss.endLevel) {
+            console.log('you');
+            this.finalBackground = new FinalBackground();
+        }
     }
-
+///////////////////////
 
     checkCollisions() {
         this.checkCollisionsEmemies();
@@ -279,6 +288,9 @@ class World {
                 let poison = new PoisonAttack(this.character.x + 100, this.character.y);
                 this.throwPoisons.push(poison);
                 this.poisonCount--;
+                setTimeout(() => {
+                    this.downBubblePoison(poison);
+                }, 4000)
             } else {
                 this.character.blowBubble(this.character.IMAGES_BUBBLE);
                 let bubble = new BubbleAttack(this.character.x + 100, this.character.y);
