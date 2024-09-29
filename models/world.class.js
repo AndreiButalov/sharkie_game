@@ -106,7 +106,6 @@ class World {
     checkEndLevel() {
         console.log(this.endBoss.endLevel);
         if(this.endBoss.endLevel) {
-            console.log('you');
             this.finalBackground = new FinalBackground();
         }
     }
