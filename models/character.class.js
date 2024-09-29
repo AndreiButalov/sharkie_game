@@ -145,20 +145,31 @@ class Character extends MovableObject {
     animateCharacter() {
         this.animateCharacterSwim();
 
-        setInterval(() => {
+        this.animateCharacter = setInterval(() => {
             if (this.isDead()) {
-                this.playAnimation(this.SHARKIE_DEAD);
+                this.characterIsDead();
             } else if (this.isHurt()) {
-                this.playAnimation(this.SHARKIE_HURT);                
+                this.playAnimation(this.SHARKIE_HURT);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.SHARKIE_SWIM);
             } else {
                 this.playAnimation(this.SHARKIE_STAND);
             }
         }, 100);
- 
+
     }
 
+
+    characterIsDead() {
+        clearInterval(this.animateCharacter);
+        this.characterDead = setInterval(() => {
+            this.playAnimation(this.SHARKIE_DEAD);
+        }, 200);
+
+        setTimeout(() => {
+            clearInterval(this.characterDead);
+        }, 700);
+    }
 
     blowBubble(arr) {
         let i = 0;

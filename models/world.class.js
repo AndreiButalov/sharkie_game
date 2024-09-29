@@ -16,13 +16,9 @@ class World {
     poisonBar = new PoisonBar();
     coin = new Coin();
     throwPoisons = [new PoisonAttack()];
-    throwBubble = [new BubbleAttack()];
-    // barrier = new Barrier();
-    barrierDown = new BarrierDown();
-    barrierDownUp = new BarrierDownUp();
+    throwBubble = [new BubbleAttack()];    
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
-
 
 
     constructor(canvas, keyboard) {
@@ -45,21 +41,16 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
-
-        // this.addToMap(this.barrierDown);
-        // this.addToMap(this.barrierDownUp);
-
+        this.addObjectsToMap(this.level.barriers);
 
         if (this.endBoss) {
             this.addToMap(this.endBoss);
         }
-
 
         this.addObjectsToMap(this.throwPoisons);
         this.addObjectsToMap(this.throwBubble);
@@ -362,4 +353,5 @@ class World {
     downBubble(bubble) {
         this.throwBubble = this.throwBubble.filter((item) => item !== bubble);
     }
+
 }
