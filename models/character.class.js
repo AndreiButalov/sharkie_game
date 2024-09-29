@@ -156,10 +156,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.SHARKIE_STAND);
             }
         }, 100);
-
-        // else if (this.world.keyboard.D) {
-        //     this.playAnimation(this.IMAGES_ATTACK);
-        // } 
+ 
     }
 
 

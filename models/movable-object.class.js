@@ -19,10 +19,10 @@ class MovableObject extends DrawableObject {
 
 
     isColliding(obj) {
-        return this.x - this.offset.right + this.width > obj.x + obj.offset.left &&     //R  L
-            this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&      //T  B
-            this.x - this.offset.left < obj.x + obj.width - obj.offset.right &&                              //L  R
-            this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom             //B  T
+        return this.x - this.offset.right + this.width > obj.x + obj.offset.left &&  //R  L
+            this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&    //T  B
+            this.x - this.offset.left < obj.x + obj.width - obj.offset.right &&      //L  R
+            this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom        //B  T
     }
 
 
@@ -35,18 +35,20 @@ class MovableObject extends DrawableObject {
 
 
     isCollidingBubble(obj) {
-        return this.x  + this.width > obj.x &&
-        this.y + this.height  > obj.y &&
-        this.x  < obj.x &&
-        this.y  < obj.y + obj.height
+        return this.x + this.width > obj.x &&
+            this.y + this.height > obj.y &&
+            this.x < obj.x &&
+            this.y < obj.y + obj.height
     }
+
 
     isCollidingBubbleBossFish(obj) {
         return this.x + this.width > obj.x + obj.offset.left &&
             this.y + this.height > obj.y + obj.offset.top &&
             this.x < obj.x + obj.width - obj.offset.right &&
-            this.y < obj.y + obj.height - obj.offset.bottom 
+            this.y < obj.y + obj.height - obj.offset.bottom
     }
+
 
     hitCharacter() {
         this.energy -= 5;
@@ -73,6 +75,13 @@ class MovableObject extends DrawableObject {
 
 
     isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.5;
+    }
+
+
+    isPoison() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 0.5;
