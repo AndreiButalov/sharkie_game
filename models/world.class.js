@@ -1,6 +1,6 @@
 class World {
 
-    level = level1
+    level = level1;
     canvas;
     ctx;
     keyboard;
@@ -11,12 +11,12 @@ class World {
     coinCount = 0;
 
     character = new Character();
-    statusBar = new StatusBar();  
+    statusBar = new StatusBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
     coin = new Coin();
     throwPoisons = [new PoisonAttack()];
-    throwBubble = [new BubbleAttack()];    
+    throwBubble = [new BubbleAttack()];
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
 
@@ -82,6 +82,9 @@ class World {
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
                 clearInterval(spawnBoss);
+                setInterval(() => {
+                    this.checkEndLevel();
+                }, 200);
             }
         }, 200);
     }
@@ -92,6 +95,11 @@ class World {
             this.checkCollisions();
             this.trowPoison();
         }, 200);
+    }
+
+
+    checkEndLevel() {
+        console.log(this.endBoss.endLevel);
     }
 
 
@@ -114,8 +122,10 @@ class World {
 
     checkCollisionsEmemies() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.checkIsColliding();
+            if (!enemy.isDead) {
+                if (this.character.isColliding(enemy)) {
+                    this.checkIsColliding();
+                }
             }
         })
     }
@@ -142,7 +152,7 @@ class World {
 
 
     checkCollisionsBoss() {
-        if (this.endBoss) {
+        if (this.endBoss && !this.endBoss.isDead) {
             const enemy = this.endBoss;
             if (this.character.isColliding(enemy)) {
                 this.checkIsColliding();

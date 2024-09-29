@@ -9,6 +9,7 @@ class EndBoss extends MovableObject {
     amplitudeX = 11;
     amplitudeY = 4;
     isDead = false;
+    endLevel = false;
 
 
     offset = {
@@ -191,7 +192,11 @@ class EndBoss extends MovableObject {
 
         setTimeout(() => {
             clearInterval(this.bossDeadInterval);
-        }, 700)        
+        }, 700)
+
+        setTimeout(() => {
+            this.endLevel = true;
+        }, 1000)        
     }
 
 
