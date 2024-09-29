@@ -27,7 +27,7 @@ function init() {
         if (world.youWin) {
             setTimeout(() => {
                 document.getElementById('try_again').style.display = "block";
-            }, 1000)
+            }, 2000)
         }
     }, 200);
 }
