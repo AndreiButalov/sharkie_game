@@ -4,44 +4,28 @@ let keyboard = new Keyboard();
 
 
 function init() {
-    startGames();
-    // let startView = document.getElementById('start_view');
-    // startView.innerHTML = '';
-    // startView.innerHTML = startViewGenerate();
+    // startGames();
 
-    // let controls_panel = document.getElementById('controls_panel');
-    // controls_panel.innerHTML = '';
-    // controls_panel.innerHTML = controlsPanelGenerate();
+    let startView = document.getElementById('start_view');
+    startView.innerHTML = '';
+    startView.innerHTML = startViewGenerate();
 
+    let controls_panel = document.getElementById('controls_panel');
+    controls_panel.innerHTML = '';
+    controls_panel.innerHTML = controlsPanelGenerate();
 
     let buttonTryAgain = document.getElementById('button_try_again');
     buttonTryAgain.innerHTML = '';
-    buttonTryAgain.innerHTML = /*html*/`
-        <div id="try_again">
-            <button class="start_button button_try_again" onclick="tryAgain()">Try Again</button>
-        </div>
-    `;
-
-    setInterval(() => {
-        if (world.youWin) {
-            setTimeout(() => {
-                document.getElementById('try_again').style.display = "block";
-            }, 2000)
-        }
-    }, 200);
+    buttonTryAgain.innerHTML = tryAgainGenerate();    
+    
 }
 
 
 function tryAgain() {
-    console.log('Hallo');
-
+    startGames();
+    document.getElementById('try_again').style.display = "none";
+    world.youWin = false;
 }
-
-
-// function sayHallo() {
-//     console.log('hallo');
-
-// }
 
 
 function startGames() {
@@ -51,6 +35,19 @@ function startGames() {
     const canvas = document.getElementById('canvas');
     scaleCanvas(canvas);
     world = new World(canvas, keyboard);
+    checkIsWin();   
+}
+
+
+function checkIsWin() {
+    const tryAgainInterval = setInterval(() => {        
+        if (world.youWin) {
+            clearInterval(tryAgainInterval);
+            setTimeout(() => {
+                document.getElementById('try_again').style.display = "block";
+            }, 2000)
+        }
+    }, 200);
 }
 
 

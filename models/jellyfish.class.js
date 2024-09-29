@@ -22,7 +22,7 @@ class JellyFish extends Enemies {
     animateJellyFish() {
         setInterval(() => {
             if (!this.isDead) {
-                // this.moveLeft();            
+                this.moveLeft();            
             }
         }, 1000 / 60);    
 

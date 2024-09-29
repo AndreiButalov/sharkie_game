@@ -9,7 +9,7 @@ class World {
     statusBarBoss;
     poisonCount = 0;
     coinCount = 0;
-    youWinBackground;
+    finalBackground;
     youWin = false;
 
     character = new Character();
@@ -67,8 +67,8 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.ctx.translate(-this.camera_x, 0);
-        if(this.youWinBackground) {
-            this.addToMap(this.youWinBackground);
+        if(this.finalBackground) {
+            this.addToMap(this.finalBackground);
 
         }
 
@@ -83,7 +83,7 @@ class World {
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
-            if (this.character.x >= 300 && !bossSpawned) {//3200
+            if (this.character.x >= 3200 && !bossSpawned) {
                 this.endBoss = new EndBoss();
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
@@ -106,7 +106,7 @@ class World {
 
     checkEndLevel() {
         if(this.endBoss.endLevel) {
-            this.youWinBackground = new YouWinBackground();
+            this.finalBackground = new FinalBackground();
             clearInterval(this.checkEnd);
             this.youWin = true;
         }
@@ -235,7 +235,7 @@ class World {
     checkBossBubbleAttack(enemy) {
         this.throwBubble.forEach((bubble) => {
             if (bubble.isCollidingBubbleBossFish(enemy)) {
-                enemy.energyEnemie -= 50;//energy
+                enemy.energyEnemie -= 10;//energy
                 enemy.hitEnemies();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
@@ -249,7 +249,7 @@ class World {
 
     checkHitEnemiesPoisonAttack(enemy) {
         enemy.energyEnemie -= 100;
-        if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {////jellyFish
+        if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {
             if (enemy.energyEnemie <= 0) {
                 enemy.playBubbleFishDead();
                 this.enemyDisable(enemy);
@@ -260,9 +260,9 @@ class World {
 
     checkHitEnemiesBubbleAttack(enemy) {
         if (enemy instanceof GreenBubbleFish) {
-            enemy.energyEnemie -= 100; //50
+            enemy.energyEnemie -= 100; 
         } else {
-            enemy.energyEnemie -= 50; // 100/3
+            enemy.energyEnemie -= 50; 
         }
         if (enemy.energyEnemie <= 0) {
             enemy.playBubbleFishDead();

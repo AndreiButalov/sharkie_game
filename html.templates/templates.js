@@ -36,3 +36,12 @@ function controlsPanelGenerate() {
         </div>
     `;
 }
+
+
+function tryAgainGenerate() {
+    return /*html*/`
+        <div id="try_again">
+            <button class="start_button button_try_again" onclick="tryAgain()">Try Again</button>
+        </div>
+    `;
+}
