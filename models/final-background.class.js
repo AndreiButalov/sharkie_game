@@ -1,5 +1,5 @@
 class FinalBackground extends MovableObject {
-
+    
     width; 
     height;
     speed = 10;     
@@ -17,6 +17,6 @@ class FinalBackground extends MovableObject {
             } else {
                 clearInterval(fallInterval);
             }
-        }, 1000 / 60);
+        }, 1000 / 60);        
     }
 }

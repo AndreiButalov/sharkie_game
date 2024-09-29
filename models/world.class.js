@@ -10,6 +10,7 @@ class World {
     poisonCount = 0;
     coinCount = 0;
     youWinBackground;
+    youWin = false;
 
     character = new Character();
     statusBar = new StatusBar();
@@ -107,6 +108,7 @@ class World {
         if(this.endBoss.endLevel) {
             this.youWinBackground = new YouWinBackground();
             clearInterval(this.checkEnd);
+            this.youWin = true;
         }
     }
 ///////////////////////

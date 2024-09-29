@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 
 
 function init() {
-    startGames()
+    startGames();
     // let startView = document.getElementById('start_view');
     // startView.innerHTML = '';
     // startView.innerHTML = startViewGenerate();
@@ -12,13 +12,37 @@ function init() {
     // let controls_panel = document.getElementById('controls_panel');
     // controls_panel.innerHTML = '';
     // controls_panel.innerHTML = controlsPanelGenerate();
+
+
+
+    let buttonTryAgain = document.getElementById('button_try_again');
+    buttonTryAgain.innerHTML = '';
+    buttonTryAgain.innerHTML = /*html*/`
+        <div id="try_again">
+            <button class="start_button button_try_again" onclick="tryAgain()">Try Again</button>
+        </div>
+    `;
+
+    setInterval(() => {
+        if (world.youWin) {
+            setTimeout(() => {
+                document.getElementById('try_again').style.display = "block";
+            }, 1000)
+        }
+    }, 200);
 }
 
 
-function sayHallo() {
-    console.log('hallo');
-    
+function tryAgain() {
+    console.log('Hallo');
+
 }
+
+
+// function sayHallo() {
+//     console.log('hallo');
+
+// }
 
 
 function startGames() {
