@@ -10,10 +10,10 @@ class FinalBackground extends MovableObject {
         this.loadImages(this.IMAGE);
         this.y = 0 - this.height;
         this.speed = 10;
-        this.animation();        
+        this.animationScreenDown();        
     }
 
-    animation() {
+    animationScreenDown() {
         const fallInterval = setInterval(() => {
             if(this.y < 480 -this.height){
                 this.moveDown();
