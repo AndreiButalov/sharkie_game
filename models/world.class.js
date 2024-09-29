@@ -9,7 +9,7 @@ class World {
     statusBarBoss;
     poisonCount = 0;
     coinCount = 0;
-    finalBackground;
+    youWinBackground;
 
     character = new Character();
     statusBar = new StatusBar();
@@ -66,8 +66,8 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.ctx.translate(-this.camera_x, 0);
-        if(this.finalBackground) {
-            this.addToMap(this.finalBackground);
+        if(this.youWinBackground) {
+            this.addToMap(this.youWinBackground);
 
         }
 
@@ -105,7 +105,7 @@ class World {
 
     checkEndLevel() {
         if(this.endBoss.endLevel) {
-            this.finalBackground = new FinalBackground();
+            this.youWinBackground = new YouWinBackground();
             clearInterval(this.checkEnd);
         }
     }
