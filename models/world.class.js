@@ -283,6 +283,9 @@ class World {
                 this.character.blowBubble(this.character.IMAGES_BUBBLE);
                 let bubble = new BubbleAttack(this.character.x + 100, this.character.y);
                 this.throwBubble.push(bubble);
+                setTimeout(() => {
+                    this.downBubble(bubble);
+                }, 3800)
             }
         }
     }
