@@ -86,7 +86,7 @@ class World {
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
-            if (this.character.x >= 300 && !bossSpawned) {//3200
+            if (this.character.x >= 3200 && !bossSpawned) {//3200
                 this.endBoss = new EndBoss();
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
@@ -163,7 +163,7 @@ class World {
     checkCollisionsBubblefishBubble() {
         this.level.enemies.forEach((enemy) => {
             this.throwPoisons.forEach((trowPoison) => {
-                if (trowPoison.isCollidingBubble(enemy)) {
+                if (trowPoison.isCollidingBubbleBossFish(enemy)) {
                     this.downBubblePoison(trowPoison);
                     enemy.hitEnemies();
                     this.checkHitEnemiesPoisonAttack(enemy);
@@ -208,7 +208,7 @@ class World {
 
     checkBossPoisonAttack(enemy) {
         this.throwPoisons.forEach((trowPoison) => {
-            if (trowPoison.isCollidingBubble(enemy)) {
+            if (trowPoison.isCollidingBubbleBossFish(enemy)) {
                 enemy.energyEnemie -= 20;
                 enemy.hitEnemies();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
@@ -223,8 +223,8 @@ class World {
 
     checkBossBubbleAttack(enemy) {
         this.throwBubble.forEach((bubble) => {
-            if (bubble.isCollidingBubble(enemy)) {
-                enemy.energyEnemie -= 50;
+            if (bubble.isCollidingBubbleBossFish(enemy)) {
+                enemy.energyEnemie -= 10;//energy
                 enemy.hitEnemies();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
@@ -249,9 +249,9 @@ class World {
 
     checkHitEnemiesBubbleAttack(enemy) {
         if (enemy instanceof GreenBubbleFish) {
-            enemy.energyEnemie -= 50;
+            enemy.energyEnemie -= 100; //50
         } else {
-            enemy.energyEnemie -= 100 / 3;
+            enemy.energyEnemie -= 50; // 100/3
         }
         if (enemy.energyEnemie <= 0) {
             enemy.playBubbleFishDead();

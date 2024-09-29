@@ -5,6 +5,14 @@ class JellyFish extends Enemies {
     isDead = false;
 
 
+    offset = {
+        top: 0,
+        left: 0,
+        right: 135,
+        bottom: 0
+    }
+
+
     JELLYFISH_SHWIM = [
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png',
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 2.png',
@@ -33,7 +41,7 @@ class JellyFish extends Enemies {
     animateJellyFish() {
         setInterval(() => {
             if (!this.isDead) {
-                // this.moveLeft();            
+                this.moveLeft();            
             }
         }, 1000 / 60);    
 

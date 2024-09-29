@@ -16,7 +16,7 @@ class MovableObject extends DrawableObject {
         ridht: 0,
         bottom: 0
     }
-    
+
 
     isColliding(obj) {
         return this.x - this.offset.right + this.width > obj.x + obj.offset.left &&     //R  L
@@ -28,9 +28,9 @@ class MovableObject extends DrawableObject {
 
     isCollidingPoison(obj) {
         return this.x - this.offset.right + this.width > obj.x &&
-        this.y + this.height - this.offset.bottom > obj.y &&
-        this.x - this.offset.left < obj.x &&
-        this.y + this.offset.top < obj.y + obj.height
+            this.y + this.height - this.offset.bottom > obj.y &&
+            this.x - this.offset.left < obj.x &&
+            this.y + this.offset.top < obj.y + obj.height
     }
 
 
@@ -41,6 +41,12 @@ class MovableObject extends DrawableObject {
         this.y  < obj.y + obj.height
     }
 
+    isCollidingBubbleBossFish(obj) {
+        return this.x + this.width > obj.x + obj.offset.left &&
+            this.y + this.height > obj.y + obj.offset.top &&
+            this.x < obj.x + obj.width - obj.offset.right &&
+            this.y < obj.y + obj.height - obj.offset.bottom 
+    }
 
     hitCharacter() {
         this.energy -= 5;

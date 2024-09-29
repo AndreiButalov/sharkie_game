@@ -54,7 +54,7 @@ class Bubblefish extends Enemies {
         
         setInterval(() => {
             if (!this.isDead) {
-                // this.moveLeft();
+                this.moveLeft();
             } else {
                 if (!deadAnimationPlayed) {
                     this.playAnimation(this.BUBBLEFISH_DEAD);

@@ -105,18 +105,6 @@ class Character extends MovableObject {
     ];
 
 
-    IMAGES_ATTACK = [
-        'img/1.Sharkie/4.Attack/Fin slap/1.png',
-        'img/1.Sharkie/4.Attack/Fin slap/2.png',
-        'img/1.Sharkie/4.Attack/Fin slap/3.png',
-        'img/1.Sharkie/4.Attack/Fin slap/4.png',
-        'img/1.Sharkie/4.Attack/Fin slap/5.png',
-        'img/1.Sharkie/4.Attack/Fin slap/6.png',
-        'img/1.Sharkie/4.Attack/Fin slap/7.png',
-        'img/1.Sharkie/4.Attack/Fin slap/8.png'
-    ];
-
-
     constructor() {
         super().loadImage('img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.SHARKIE_SWIM);
@@ -126,7 +114,6 @@ class Character extends MovableObject {
         this.loadImages(this.SHARKIE_POISONED);
         this.loadImages(this.IMAGES_BUBBLE_POISON);
         this.loadImages(this.IMAGES_BUBBLE);
-        this.loadImages(this.IMAGES_ATTACK);
         this.animateCharacter();
     }
 
@@ -165,12 +152,14 @@ class Character extends MovableObject {
                 this.playAnimation(this.SHARKIE_HURT);                
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.SHARKIE_SWIM);
-            } else if (this.world.keyboard.D) {
-                this.playAnimation(this.IMAGES_ATTACK);
             } else {
                 this.playAnimation(this.SHARKIE_STAND);
             }
         }, 100);
+
+        // else if (this.world.keyboard.D) {
+        //     this.playAnimation(this.IMAGES_ATTACK);
+        // } 
     }
 
 

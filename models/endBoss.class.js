@@ -3,8 +3,7 @@ class EndBoss extends MovableObject {
     height = 400;
     width = 400;
     y = 0;
-    // x = 3700;
-    x = 700;
+    x = 3700;
 
     frequency = 0.09;
     amplitudeX = 11;
@@ -181,10 +180,18 @@ class EndBoss extends MovableObject {
     }
 
 
-    isBossDead() {
-        this.amplitudeX = 2;
-        this.amplitudeY = 2;
-        this.playAnimation(this.BOSS_DEAD);//570
+    isBossDead(interval) {
+        clearInterval(interval);
+        this.amplitudeX = 0;
+        this.amplitudeY = 2;    
+                    
+        this.bossDeadInterval = setInterval (() => {
+            this.playAnimation(this.BOSS_DEAD);
+        }, 200)
+
+        setTimeout(() => {
+            clearInterval(this.bossDeadInterval);
+        }, 700)        
     }
 
 
