@@ -7,7 +7,19 @@ class FinalBackground extends MovableObject {
 
     constructor() {
         super().loadImage('img/6.Botones/Try again/Mesa de trabajo 1.png');
-        this.y = 480 - this.height;
         this.loadImages(this.IMAGE);
+        this.y = 0 - this.height;
+        this.speed = 10;
+        this.animation();        
+    }
+
+    animation() {
+        const fallInterval = setInterval(() => {
+            if(this.y < 480 -this.height){
+                this.moveDown();
+            } else {
+                clearInterval(fallInterval);
+            }
+        }, 1000 / 60);
     }
 }

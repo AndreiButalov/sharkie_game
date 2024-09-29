@@ -82,12 +82,12 @@ class World {
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
-            if (this.character.x >= 3200 && !bossSpawned) {//3200
+            if (this.character.x >= 300 && !bossSpawned) {//3200
                 this.endBoss = new EndBoss();
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
                 clearInterval(spawnBoss);
-                setInterval(() => {
+                this.checkEnd = setInterval(() => {
                     this.checkEndLevel();
                 }, 200);
             }
@@ -104,9 +104,9 @@ class World {
 //////////////////////////
 
     checkEndLevel() {
-        console.log(this.endBoss.endLevel);
         if(this.endBoss.endLevel) {
             this.finalBackground = new FinalBackground();
+            clearInterval(this.checkEnd);
         }
     }
 ///////////////////////
@@ -233,7 +233,7 @@ class World {
     checkBossBubbleAttack(enemy) {
         this.throwBubble.forEach((bubble) => {
             if (bubble.isCollidingBubbleBossFish(enemy)) {
-                enemy.energyEnemie -= 10;//energy
+                enemy.energyEnemie -= 50;//energy
                 enemy.hitEnemies();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
