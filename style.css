@@ -146,7 +146,7 @@ span {
     position: relative;
 }
 
-#try_again {
+#you_win {
     width: 721px;
     height: 480px;
     background-color: rgba(25, 31, 52, 0.4);
@@ -154,4 +154,23 @@ span {
     margin-top: 50px;
     border-radius: 10px;
     display: none;
+}
+
+#game_over {
+    width: 721px;
+    height: 480px;
+    background-color: rgba(25, 31, 52, 0.8);
+    position: absolute;
+    margin-top: 50px;
+    border-radius: 10px;
+    display: none;
+}
+
+#game_over h1 {
+    margin-block-end: 0;
+    margin-block-start: 0;
+    margin-top: 160px;
+    position: absolute;
+    width: 721px;
+    font-size: 110px;
 }

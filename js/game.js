@@ -14,17 +14,23 @@ function init() {
     controls_panel.innerHTML = '';
     controls_panel.innerHTML = controlsPanelGenerate();
 
-    let buttonTryAgain = document.getElementById('try_again');
+    let buttonTryAgain = document.getElementById('you_win');
     buttonTryAgain.innerHTML = '';
-    buttonTryAgain.innerHTML = tryAgainGenerate();    
+    buttonTryAgain.innerHTML = tryAgainGenerate();  
+
+    let gameOver = document.getElementById('game_over');
+    gameOver.innerHTML = '';
+    gameOver.innerHTML = gameOverGenerate();
     
 }
 
 
 function tryAgain() {
     startGames();
-    document.getElementById('try_again').style.display = "none";
+    document.getElementById('you_win').style.display = "none";
+    document.getElementById('game_over').style.display = "none";
     world.youWin = false;
+    world.isGameOver = false;
 }
 
 
@@ -35,7 +41,20 @@ function startGames() {
     const canvas = document.getElementById('canvas');
     scaleCanvas(canvas);
     world = new World(canvas, keyboard);
-    checkIsWin();   
+    checkIsWin();  
+    checkIsGameOver(); 
+}
+
+
+function checkIsGameOver() {
+    const gameOverCheck = setInterval(() => {
+        if(world.isGameOver) {
+            clearInterval(gameOverCheck);
+            setTimeout (()=> {
+                document.getElementById('game_over').style.display = "block"; 
+            }, 2000)       
+        }
+    }, 200)
 }
 
 
@@ -44,7 +63,7 @@ function checkIsWin() {
         if (world.youWin) {
             clearInterval(tryAgainInterval);
             setTimeout(() => {
-                document.getElementById('try_again').style.display = "block";
+                document.getElementById('you_win').style.display = "block";
             }, 2000)
         }
     }, 200);

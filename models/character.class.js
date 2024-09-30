@@ -148,6 +148,7 @@ class Character extends MovableObject {
         this.animateCharacter = setInterval(() => {
             if (this.isDead()) {
                 this.characterIsDead();
+                this.world.isGameOver = true;
             } else if (this.isHurt()) {
                 this.playAnimation(this.SHARKIE_HURT);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {

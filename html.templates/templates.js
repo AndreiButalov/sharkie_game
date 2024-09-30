@@ -45,3 +45,13 @@ function tryAgainGenerate() {
         </div>
     `;
 }
+
+
+function gameOverGenerate() {
+    return /*html*/`
+        <div>
+            <h1>GAME OVER</h1>
+            <button class="start_button button_try_again" onclick="tryAgain()">Try Again</button>
+        </div>
+    `;
+}

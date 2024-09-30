@@ -11,6 +11,7 @@ class World {
     coinCount = 0;
     finalBackground;
     youWin = false;
+    isGameOver = false;
 
     character = new Character();
     statusBar = new StatusBar();
@@ -102,7 +103,7 @@ class World {
             this.trowPoison();
         }, 200);
     }
-//////////////////////////
+
 
     checkEndLevel() {
         if(this.endBoss.endLevel) {
@@ -111,7 +112,7 @@ class World {
             this.youWin = true;
         }
     }
-///////////////////////
+
 
     checkCollisions() {
         this.checkCollisionsEmemies();
