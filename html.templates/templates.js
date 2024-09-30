@@ -40,7 +40,7 @@ function controlsPanelGenerate() {
 
 function tryAgainGenerate() {
     return /*html*/`
-        <div id="try_again">
+        <div>
             <button class="start_button button_try_again" onclick="tryAgain()">Try Again</button>
         </div>
     `;

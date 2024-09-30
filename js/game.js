@@ -14,7 +14,7 @@ function init() {
     controls_panel.innerHTML = '';
     controls_panel.innerHTML = controlsPanelGenerate();
 
-    let buttonTryAgain = document.getElementById('button_try_again');
+    let buttonTryAgain = document.getElementById('try_again');
     buttonTryAgain.innerHTML = '';
     buttonTryAgain.innerHTML = tryAgainGenerate();    
     
