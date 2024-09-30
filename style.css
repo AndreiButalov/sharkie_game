@@ -147,13 +147,11 @@ span {
 }
 
 #try_again {
-    top: 0px;
-    left: 97px;
     width: 721px;
     height: 480px;
     background-color: rgba(25, 31, 52, 0.4);
     position: absolute;
     margin-top: 50px;
     border-radius: 10px;
-    /* display: none; */
+    display: none;
 }
