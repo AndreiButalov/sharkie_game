@@ -8,6 +8,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+    justify-content: center;
     font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;
     background-image: url('img/sharks-1867523_1280.jpg');
     background-position: center;
@@ -15,10 +17,10 @@ body {
 
 canvas {
     background-color: black;
-    margin-top: 50px;
     width: 720px;
     height: 480px;
     border-radius: 10px;
+    display: block;
 }
 
 h1 {
@@ -39,7 +41,6 @@ h1 {
     height: 480px;
     background-color: black;
     position: absolute;
-    margin-top: 50px;    
     background-image: url('img/3. Background/Legacy/Dark/1.png');
     background-size: cover;
     border-radius: 10px;
@@ -113,7 +114,7 @@ span {
 #controls_panel {
     position: absolute;
     width: 720px;
-    margin-top: 50px;
+    height: 480px;
     margin-right: 80px;
     border-radius: 10px;   
     display: flex;
@@ -151,7 +152,7 @@ span {
     height: 480px;
     background-color: rgba(25, 31, 52, 0.4);
     position: absolute;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     border-radius: 10px;
     display: none;
 }
@@ -161,7 +162,7 @@ span {
     height: 480px;
     background-color: rgba(25, 31, 52, 0.8);
     position: absolute;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     border-radius: 10px;
     display: none;
 }
@@ -173,4 +174,16 @@ span {
     position: absolute;
     width: 721px;
     font-size: 110px;
+}
+
+@media only screen and (max-width: 720px) {
+    canvas ,#start_view, #controls_panel{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas, #start_view, #controls_panel{
+        height: 100vh;
+    }
 }
