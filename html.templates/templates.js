@@ -25,19 +25,6 @@ function startViewGenerate() {
 }
 
 
-function controlsPanelGenerate() {
-    return /*html*/`
-        <div class="controls_panel_content">            
-            <div class="button_group">
-                <button class="buttons" onclick="sayHallo()"></button>
-                <button class="buttons" onclick="sayHallo()"></button>
-                <button class="buttons" onclick="sayHallo()"></button>                
-            </div>
-        </div>
-    `;
-}
-
-
 function tryAgainGenerate() {
     return /*html*/`
         <div>

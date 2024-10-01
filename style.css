@@ -118,22 +118,6 @@ span {
     align-items: center;
 }
 
-#controls_panel {
-    position: absolute;
-    width: 720px;
-    height: 480px;
-    margin-right: 80px;
-    border-radius: 10px;   
-    display: flex;
-    justify-content: end; 
-}
-
-.button_group {
-    margin-top: 20px;
-    display: flex;
-    gap: 20px; 
-}
-
 .buttons {
     width: 30px;
     height: 30px;
@@ -161,6 +145,7 @@ span {
     position: absolute;
     border-radius: 10px;
     display: none;
+    z-index: 999;
 }
 
 #game_over {
@@ -170,6 +155,7 @@ span {
     position: absolute;
     border-radius: 10px;
     display: none;
+    z-index: 999;
 }
 
 #game_over h1 {
@@ -181,14 +167,85 @@ span {
     font-size: 110px;
 }
 
+#mobile_panel {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+}
+
+.mobile_panel {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    visibility: hidden;
+}
+
+.all_controls_button {
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.nav_bar_button {
+    height: 64px;
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
+    margin-top: 15px;
+    gap: 20px;
+}
+
+.mobile_panel button {
+    font-weight: 700;
+    font-size: 32px;
+    color: white;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(250, 246, 26, 0.3);
+    border: 3px solid rgba(255,255,255,0.8);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mobile_panel button:hover {
+    background-color: rgba(250, 246, 26, 0.6);
+}
+
+.controls_button_mobile {    
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    gap: 15px;
+}
+
+.trow_button_mobile {
+    margin-right: 20px;    
+}
+
+.up_button_mobilie {
+    display: flex;
+    justify-content: center;
+}
+
+.left_right_button_mobile {
+    display: flex;
+    gap: 20px
+}
+
+
 @media only screen and (max-width: 720px) {
-    canvas ,#start_view, #controls_panel{
+    canvas ,#start_view, #controls_panel, #game_over {
         width: 100%;
     }
 }
 
 @media only screen and (max-height: 480px) {
-    canvas, #start_view, #controls_panel{
+    canvas, #start_view, #controls_panel {
         height: 100vh;
+    }
+
+    .mobile_panel {
+        visibility: initial;
     }
 }
