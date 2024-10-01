@@ -146,6 +146,7 @@ span {
     border-radius: 10px;
     display: none;
     z-index: 999;
+    border-radius: 10px;
 }
 
 #game_over {
@@ -156,6 +157,7 @@ span {
     border-radius: 10px;
     display: none;
     z-index: 999;
+    border-radius: 10px;
 }
 
 #game_over h1 {
