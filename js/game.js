@@ -10,10 +10,6 @@ function init() {
     startView.innerHTML = '';
     startView.innerHTML = startViewGenerate();
 
-    // let controls_panel = document.getElementById('controls_panel');
-    // controls_panel.innerHTML = '';
-    // controls_panel.innerHTML = controlsPanelGenerate();
-
     let buttonTryAgain = document.getElementById('you_win');
     buttonTryAgain.innerHTML = '';
     buttonTryAgain.innerHTML = tryAgainGenerate();  

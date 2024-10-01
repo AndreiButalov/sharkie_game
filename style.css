@@ -170,7 +170,7 @@ span {
 #mobile_panel {
     position: absolute;
     width: 720px;
-    height: 480px;
+    height: 400px;
 }
 
 .mobile_panel {
@@ -181,10 +181,10 @@ span {
 }
 
 .all_controls_button {
-    height: 480px;
+    height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .nav_bar_button {
@@ -230,18 +230,18 @@ span {
 
 .left_right_button_mobile {
     display: flex;
-    gap: 20px
+    gap: 20px;
 }
 
 
 @media only screen and (max-width: 720px) {
-    canvas ,#start_view, #controls_panel, #game_over {
+    canvas ,#start_view, #controls_panel, #game_over, .mobile_panel {
         width: 100%;
     }
 }
 
 @media only screen and (max-height: 480px) {
-    canvas, #start_view, #controls_panel {
+    canvas, #start_view, #controls_panel, .mobile_panel {
         height: 100vh;
     }
 
