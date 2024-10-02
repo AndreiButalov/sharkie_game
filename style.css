@@ -11,8 +11,7 @@ body {
     height: 100vh;
     justify-content: center;
     font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;
-    background-image: url('img/sharks-1867523_1280.jpg');
-    background-position: center;
+    background: linear-gradient(to right, blue, cornflowerblue);
 }
 
 canvas {
