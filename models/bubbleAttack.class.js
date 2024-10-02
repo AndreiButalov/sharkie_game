@@ -10,7 +10,7 @@ class BubbleAttack extends PoisonAttack {
         this.loadImages(this.IMAGES_BUBBLE);        
         this.x = x;
         this.y = y;  
-        this.trow(x, y );  
+        this.trow(x, y);  
         this.poisonAnimate(this.IMAGES_BUBBLE); 
     } 
 

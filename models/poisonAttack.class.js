@@ -37,9 +37,8 @@ class PoisonAttack extends MovableObject {
 
 
     trow (x, y) {
-        this.x = x + 80;
-        this.y = y + 80;      
-
+        this.x = x + 120;
+        this.y = y + 120;    
         setInterval(() => {
             this.x += 3;// speeed
         }, 50);

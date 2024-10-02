@@ -2,8 +2,8 @@ class Character extends MovableObject {
 
     world;
     speed = 5;
-    height = 200;
-    width = 200;
+    height = 250;
+    width = 250;
 
     isAttacking = false;
     attackStartTime = 0;
