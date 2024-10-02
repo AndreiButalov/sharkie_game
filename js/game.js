@@ -46,55 +46,55 @@ function startGames() {
 
 function touchControlButtons() {
     const buttons = ['btn_up', 'btn_left', 'btn_down', 'btn_right', 'btn_fire'];
-
     buttons.forEach(buttonId => {
         const button = document.getElementById(buttonId);
+
         button.addEventListener('touchstart', (e) => {
             if (e.cancelable) {
                 e.preventDefault();
             }
-            switch (buttonId) {
-                case 'btn_up':
-                    keyboard.UP = true;
-                    break;
-                case 'btn_left':
-                    keyboard.LEFT = true;
-                    break;
-                case 'btn_down':
-                    keyboard.DOWN = true;
-                    break;
-                case 'btn_right':
-                    keyboard.RIGHT = true;
-                    break;
-                case 'btn_fire':
-                    keyboard.SPACE = true;
-                    break;
-            }
+            controlButtonTrue(buttonId);
         });
 
         button.addEventListener('touchend', (e) => {
             if (e.cancelable) {
                 e.preventDefault();
             }
-            switch (buttonId) {
-                case 'btn_up':
-                    keyboard.UP = false;
-                    break;
-                case 'btn_left':
-                    keyboard.LEFT = false;
-                    break;
-                case 'btn_down':
-                    keyboard.DOWN = false;
-                    break;
-                case 'btn_right':
-                    keyboard.RIGHT = false;
-                    break;
-                case 'btn_fire':
-                    keyboard.SPACE = false;
-                    break;
-            }
+            controlButtonsFalse(buttonId);
         });
     });
+}
+
+
+function controlButtonTrue(buttonId) {
+    switch (buttonId) {
+        case 'btn_up':
+            return keyboard.UP = true;
+        case 'btn_left':
+            return keyboard.LEFT = true;
+        case 'btn_down':
+            return keyboard.DOWN = true;
+        case 'btn_right':
+            return keyboard.RIGHT = true;
+        case 'btn_fire':
+            return keyboard.SPACE = true;
+    }
+}
+
+
+function controlButtonsFalse(buttonId) {
+    switch (buttonId) {
+        case 'btn_up':
+            return keyboard.UP = false;
+        case 'btn_left':
+            return keyboard.LEFT = false;
+        case 'btn_down':
+            return keyboard.DOWN = false;
+        case 'btn_right':
+            return keyboard.RIGHT = false;
+        case 'btn_fire':
+            return keyboard.SPACE = false;
+    }
 }
 
 
