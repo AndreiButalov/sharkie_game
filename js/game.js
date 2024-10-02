@@ -4,15 +4,13 @@ let keyboard = new Keyboard();
 
 
 function init() {
-    // startGames();
-
     let startView = document.getElementById('start_view');
     startView.innerHTML = '';
     startView.innerHTML = startViewGenerate();
 
     let buttonTryAgain = document.getElementById('you_win');
     buttonTryAgain.innerHTML = '';
-    buttonTryAgain.innerHTML = tryAgainGenerate();  
+    buttonTryAgain.innerHTML = tryAgainGenerate();
 
     let gameOver = document.getElementById('game_over');
     gameOver.innerHTML = '';
@@ -20,31 +18,7 @@ function init() {
 
     let mobile_panel = document.getElementById('mobile_panel');
     mobile_panel.innerHTML = '';
-    mobile_panel.innerHTML = /*html*/`
-    <div class="all_controls_button">
-        <div class="nav_bar_button">
-                <button class="buttons" onclick="sayHallo()"></button>
-                <button class="buttons" onclick="sayHallo()"></button>
-                <button class="buttons" onclick="sayHallo()"></button>                
-        </div>
-        <div class="mobile_panel">
-            <div class="controls_button_mobile">
-                <div class="up_button_mobilie">
-                    <button>&#8679;</button>
-                </div>
-                <div class="left_right_button_mobile">
-                    <button>&#8678;</button>
-                    <button>&#8681;</button>
-                    <button>&#8680;</button>
-                </div>
-            </div>
-            <div class="trow_button_mobile">
-                <button>T</button>
-            </div>
-        </div>
-    </div>
-    `;
-    
+    mobile_panel.innerHTML = controlButtonsGenerate();
 }
 
 
@@ -64,25 +38,80 @@ function startGames() {
     const canvas = document.getElementById('canvas');
     scaleCanvas(canvas);
     world = new World(canvas, keyboard);
-    checkIsWin();  
-    checkIsGameOver(); 
+    checkIsWin();
+    checkIsGameOver();
+    touchControlButtons();
+}
+
+
+function touchControlButtons() {
+    const buttons = ['btn_up', 'btn_left', 'btn_down', 'btn_right', 'btn_fire'];
+
+    buttons.forEach(buttonId => {
+        const button = document.getElementById(buttonId);
+        button.addEventListener('touchstart', (e) => {
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+            switch (buttonId) {
+                case 'btn_up':
+                    keyboard.UP = true;
+                    break;
+                case 'btn_left':
+                    keyboard.LEFT = true;
+                    break;
+                case 'btn_down':
+                    keyboard.DOWN = true;
+                    break;
+                case 'btn_right':
+                    keyboard.RIGHT = true;
+                    break;
+                case 'btn_fire':
+                    keyboard.SPACE = true;
+                    break;
+            }
+        });
+
+        button.addEventListener('touchend', (e) => {
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+            switch (buttonId) {
+                case 'btn_up':
+                    keyboard.UP = false;
+                    break;
+                case 'btn_left':
+                    keyboard.LEFT = false;
+                    break;
+                case 'btn_down':
+                    keyboard.DOWN = false;
+                    break;
+                case 'btn_right':
+                    keyboard.RIGHT = false;
+                    break;
+                case 'btn_fire':
+                    keyboard.SPACE = false;
+                    break;
+            }
+        });
+    });
 }
 
 
 function checkIsGameOver() {
     const gameOverCheck = setInterval(() => {
-        if(world.isGameOver) {
+        if (world.isGameOver) {
             clearInterval(gameOverCheck);
-            setTimeout (()=> {
-                document.getElementById('game_over').style.display = "block"; 
-            }, 2000)       
+            setTimeout(() => {
+                document.getElementById('game_over').style.display = "block";
+            }, 2000)
         }
     }, 200)
 }
 
 
 function checkIsWin() {
-    const tryAgainInterval = setInterval(() => {        
+    const tryAgainInterval = setInterval(() => {
         if (world.youWin) {
             clearInterval(tryAgainInterval);
             setTimeout(() => {
@@ -102,6 +131,11 @@ function scaleCanvas(canvas) {
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
 }
+
+
+window.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+}, { passive: false });
 
 
 window.addEventListener('keydown', (event) => {

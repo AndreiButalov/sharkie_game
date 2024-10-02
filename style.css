@@ -52,6 +52,11 @@ h1 {
     justify-content: space-around;
 }
 
+
+#btn_up, #btn_left, #btn_down, #btn_right, #btn_fire {
+    touch-action: none;
+}
+
 .start_button {
     height: 50px;
     border: 3px solid white;

@@ -24,6 +24,33 @@ function startViewGenerate() {
     `;
 }
 
+function controlButtonsGenerate() {
+    return /*html*/`
+        <div class="all_controls_button">
+            <div class="nav_bar_button">
+                    <button class="buttons" onclick="sayHallo()"></button>
+                    <button class="buttons" onclick="sayHallo()"></button>
+                    <button class="buttons" onclick="sayHallo()"></button>                
+            </div>
+            <div class="mobile_panel">
+                <div class="controls_button_mobile">
+                    <div class="up_button_mobilie">
+                        <button id="btn_up">&#8679;</button>
+                    </div>
+                    <div class="left_right_button_mobile">
+                        <button id="btn_left">&#8678;</button>
+                        <button id="btn_down">&#8681;</button>
+                        <button id="btn_right">&#8680;</button>
+                    </div>
+                </div>
+                <div class="trow_button_mobile">
+                    <button id="btn_fire">T</button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 
 function tryAgainGenerate() {
     return /*html*/`
