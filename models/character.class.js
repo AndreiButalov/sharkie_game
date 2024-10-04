@@ -120,24 +120,22 @@ class Character extends MovableObject {
 
     animateCharacterSwim() {
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
+            if (!this.world.isGamePause) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                    this.moveRight();
+                }
+                if (this.world.keyboard.LEFT && this.x > 0) {
+                    this.moveLeft();
+                    this.otherDirection = true;
+                }
+                if (this.world.keyboard.UP && this.y > -40) {
+                    this.moveUp();
+                }
+                if (this.world.keyboard.DOWN && this.y < 250) {
+                    this.moveDown();
+                }
+                this.world.camera_x = -this.x + 50;
             }
-
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-            }
-
-            if (this.world.keyboard.UP && this.y > -40) {
-                this.moveUp();
-            }
-
-            if (this.world.keyboard.DOWN && this.y < 250) {
-                this.moveDown();
-            }
-
-            this.world.camera_x = -this.x + 50;
         }, 1000 / 30);
     }
 
@@ -146,15 +144,17 @@ class Character extends MovableObject {
         this.animateCharacterSwim();
 
         this.animateCharacter = setInterval(() => {
-            if (this.isDead()) {
-                this.characterIsDead();
-                this.world.isGameOver = true;
-            } else if (this.isHurt()) {
-                this.playAnimation(this.SHARKIE_HURT);
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                this.playAnimation(this.SHARKIE_SWIM);
-            } else {
-                this.playAnimation(this.SHARKIE_STAND);
+            if (!world.isGamePause) {
+                if (this.isDead()) {
+                    this.characterIsDead();
+                    this.world.isGameOver = true;
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.SHARKIE_HURT);
+                } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                    this.playAnimation(this.SHARKIE_SWIM);
+                } else {
+                    this.playAnimation(this.SHARKIE_STAND);
+                }
             }
         }, 100);
 

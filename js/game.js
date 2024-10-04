@@ -4,10 +4,10 @@ let keyboard = new Keyboard();
 
 
 function init() {
-    startGames();
-    // let startView = document.getElementById('start_view');
-    // startView.innerHTML = '';
-    // startView.innerHTML = startViewGenerate();
+    // startGames();
+    let startView = document.getElementById('start_view');
+    startView.innerHTML = '';
+    startView.innerHTML = startViewGenerate();
 
     let buttonTryAgain = document.getElementById('you_win');
     buttonTryAgain.innerHTML = '';
@@ -21,15 +21,15 @@ function init() {
     mobile_panel.innerHTML = '';
     mobile_panel.innerHTML = controlButtonsGenerate();
 
-    // document.getElementById('btn_pause').addEventListener('click', function() {
-    //     world.isGamePause = !world.isGamePause;    
-    //     this.textContent = world.isGamePause ? false : true;
-    //     if (world.isGamePause) {
-    //         console.log(world.isGamePause);
-    //     } else {
-    //         console.log(world.isGamePause);
-    //     }
-    // });
+    document.getElementById('btn_pause').addEventListener('click', function() {
+        world.isGamePause = !world.isGamePause;    
+        this.textContent = world.isGamePause ? false : true;
+        if (world.isGamePause) {
+            // console.log(world.isGamePause);
+        } else {
+            // console.log(world.isGamePause);
+        }
+    });
 }
 
 
@@ -46,13 +46,13 @@ function tryAgain() {
 function startGames() {
     initialGames();
     document.getElementById('start_view').style.display = 'none';
-    // document.getElementById('nav_bar_button').style.visibility = 'initial';
+    document.getElementById('nav_bar_button').style.visibility = 'initial';
     const canvas = document.getElementById('canvas');
     scaleCanvas(canvas);
     world = new World(canvas, keyboard);
-    // checkIsWin();
-    // checkIsGameOver();
-    // touchControlButtons();
+    checkIsWin();
+    checkIsGameOver();
+    touchControlButtons();
 }
 
 

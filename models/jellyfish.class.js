@@ -22,16 +22,22 @@ class JellyFish extends Enemies {
 
 
     animateJellyFish() {
+
         setInterval(() => {
-            if (!this.isDead) {
-                this.moveLeft();            
+            if (!world.isGamePause) {
+                if (!this.isDead) {
+                    this.moveLeft();
+                }
+            } else {
+                this.frequency = 0;
+                this.amplitude = 0;
             }
-        }, 1000 / 60);    
+        }, 1000 / 60);
 
         setInterval(() => {
             if (this.isDead) {
                 this.playAnimation(this.JELLYFISH_DEAD);
-            } else {
+            } else if (!world.isGamePause) {
                 this.playAnimation(this.JELLYFISH_SHWIM);
             }
         }, 200);

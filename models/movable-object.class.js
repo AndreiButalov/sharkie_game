@@ -88,7 +88,7 @@ class MovableObject extends DrawableObject {
     }
 
 
-    applySwim() {
+    applySwim() {      
         let time = 0;
         setInterval(() => {
             this.y = this.initialY + Math.sin(time) * this.amplitude;

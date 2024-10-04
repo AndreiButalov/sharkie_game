@@ -34,7 +34,7 @@ class Bubblefish extends Enemies {
 
 
     playBubbleSwim() {
-        let deadAnimationPlayed = false;    
+        let deadAnimationPlayed = false;
         setInterval(() => {
             if (this.isDead) {
                 if (!deadAnimationPlayed) {
@@ -42,31 +42,41 @@ class Bubblefish extends Enemies {
                     deadAnimationPlayed = true;
                     clearInterval(this.animationInterval);
                 }
-            } else {
-                this.playAnimation(this.BUBBLEFISH_TRANSITION_SHWIM);
-            }
+            } else if(!world.isGamePause) {
+                    this.playAnimation(this.BUBBLEFISH_TRANSITION_SHWIM);
+
+                }
+            // } else 
         }, 200);
     }
 
 
     animateEnemy() {
         let deadAnimationPlayed = false;
-        
+
         setInterval(() => {
-            if (!this.isDead) {
-                this.moveLeft();
-            } else {
-                if (!deadAnimationPlayed) {
-                    this.playAnimation(this.BUBBLEFISH_DEAD);
-                    deadAnimationPlayed = true; 
-                    clearInterval(this.animationInterval);
+            if (!world.isGamePause) {
+                if (!this.isDead) {
+                    this.moveLeft();
+                } else {
+                    if (!deadAnimationPlayed) {
+                        this.playAnimation(this.BUBBLEFISH_DEAD);
+                        deadAnimationPlayed = true;
+                        clearInterval(this.animationInterval);
+                    }
                 }
+            } else {
+                this.frequency = 0;
+                this.amplitude = 0;
             }
+
         }, 1000 / 60);
-    
+
         this.animationInterval = setInterval(() => {
             if (!this.isDead && !this.isInTransition) {
-                this.playAnimation(this.BUBBLEFISH_SHWIM);
+                if(!world.isGamePause) {
+                    this.playAnimation(this.BUBBLEFISH_SHWIM);
+                }
             }
         }, 200);
     }

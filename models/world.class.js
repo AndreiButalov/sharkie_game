@@ -12,6 +12,7 @@ class World {
     finalBackground;
     youWin = false;
     isGameOver = false;
+    isGamePause = false;
 
     character = new Character();
     statusBar = new StatusBar();
@@ -42,8 +43,16 @@ class World {
 
 
     draw() {
+
+        
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
         this.ctx.translate(this.camera_x, 0);
+    
+        if(!this.isGamePause) {
+            console.log(this.isGamePause);
+            // clearInterval(this.draw)
+        }
+
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coin);
@@ -334,7 +343,7 @@ class World {
         }
 
         parameter.draw(this.ctx);
-        // parameter.drawFrame(this.ctx);
+        parameter.drawFrame(this.ctx);
         if (parameter.otherDirection) {
             this.flipImageBack(parameter,)
         }
