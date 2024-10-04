@@ -27,8 +27,8 @@ function startViewGenerate() {
 function controlButtonsGenerate() {
     return /*html*/`
         <div class="all_controls_button">
-            <div class="nav_bar_button">
-                    <button class="buttons" onclick="sayHallo()"></button>
+            <div id="nav_bar_button" class="nav_bar_button">
+                    <button id="btn_pause" class="buttons"></button>
                     <button class="buttons" onclick="sayHallo()"></button>
                     <button class="buttons" onclick="sayHallo()"></button>                
             </div>

@@ -133,7 +133,7 @@ class Character extends MovableObject {
                 this.moveUp();
             }
 
-            if (this.world.keyboard.DOWN && this.y < 300) {
+            if (this.world.keyboard.DOWN && this.y < 250) {
                 this.moveDown();
             }
 

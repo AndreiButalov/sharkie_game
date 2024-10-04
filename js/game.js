@@ -4,9 +4,10 @@ let keyboard = new Keyboard();
 
 
 function init() {
-    let startView = document.getElementById('start_view');
-    startView.innerHTML = '';
-    startView.innerHTML = startViewGenerate();
+    startGames();
+    // let startView = document.getElementById('start_view');
+    // startView.innerHTML = '';
+    // startView.innerHTML = startViewGenerate();
 
     let buttonTryAgain = document.getElementById('you_win');
     buttonTryAgain.innerHTML = '';
@@ -19,6 +20,16 @@ function init() {
     let mobile_panel = document.getElementById('mobile_panel');
     mobile_panel.innerHTML = '';
     mobile_panel.innerHTML = controlButtonsGenerate();
+
+    // document.getElementById('btn_pause').addEventListener('click', function() {
+    //     world.isGamePause = !world.isGamePause;    
+    //     this.textContent = world.isGamePause ? false : true;
+    //     if (world.isGamePause) {
+    //         console.log(world.isGamePause);
+    //     } else {
+    //         console.log(world.isGamePause);
+    //     }
+    // });
 }
 
 
@@ -28,19 +39,20 @@ function tryAgain() {
     document.getElementById('game_over').style.display = "none";
     world.youWin = false;
     world.isGameOver = false;
+    
 }
 
 
 function startGames() {
     initialGames();
-    let startView = document.getElementById('start_view');
-    startView.style.display = 'none';
+    document.getElementById('start_view').style.display = 'none';
+    // document.getElementById('nav_bar_button').style.visibility = 'initial';
     const canvas = document.getElementById('canvas');
     scaleCanvas(canvas);
     world = new World(canvas, keyboard);
-    checkIsWin();
-    checkIsGameOver();
-    touchControlButtons();
+    // checkIsWin();
+    // checkIsGameOver();
+    // touchControlButtons();
 }
 
 

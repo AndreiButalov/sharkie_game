@@ -5,8 +5,18 @@ const step = 719;
 const repetitions = 5;
 
 
+// const intervals = {
+//     greenFish: [750, 1440, 2160, 2880, 3500],
+//     redFish: [800, 1240, 2160, 2880, 3500],
+//     greenjellyFish: [1500, 1240, 2160, 2880, 3500],
+//     lilajellyFish: [500, 2000, 3100],
+//     coin: [750, 1440, 2060, 2680, 3000],
+//     barrierDown: [500, 3000],
+//     barrierDownUp: [1700, 2500],
+// };
+
 const intervals = {
-    greenFish: [750, 1440, 2160, 2880, 3500],
+    greenFish: [550],
     redFish: [800, 1240, 2160, 2880, 3500],
     greenjellyFish: [1500, 1240, 2160, 2880, 3500],
     lilajellyFish: [500, 2000, 3100],
@@ -14,7 +24,6 @@ const intervals = {
     barrierDown: [500, 3000],
     barrierDownUp: [1700, 2500],
 };
-
 
 const layers = {
     water: ['img/3. Background/Layers/5. Water/D2.png', 'img/3. Background/Layers/5. Water/D1.png'],

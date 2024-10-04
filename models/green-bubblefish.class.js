@@ -43,7 +43,7 @@ class GreenBubbleFish extends Bubblefish {
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.x = x;        
         this.speed = 0.3 + Math.random() * 0.2;
-        this.initialY = 60 + Math.random() * 300;
+        this.initialY = 100 + Math.random() * 220;
         this.y = this.initialY;        
         this.loadImages(this.BUBBLEFISH_SHWIM);
         this.loadImages(this.BUBBLEFISH_TRANSITION);
@@ -51,3 +51,4 @@ class GreenBubbleFish extends Bubblefish {
         this.loadImages(this.BUBBLEFISH_DEAD);
     }
 }
+// 300
