@@ -26,7 +26,7 @@ class JellyFish extends Enemies {
         setInterval(() => {
             if (!world.isGamePause) {
                 if (!this.isDead) {
-                    this.moveLeft();
+                    // this.moveLeft();
                 }
             } else {
                 this.frequency = 0;

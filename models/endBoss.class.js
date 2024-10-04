@@ -3,13 +3,15 @@ class EndBoss extends MovableObject {
     height = 400;
     width = 400;
     y = 0;
-    x = 3700;
+    // x = 3700;
+    x = 700;
 
     frequency = 0.09;
     amplitudeX = 11;
     amplitudeY = 4;
     isDead = false;
     endLevel = false;
+    isGamePause;
 
 
     offset = {
@@ -91,7 +93,6 @@ class EndBoss extends MovableObject {
 
     startBossAnimation() {
         this.bossArrivalAnimate();
-
         setTimeout(() => {
             clearInterval(this.arrivalInterval);
             this.bossSwimAnimate();
@@ -100,8 +101,12 @@ class EndBoss extends MovableObject {
 
 
     bossArrivalAnimate() {
+
         this.arrivalInterval = setInterval(() => {
-            this.playAnimation(this.BOSS_INTRODUCE);
+            // console.log(world.isGamePause);
+            if (!world.isGamePause) {
+                this.playAnimation(this.BOSS_INTRODUCE);
+            }
         }, 200);
     }
 
@@ -153,13 +158,16 @@ class EndBoss extends MovableObject {
 
     startSwimmingAnimation() {
         this.swimInterval = setInterval(() => {
-            if (!this.isDead && !this.isHurt()) {
-                this.playAnimation(this.BOSS_SHWIM);
-            } else if (this.isHurt()) {
-                this.playAnimation(this.BOSS_HURT);
-            } else {
-                this.isBossDead(this.swimInterval);
-            }
+            // console.log(world.isGamePause);
+            if (!world.isGamePause) {
+                if (!this.isDead && !this.isHurt()) {
+                    this.playAnimation(this.BOSS_SHWIM);
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.BOSS_HURT);
+                } else {
+                    this.isBossDead(this.swimInterval);
+                }
+            }            
         }, 200);
     }
 
@@ -169,13 +177,16 @@ class EndBoss extends MovableObject {
             clearInterval(this.swimInterval);
             this.bossAttack();
             this.attackInterval = setInterval(() => {
-                if (!this.isDead && !this.isHurt()) {
-                    this.playAnimation(this.BOSS_ATTACK);
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.BOSS_HURT);
-                } else {
-                    this.isBossDead(this.attackInterval);
-                }
+                // console.log(world.isGamePause);
+                if (!world.isGamePause) {
+                    if (!this.isDead && !this.isHurt()) {
+                        this.playAnimation(this.BOSS_ATTACK);
+                    } else if (this.isHurt()) {
+                        this.playAnimation(this.BOSS_HURT);
+                    } else {
+                        this.isBossDead(this.attackInterval);
+                    }
+                } 
             }, 200);
         }
     }
@@ -184,9 +195,9 @@ class EndBoss extends MovableObject {
     isBossDead(interval) {
         clearInterval(interval);
         this.amplitudeX = 0;
-        this.amplitudeY = 2;    
-                    
-        this.bossDeadInterval = setInterval (() => {
+        this.amplitudeY = 2;
+
+        this.bossDeadInterval = setInterval(() => {
             this.playAnimation(this.BOSS_DEAD);
         }, 200)
 
@@ -196,7 +207,7 @@ class EndBoss extends MovableObject {
 
         setTimeout(() => {
             this.endLevel = true;
-        }, 1000)        
+        }, 1000)
     }
 
 
@@ -218,12 +229,15 @@ class EndBoss extends MovableObject {
             this.amplitudeY = 4;
             this.bossAttackMinus();
             this.attackInterval = setInterval(() => {
-                if (!this.isDead && !this.isHurt()) {
-                    this.playAnimation(this.BOSS_ATTACK);
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.BOSS_HURT);
-                } else {
-                    this.isBossDead(this.attackInterval);
+                // console.log(world.isGamePause);
+                if (!world.isGamePause) {
+                    if (!this.isDead && !this.isHurt()) {
+                        this.playAnimation(this.BOSS_ATTACK);
+                    } else if (this.isHurt()) {
+                        this.playAnimation(this.BOSS_HURT);
+                    } else {
+                        this.isBossDead(this.attackInterval);
+                    }
                 }
             }, 200);
         }

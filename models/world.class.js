@@ -14,7 +14,7 @@ class World {
     isGameOver = false;
     isGamePause = false;
 
-    character = new Character();
+    character = new Character(); 
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
@@ -86,8 +86,8 @@ class World {
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
-            if (this.character.x >= 3200 && !bossSpawned) {
-                this.endBoss = new EndBoss();
+            if (this.character.x >= 300 && !bossSpawned) {
+                this.endBoss = new EndBoss();                
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
                 clearInterval(spawnBoss);

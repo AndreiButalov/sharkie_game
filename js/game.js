@@ -23,12 +23,7 @@ function init() {
 
     document.getElementById('btn_pause').addEventListener('click', function() {
         world.isGamePause = !world.isGamePause;    
-        this.textContent = world.isGamePause ? false : true;
-        if (world.isGamePause) {
-            // console.log(world.isGamePause);
-        } else {
-            // console.log(world.isGamePause);
-        }
+        this.textContent = world.isGamePause ? '>' : '||';
     });
 }
 
