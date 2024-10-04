@@ -142,7 +142,6 @@ class Character extends MovableObject {
 
     animateCharacter() {
         this.animateCharacterSwim();
-
         this.animateCharacter = setInterval(() => {
             if (!world.isGamePause) {
                 if (this.isDead()) {

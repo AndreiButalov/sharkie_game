@@ -31,8 +31,7 @@ class PoisonCollect extends ObjectCollection {
         this.y = this.initialY;
         this.x = 200 + Math.random() * 3000;        
         this.applySwim();
-        this.poisonAnimate();
-        this.isPause
+        this.poisonAnimate();        
     }
 
 
@@ -40,11 +39,6 @@ class PoisonCollect extends ObjectCollection {
         setInterval(() => {
             this.playAnimation(this.IMAGES)
         }, 200)
-    }
-    
-
-    isPause() {
-        console.log(world.isGamePause);
+    }   
         
-    }
 }

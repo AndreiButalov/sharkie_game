@@ -43,20 +43,14 @@ class World {
 
 
     draw() {
-
-        
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
         this.ctx.translate(this.camera_x, 0);
-    
-        if(!this.isGamePause) {
-            console.log(this.isGamePause);
-            // clearInterval(this.draw)
-        }
-
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.coin);
-        this.addObjectsToMap(this.level.poisonButtle);
+        if (!this.isGamePause) {
+            this.addObjectsToMap(this.level.coin);
+            this.addObjectsToMap(this.level.poisonButtle);
+        }
         this.addToMap(this.character);
         this.addObjectsToMap(this.throwPoisons);
         this.addObjectsToMap(this.throwBubble);
@@ -65,7 +59,6 @@ class World {
         if (this.endBoss) {
             this.addToMap(this.endBoss);
         }
-
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
@@ -77,7 +70,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.ctx.translate(-this.camera_x, 0);
-        if(this.finalBackground) {
+        if (this.finalBackground) {
             this.addToMap(this.finalBackground);
 
         }
@@ -115,7 +108,7 @@ class World {
 
 
     checkEndLevel() {
-        if(this.endBoss.endLevel) {
+        if (this.endBoss.endLevel) {
             this.finalBackground = new FinalBackground();
             clearInterval(this.checkEnd);
             this.youWin = true;
@@ -270,9 +263,9 @@ class World {
 
     checkHitEnemiesBubbleAttack(enemy) {
         if (enemy instanceof GreenBubbleFish) {
-            enemy.energyEnemie -= 100; 
+            enemy.energyEnemie -= 100;
         } else {
-            enemy.energyEnemie -= 50; 
+            enemy.energyEnemie -= 50;
         }
         if (enemy.energyEnemie <= 0) {
             enemy.playBubbleFishDead();
@@ -293,22 +286,24 @@ class World {
 
 
     trowPoison() {
-        if (this.keyboard.SPACE) {
-            if (this.poisonCount > 0) {
-                this.character.blowBubble(this.character.IMAGES_BUBBLE_POISON);
-                let poison = new PoisonAttack(this.character.x + 100, this.character.y);
-                this.throwPoisons.push(poison);
-                this.poisonCount--;
-                setTimeout(() => {
-                    this.downBubblePoison(poison);
-                }, 4000)
-            } else {
-                this.character.blowBubble(this.character.IMAGES_BUBBLE);
-                let bubble = new BubbleAttack(this.character.x + 100, this.character.y);
-                this.throwBubble.push(bubble);
-                setTimeout(() => {
-                    this.downBubble(bubble);
-                }, 3800)
+        if (!this.isGamePause) {
+            if (this.keyboard.SPACE) {
+                if (this.poisonCount > 0) {
+                    this.character.blowBubble(this.character.IMAGES_BUBBLE_POISON);
+                    let poison = new PoisonAttack(this.character.x + 100, this.character.y);
+                    this.throwPoisons.push(poison);
+                    this.poisonCount--;
+                    setTimeout(() => {
+                        this.downBubblePoison(poison);
+                    }, 4000)
+                } else {
+                    this.character.blowBubble(this.character.IMAGES_BUBBLE);
+                    let bubble = new BubbleAttack(this.character.x + 100, this.character.y);
+                    this.throwBubble.push(bubble);
+                    setTimeout(() => {
+                        this.downBubble(bubble);
+                    }, 3800)
+                }
             }
         }
     }
