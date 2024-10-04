@@ -3,8 +3,7 @@ class EndBoss extends MovableObject {
     height = 400;
     width = 400;
     y = 0;
-    // x = 3700;
-    x = 700;
+    x = 3700;
 
     frequency = 0.09;
     amplitudeX = 11;
