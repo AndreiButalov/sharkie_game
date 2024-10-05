@@ -55,11 +55,9 @@ class World {
         this.addObjectsToMap(this.throwPoisons);
         this.addObjectsToMap(this.throwBubble);
         this.addObjectsToMap(this.level.barriers);
-
         if (this.endBoss) {
             this.addToMap(this.endBoss);
         }
-
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         if (this.statusBarBoss) {
@@ -68,13 +66,11 @@ class World {
         this.addToMap(this.coinBar);
         this.addToMap(this.poisonBar);
         this.ctx.translate(this.camera_x, 0);
-
         this.ctx.translate(-this.camera_x, 0);
         if (this.finalBackground) {
             this.addToMap(this.finalBackground);
 
         }
-
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
