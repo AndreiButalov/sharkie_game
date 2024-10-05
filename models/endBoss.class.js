@@ -21,7 +21,7 @@ class EndBoss extends MovableObject {
     }
 
 
-    BOSS_SHWIM = [
+    BOSS_SWIM = [
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
         'img/2.Enemy/3 Final Enemy/2.floating/2.png',
         'img/2.Enemy/3 Final Enemy/2.floating/3.png',
@@ -81,7 +81,7 @@ class EndBoss extends MovableObject {
 
     constructor() {
         super().loadImage('img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
-        this.loadImages(this.BOSS_SHWIM);
+        this.loadImages(this.BOSS_SWIM);
         this.loadImages(this.BOSS_INTRODUCE);
         this.loadImages(this.BOSS_ATTACK);
         this.loadImages(this.BOSS_DEAD);
@@ -161,7 +161,7 @@ class EndBoss extends MovableObject {
         this.swimInterval = setInterval(() => {
             if (!world.isGamePause) {
                 if (!this.isDead && !this.isHurt()) {
-                    this.playAnimation(this.BOSS_SHWIM);
+                    this.playAnimation(this.BOSS_SWIM);
                 } else if (this.isHurt()) {
                     this.playAnimation(this.BOSS_HURT);
                 } else {

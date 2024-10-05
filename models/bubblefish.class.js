@@ -43,7 +43,7 @@ class Bubblefish extends Enemies {
                     clearInterval(this.animationInterval);
                 }
             } else if (!world.isGamePause) {
-                this.playAnimation(this.BUBBLEFISH_TRANSITION_SHWIM);
+                this.playAnimation(this.BUBBLEFISH_TRANSITION_SWIM);
 
             }
         }, 200);
@@ -74,7 +74,7 @@ class Bubblefish extends Enemies {
         this.animationInterval = setInterval(() => {
             if (!this.isDead && !this.isInTransition) {
                 if (!world.isGamePause) {
-                    this.playAnimation(this.BUBBLEFISH_SHWIM);
+                    this.playAnimation(this.BUBBLEFISH_SWIM);
                 }
             }
         }, 200);

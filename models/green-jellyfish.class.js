@@ -3,7 +3,7 @@ class GreenJellyFish extends JellyFish {
     frequency = 0.09;
     amplitude = 12;    
 
-    JELLYFISH_SHWIM = [
+    JELLYFISH_SWIM = [
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png',
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 2.png',
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 3.png',
@@ -20,7 +20,7 @@ class GreenJellyFish extends JellyFish {
 
     constructor(x) {
         super().loadImage('img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
-        this.loadImages(this.JELLYFISH_SHWIM);
+        this.loadImages(this.JELLYFISH_SWIM);
         this.loadImages(this.JELLYFISH_DEAD);
         this.x = x;
     }

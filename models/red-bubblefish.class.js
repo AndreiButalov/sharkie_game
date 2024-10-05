@@ -6,7 +6,7 @@ class RedBubbleFish extends Bubblefish {
     isDead = false;
 
 
-    BUBBLEFISH_SHWIM = [
+    BUBBLEFISH_SWIM = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim2.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim3.png',
@@ -24,7 +24,7 @@ class RedBubbleFish extends Bubblefish {
     ];
 
 
-    BUBBLEFISH_TRANSITION_SHWIM = [
+    BUBBLEFISH_TRANSITION_SWIM = [
         'img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim1.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim2.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim3.png',
@@ -45,9 +45,9 @@ class RedBubbleFish extends Bubblefish {
         this.speed = 0.5 + Math.random() * 0.2;
         this.initialY = 60 + Math.random() * 300;
         this.y = this.initialY;        
-        this.loadImages(this.BUBBLEFISH_SHWIM);
+        this.loadImages(this.BUBBLEFISH_SWIM);
         this.loadImages(this.BUBBLEFISH_TRANSITION);
-        this.loadImages(this.BUBBLEFISH_TRANSITION_SHWIM);
+        this.loadImages(this.BUBBLEFISH_TRANSITION_SWIM);
         this.loadImages(this.BUBBLEFISH_DEAD);
         
     }

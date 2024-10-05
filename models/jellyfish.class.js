@@ -38,7 +38,7 @@ class JellyFish extends Enemies {
             if (this.isDead) {
                 this.playAnimation(this.JELLYFISH_DEAD);
             } else if (!world.isGamePause) {
-                this.playAnimation(this.JELLYFISH_SHWIM);
+                this.playAnimation(this.JELLYFISH_SWIM);
             }
         }, 200);
     }
