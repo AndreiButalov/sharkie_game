@@ -120,7 +120,7 @@ class Character extends MovableObject {
 
     animateCharacterSwim() {
         setInterval(() => {
-            if (!this.world.isGamePause) {
+            if (!this.world.isGamePause && !this.world.isGameOver) {
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                     this.moveRight();
                 }
