@@ -3,7 +3,7 @@ class PoisonCollect extends ObjectCollection {
     height = 60;
 
     frequency = 0.09;
-    amplitude = 12;
+    amplitude = 4;
 
     offset = {
         top: -10,

@@ -171,6 +171,7 @@ class Character extends MovableObject {
         }, 700);
     }
 
+
     blowBubble(arr) {
         let i = 0;
         const interval = setInterval(() => {

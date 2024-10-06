@@ -69,7 +69,6 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         if (this.finalBackground) {
             this.addToMap(this.finalBackground);
-
         }
         let self = this;
         requestAnimationFrame(function () {

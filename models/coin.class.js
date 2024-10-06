@@ -4,7 +4,7 @@ class Coin extends ObjectCollection {
     height = 40;
 
     frequency = 0.09;
-    amplitude = 4;
+    amplitude = 3;
 
     IMAGES = [
         'img/4. Marcadores/1. Coins/1.png',

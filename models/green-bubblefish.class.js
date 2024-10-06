@@ -1,7 +1,7 @@
 class GreenBubbleFish extends Bubblefish {
 
     frequency = 0.09;
-    amplitude = 12;
+    amplitude = 7;
     isInTransition = false;
     isDead = false;
 
