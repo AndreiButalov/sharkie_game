@@ -14,7 +14,7 @@ class World {
     isGameOver = false;
     isGamePause = false;
 
-    character = new Character(); 
+    character = new Character();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
@@ -82,7 +82,7 @@ class World {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
             if (this.character.x >= 3200 && !bossSpawned) {
-                this.endBoss = new EndBoss();                
+                this.endBoss = new EndBoss();
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
                 clearInterval(spawnBoss);
@@ -289,14 +289,18 @@ class World {
                     this.throwPoisons.push(poison);
                     this.poisonCount--;
                     setTimeout(() => {
-                        this.downBubblePoison(poison);
+                        if (!this.isGamePause) {
+                            this.downBubblePoison(poison);
+                        }
                     }, 4000)
                 } else {
                     this.character.blowBubble(this.character.IMAGES_BUBBLE);
                     let bubble = new BubbleAttack(this.character.x + 100, this.character.y);
                     this.throwBubble.push(bubble);
                     setTimeout(() => {
-                        this.downBubble(bubble);
+                        if (!this.isGamePause) {
+                            this.downBubble(bubble);
+                        }
                     }, 3800)
                 }
             }
