@@ -20,7 +20,7 @@ class PoisonCollect extends ObjectCollection {
         'img/4. Marcadores/Posión/Animada/5.png',
         'img/4. Marcadores/Posión/Animada/6.png',
         'img/4. Marcadores/Posión/Animada/7.png',
-        'img/4. Marcadores/Posión/Animada/8.png'        
+        'img/4. Marcadores/Posión/Animada/8.png'
     ];
 
 
@@ -29,20 +29,15 @@ class PoisonCollect extends ObjectCollection {
         this.loadImages(this.IMAGES)
         this.initialY = 350 + Math.random() * 50;
         this.y = this.initialY;
-        this.x = 200 + Math.random() * 3000;        
-        this.poisonAnimate();        
+        this.x = 200 + Math.random() * 3000;
+        this.poisonAnimate();
     }
 
 
     poisonAnimate() {
         setInterval(() => {
-            if (world.isGamePause) {
-                this.frequency = 0;
-                this.amplitude = 0;
-            } else {
-                this.playAnimation(this.IMAGES)
-            }
+            this.playAnimation(this.IMAGES)
         }, 200)
-    }   
-        
+    }
+
 }

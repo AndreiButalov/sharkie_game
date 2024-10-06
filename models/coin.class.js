@@ -24,12 +24,7 @@ class Coin extends ObjectCollection {
 
     coinAnimate() {
         setInterval(() => {
-            if (world.isGamePause) {
-                this.frequency = 0;
-                this.amplitude = 0;
-            } else {
-                this.playAnimation(this.IMAGES)
-            }
+            this.playAnimation(this.IMAGES)
         }, 300)
     }
 }
