@@ -10,7 +10,6 @@ class EndBoss extends MovableObject {
     amplitudeY = 4;
     isDead = false;
     endLevel = false;
-    isGamePause;
 
 
     offset = {

@@ -47,10 +47,8 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.enemies);
-        if (!this.isGamePause) {
-            this.addObjectsToMap(this.level.coin);
-            this.addObjectsToMap(this.level.poisonButtle);
-        }
+        this.addObjectsToMap(this.level.coin);
+        this.addObjectsToMap(this.level.poisonButtle);
         this.addToMap(this.character);
         this.addObjectsToMap(this.throwPoisons);
         this.addObjectsToMap(this.throwBubble);

@@ -30,14 +30,18 @@ class PoisonCollect extends ObjectCollection {
         this.initialY = 350 + Math.random() * 50;
         this.y = this.initialY;
         this.x = 200 + Math.random() * 3000;        
-        this.applySwim();
         this.poisonAnimate();        
     }
 
 
     poisonAnimate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES)
+            if (world.isGamePause) {
+                this.frequency = 0;
+                this.amplitude = 0;
+            } else {
+                this.playAnimation(this.IMAGES)
+            }
         }, 200)
     }   
         

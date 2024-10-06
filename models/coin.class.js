@@ -4,7 +4,7 @@ class Coin extends ObjectCollection {
     height = 40;
 
     frequency = 0.09;
-    amplitude = 3;
+    amplitude = 5;
 
     IMAGES = [
         'img/4. Marcadores/1. Coins/1.png',
@@ -19,13 +19,17 @@ class Coin extends ObjectCollection {
         this.x = x
         this.initialY = 90 + Math.random() * 300;
         this.y = this.initialY;
-        this.applySwim();
         this.coinAnimate();
     }
 
     coinAnimate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES)
+            if (world.isGamePause) {
+                this.frequency = 0;
+                this.amplitude = 0;
+            } else {
+                this.playAnimation(this.IMAGES)
+            }
         }, 300)
-    }    
+    }
 }

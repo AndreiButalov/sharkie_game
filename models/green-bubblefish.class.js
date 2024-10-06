@@ -51,4 +51,3 @@ class GreenBubbleFish extends Bubblefish {
         this.loadImages(this.BUBBLEFISH_DEAD);
     }
 }
-// 300
