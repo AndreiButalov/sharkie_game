@@ -123,7 +123,7 @@ class Character extends MovableObject {
 
     animateCharacterSwim() {
         setInterval(() => {
-            if (!this.world.isGamePause && !this.world.isGameOver &&!this.world.youWin) {
+            if (!this.world.isGamePause && !this.world.isGameOver && !this.world.youWin) {
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                     this.moveRight();
                 }
@@ -143,31 +143,58 @@ class Character extends MovableObject {
     }
 
 
+
     animateCharacter() {
         this.animateCharacterSwim();
+
         this.animateCharacter = setInterval(() => {
-            if (!world.isGamePause) {
-                if (this.isDead()) {
-                    this.characterIsDead();
-                    world.levelSound.pause();
-                    this.waterSlapping.pause();
-                    this.world.isGameOver = true;
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.SHARKIE_HURT);
-                    this.electricShock.play();
-                    this.waterSlapping.pause();
-                } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                    this.playAnimation(this.SHARKIE_SWIM);
-                    this.waterSlapping.play();
-                    this.electricShock.pause();
-                } else {
-                    this.playAnimation(this.SHARKIE_STAND);
-                    this.electricShock.pause();
-                    this.waterSlapping.pause();
-                }
+            if (world.isGamePause) return;
+
+            if (this.isDead()) {
+                this.handleCharacterDeath();
+            } else if (this.isHurt()) {
+                this.handleCharacterHurt();
+            } else if (this.isMoving()) {
+                this.handleCharacterMovement();
+            } else {
+                this.handleCharacterIdle();
             }
         }, 100);
+    }
 
+
+    handleCharacterDeath() {
+        this.characterIsDead();
+        world.levelSound.pause();
+        this.waterSlapping.pause();
+        this.world.isGameOver = true;
+    }
+
+
+    handleCharacterHurt() {
+        this.playAnimation(this.SHARKIE_HURT);
+        this.electricShock.play();
+        this.waterSlapping.pause();
+    }
+
+
+    handleCharacterMovement() {
+        this.playAnimation(this.SHARKIE_SWIM);
+        this.waterSlapping.play();
+        this.electricShock.pause();
+    }
+
+
+    handleCharacterIdle() {
+        this.playAnimation(this.SHARKIE_STAND);
+        this.electricShock.pause();
+        this.waterSlapping.pause();
+    }
+
+
+    isMoving() {
+        return this.world.keyboard.RIGHT || this.world.keyboard.LEFT ||
+            this.world.keyboard.UP || this.world.keyboard.DOWN;
     }
 
 
