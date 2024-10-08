@@ -136,6 +136,22 @@ span {
     color: rgb(250, 246, 26);
 }
 
+#btn_pause img {
+    width: 13px;
+    margin-left: 1px;
+    transition: filter 0.3s ease;
+}
+
+#btn_pause {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn_pause:hover img {
+    filter: brightness(0) invert(1);
+}
+
 .button_try_again {
     top: 369px;
     left: 411px;

@@ -22,8 +22,12 @@ function init() {
     mobile_panel.innerHTML = controlButtonsGenerate();
 
     document.getElementById('btn_pause').addEventListener('click', function() {
-        world.isGamePause = !world.isGamePause;    
-        this.textContent = world.isGamePause ? '>' : '||';
+        world.isGamePause = !world.isGamePause;   
+        if (world.isGamePause) {
+            this.innerHTML = '<img src="img/Daco_1000848.png"/>';
+        } else {
+            this.innerHTML = '<img src="img/Daco_4414172.png"/>';
+        }
     });
 }
 
