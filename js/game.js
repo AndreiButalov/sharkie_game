@@ -4,32 +4,45 @@ let keyboard = new Keyboard();
 
 
 function init() {
-    // startGames();
-    let startView = document.getElementById('start_view');
-    startView.innerHTML = '';
-    startView.innerHTML = startViewGenerate();
+    renderUI();
+    setupPauseButton();
+}
 
-    let buttonTryAgain = document.getElementById('you_win');
-    buttonTryAgain.innerHTML = '';
-    buttonTryAgain.innerHTML = tryAgainGenerate();
+function renderUI() {
+    const elementsToRender = [
+        { id: 'start_view', content: startViewGenerate() },
+        { id: 'you_win', content: tryAgainGenerate() },
+        { id: 'game_over', content: gameOverGenerate() },
+        { id: 'mobile_panel', content: controlButtonsGenerate() }
+    ];
 
-    let gameOver = document.getElementById('game_over');
-    gameOver.innerHTML = '';
-    gameOver.innerHTML = gameOverGenerate();
-
-    let mobile_panel = document.getElementById('mobile_panel');
-    mobile_panel.innerHTML = '';
-    mobile_panel.innerHTML = controlButtonsGenerate();
-
-    document.getElementById('btn_pause').addEventListener('click', function() {
-        world.isGamePause = !world.isGamePause;   
-        if (world.isGamePause) {
-            this.innerHTML = '<img src="img/Daco_1000848.png"/>';
-        } else {
-            this.innerHTML = '<img src="img/Daco_4414172.png"/>';
-        }
+    elementsToRender.forEach(({ id, content }) => {
+        const element = document.getElementById(id);
+        element.innerHTML = content;
     });
 }
+
+function setupPauseButton() {
+    const buttonPause = document.getElementById('btn_pause');
+    buttonPause.addEventListener('click', function() {
+        world.isGamePause = !world.isGamePause;   
+        this.innerHTML = world.isGamePause 
+            ? '<img src="img/Daco_1000848.png"/>' 
+            : '<img src="img/Daco_4414172.png"/>';
+        world.isGamePause ? soundsPause() : soundsPlay();
+    });
+}
+
+
+function soundsPause() {
+    world.levelSound.pause();
+}
+
+
+function soundsPlay() {
+    world.levelSound.play();
+}
+
 
 
 function tryAgain() {

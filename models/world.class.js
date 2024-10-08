@@ -23,6 +23,7 @@ class World {
     throwBubble = [new BubbleAttack()];
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
+    levelSound = new Audio('audio/underwater flow.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -49,7 +50,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         if (!this.isGamePause) {
             this.addObjectsToMap(this.level.coin);
-            this.addObjectsToMap(this.level.poisonButtle);
+            this.addObjectsToMap(this.level.poisonButtle);            
         }
         this.addToMap(this.character);
         this.addObjectsToMap(this.throwPoisons);
@@ -98,7 +99,15 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.trowPoison();
+            this.levelSoundPlay();                       
         }, 200);
+    }
+
+
+    levelSoundPlay() {
+        if (!this.isGamePause) {
+            this.levelSound.play();
+        } 
     }
 
 

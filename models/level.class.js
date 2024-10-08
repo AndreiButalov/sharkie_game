@@ -6,6 +6,7 @@ class Level {
     poisonButtle;
     barriers;
     level_end_x = 3600;
+    // levelSound = new Audio('audio/underwater flow.mp3');
 
     constructor(enemies, backgroundObjects, coin, poisonButtle, barriers) {
         this.enemies =  enemies;
@@ -14,4 +15,6 @@ class Level {
         this.poisonButtle = poisonButtle;
         this.barriers = barriers;
     }
+
+    // levelSound.play();
 }
