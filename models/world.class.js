@@ -23,6 +23,7 @@ class World {
     throwBubble = [new BubbleAttack()];
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
+
     levelSound = new Audio('audio/underwater flow.mp3');
 
 
@@ -105,7 +106,7 @@ class World {
 
 
     levelSoundPlay() {
-        if (!this.isGamePause) {
+        if (!this.isGamePause && !this.isGameOver) {
             this.levelSound.play();
         } 
     }

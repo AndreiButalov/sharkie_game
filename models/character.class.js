@@ -15,6 +15,9 @@ class Character extends MovableObject {
         right: 40
     };
 
+    waterSlapping = new Audio('audio/waterSlapping.mp3');
+    electricShock = new Audio('audio/electricShock.mp3');
+
 
     SHARKIE_SWIM = [
         'img/1.Sharkie/3.Swim/1.png',
@@ -146,13 +149,21 @@ class Character extends MovableObject {
             if (!world.isGamePause) {
                 if (this.isDead()) {
                     this.characterIsDead();
+                    world.levelSound.pause();
+                    this.waterSlapping.pause();
                     this.world.isGameOver = true;
                 } else if (this.isHurt()) {
                     this.playAnimation(this.SHARKIE_HURT);
+                    this.electricShock.play();
+                    this.waterSlapping.pause();
                 } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                     this.playAnimation(this.SHARKIE_SWIM);
+                    this.waterSlapping.play();
+                    this.electricShock.pause();
                 } else {
                     this.playAnimation(this.SHARKIE_STAND);
+                    this.electricShock.pause();
+                    this.waterSlapping.pause();
                 }
             }
         }, 100);
