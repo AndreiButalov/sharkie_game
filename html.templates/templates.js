@@ -30,7 +30,6 @@ function controlButtonsGenerate() {
             <div id="nav_bar_button" class="nav_bar_button">
                     <button id="btn_pause" class="buttons"><img src="img/Daco_4414172.png"/></button>
                     <button class="buttons" onclick="sayHallo()"></button>
-                    <button class="buttons" onclick="sayHallo()"></button>                
             </div>
             <div class="mobile_panel">
                 <div class="controls_button_mobile">
