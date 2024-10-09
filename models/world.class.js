@@ -49,38 +49,80 @@ class World {
 
 
     draw() {
+        this.clearCanvas();
+        this.translateCamera();
+        this.drawBackgroundObjects();
+        this.drawCharacterAndEnemies();
+        this.drawMiscellaneousObjects();
+        this.drawStatusBars();
+        this.drawFinalBackgroundIfNeeded();
+        this.resetCameraTranslation();
+        this.requestNextFrame();
+    }
+
+
+    clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
+    }
+
+
+    translateCamera() {
         this.ctx.translate(this.camera_x, 0);
+    }
+
+
+    resetCameraTranslation() {
+        this.ctx.translate(-this.camera_x, 0);
+    }
+
+
+    drawBackgroundObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
+    }
+
+
+    drawCharacterAndEnemies() {
+        this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+    }
+
+
+    drawMiscellaneousObjects() {
         if (!this.isGamePause) {
             this.addObjectsToMap(this.level.coin);
             this.addObjectsToMap(this.level.poisonButtle);
         }
-        this.addToMap(this.character);
         this.addObjectsToMap(this.throwPoisons);
         this.addObjectsToMap(this.throwBubble);
         this.addObjectsToMap(this.level.barriers);
         if (this.endBoss) {
             this.addToMap(this.endBoss);
         }
-        this.ctx.translate(-this.camera_x, 0);
+    }
+
+
+    drawStatusBars() {
         this.addToMap(this.statusBar);
         if (this.statusBarBoss) {
             this.addToMap(this.statusBarBoss);
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.poisonBar);
-        this.ctx.translate(this.camera_x, 0);
-        this.ctx.translate(-this.camera_x, 0);
+    }
+
+
+    drawFinalBackgroundIfNeeded() {
         if (this.finalBackground) {
             this.addToMap(this.finalBackground);
         }
+    }
+
+
+    requestNextFrame() {
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
-
     }
 
 
@@ -187,23 +229,43 @@ class World {
 
     checkCollisionsBubblefishBubble() {
         this.level.enemies.forEach((enemy) => {
-            this.throwPoisons.forEach((trowPoison) => {
-                if (trowPoison.isCollidingBubbleBossFish(enemy)) {
-                    this.downBubblePoison(trowPoison);
-                    enemy.hitEnemies();
-                    this.checkHitEnemiesPoisonAttack(enemy);
-                }
-            });
-            if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {
-                this.throwBubble.forEach((bubble) => {
-                    if (bubble.isCollidingBubble(enemy)) {
-                        this.downBubble(bubble);
-                        enemy.hitEnemies();
-                        this.checkHitEnemiesBubbleAttack(enemy);
-                    }
-                });
+            this.checkPoisonCollisions(enemy);
+            this.checkBubbleCollisions(enemy);
+        });
+    }
+
+
+    checkPoisonCollisions(enemy) {
+        this.throwPoisons.forEach((trowPoison) => {
+            if (trowPoison.isCollidingBubbleBossFish(enemy)) {
+                this.handlePoisonCollision(trowPoison, enemy);
             }
         });
+    }
+
+
+    checkBubbleCollisions(enemy) {
+        if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {
+            this.throwBubble.forEach((bubble) => {
+                if (bubble.isCollidingBubble(enemy)) {
+                    this.handleBubbleCollision(bubble, enemy);
+                }
+            });
+        }
+    }
+
+
+    handlePoisonCollision(trowPoison, enemy) {
+        this.downBubblePoison(trowPoison);
+        enemy.hitEnemies();
+        this.checkHitEnemiesPoisonAttack(enemy);
+    }
+
+
+    handleBubbleCollision(bubble, enemy) {
+        this.downBubble(bubble);
+        enemy.hitEnemies();
+        this.checkHitEnemiesBubbleAttack(enemy);
     }
 
 

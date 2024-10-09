@@ -8,6 +8,7 @@ function init() {
     setupPauseButton();
 }
 
+
 function renderUI() {
     const elementsToRender = [
         { id: 'start_view', content: startViewGenerate() },
@@ -21,6 +22,7 @@ function renderUI() {
         element.innerHTML = content;
     });
 }
+
 
 function setupPauseButton() {
     const buttonPause = document.getElementById('btn_pause');
@@ -42,7 +44,6 @@ function soundsPause() {
 function soundsPlay() {
     world.levelSound.play();
 }
-
 
 
 function tryAgain() {
