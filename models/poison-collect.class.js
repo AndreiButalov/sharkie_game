@@ -1,8 +1,6 @@
 class PoisonCollect extends ObjectCollection {
     width = 50;
     height = 60;
-
-    frequency = 0.09;
     amplitude = 4;
 
     offset = {
@@ -12,7 +10,7 @@ class PoisonCollect extends ObjectCollection {
         bottom: 0
     }
 
-    IMAGES = [
+    OBJECTIMAGES = [
         'img/4. Marcadores/Posión/Animada/1.png',
         'img/4. Marcadores/Posión/Animada/2.png',
         'img/4. Marcadores/Posión/Animada/3.png',
@@ -24,20 +22,13 @@ class PoisonCollect extends ObjectCollection {
     ];
 
 
-    constructor() {
+    constructor(x) {
         super().loadImage('img/4. Marcadores/Posión/Animada/1.png');
-        this.loadImages(this.IMAGES)
+        this.loadImages(this.OBJECTIMAGES)
         this.initialY = 350 + Math.random() * 50;
         this.y = this.initialY;
-        this.x = 200 + Math.random() * 3000;
-        this.poisonAnimate();
-    }
-
-
-    poisonAnimate() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES)
-        }, 200)
+        this.x = x;
+        this.ObjecktAnimate(this.OBJECTIMAGES);
     }
 
 }

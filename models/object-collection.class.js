@@ -1,13 +1,16 @@
 class ObjectCollection extends MovableObject {
     
-    frequency;
+    frequency = 0.09;
     amplitude;
-    IMAGES;
 
     constructor() {
         super();
         this.applySwim();
-    }
+    }    
 
-    
+    ObjecktAnimate(image) {
+        setInterval(() => {
+            this.playAnimation(image)
+        }, 300)
+    }
 }

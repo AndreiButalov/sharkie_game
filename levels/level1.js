@@ -11,6 +11,7 @@ const intervals = {
     greenjellyFish: [1500, 1240, 2160, 2880, 3500],
     lilajellyFish: [500, 2000, 3100],
     coin: [750, 1440, 2060, 2680, 3000],
+    poison: [750, 1440, 2060, 2680, 3000],
     barrierDown: [500, 3000],
     barrierDownUp: [1700],
 };
@@ -48,7 +49,7 @@ function initialGames() {
     ];
 
     const coinArray = createObjectsFromIntervals(interval => new Coin(interval), intervals.coin);
-    const poisonArray = createObjectsFromIntervals(interval => new PoisonCollect(interval), intervals.coin);
+    const poisonArray = createObjectsFromIntervals(interval => new PoisonCollect(interval), intervals.poison);
 
     const backgroundObjects = [
         ...createBackgroundLayer(layers.water),

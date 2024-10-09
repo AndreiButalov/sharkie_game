@@ -2,11 +2,9 @@ class Coin extends ObjectCollection {
 
     width = 40;
     height = 40;
-
-    frequency = 0.09;
     amplitude = 5;
 
-    IMAGES = [
+    OBJECTIMAGES = [
         'img/4. Marcadores/1. Coins/1.png',
         'img/4. Marcadores/1. Coins/2.png',
         'img/4. Marcadores/1. Coins/3.png',
@@ -15,16 +13,10 @@ class Coin extends ObjectCollection {
 
     constructor(x) {
         super().loadImage('img/4. Marcadores/1. Coins/1.png');
-        this.loadImages(this.IMAGES);
+        this.loadImages(this.OBJECTIMAGES);
         this.x = x
         this.initialY = 90 + Math.random() * 300;
         this.y = this.initialY;
-        this.coinAnimate();
-    }
-
-    coinAnimate() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES)
-        }, 300)
-    }
+        this.ObjecktAnimate(this.OBJECTIMAGES);
+    }    
 }
