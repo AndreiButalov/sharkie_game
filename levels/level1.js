@@ -5,13 +5,26 @@ const step = 719;
 const repetitions = 5;
 
 
+// const intervals = {
+//     greenFish: [750, 1440, 2160, 2880, 3500],
+//     redFish: [800, 1240, 2160, 2880, 3500],
+//     greenjellyFish: [1500, 1240, 2160, 2880, 3500],
+//     lilajellyFish: [500, 2000, 3100],
+//     coin: [450, 1440, 2060, 2680, 3000],
+//     poison: [550, 1440, 2060, 2680, 3000],
+//     barrierDown: [500, 3000],
+//     barrierDownUp: [1700],
+// };
+
+
+
 const intervals = {
-    greenFish: [750, 1440, 2160, 2880, 3500],
-    redFish: [800, 1240, 2160, 2880, 3500],
+    greenFish: [1750, 1440, 2160, 2880, 3500],
+    redFish: [1800, 1240, 2160, 2880, 3500],
     greenjellyFish: [1500, 1240, 2160, 2880, 3500],
-    lilajellyFish: [500, 2000, 3100],
-    coin: [750, 1440, 2060, 2680, 3000],
-    poison: [750, 1440, 2060, 2680, 3000],
+    lilajellyFish: [1500, 2000, 3100],
+    coin: [450, 1440, 2060, 2680, 3000],
+    poison: [550, 1440, 2060, 2680, 3000],
     barrierDown: [500, 3000],
     barrierDownUp: [1700],
 };

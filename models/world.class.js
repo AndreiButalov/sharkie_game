@@ -30,6 +30,7 @@ class World {
     bubbleLowSound = new Audio('audio/bubble_low.mp3');
     coinSound = new Audio('audio/coin.mp3');
     drinkingPoison = new Audio('audio/drinkingPoison.mp3');
+    finalBossSound = new Audio('audio/finalBossSound.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -132,16 +133,23 @@ class World {
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
-            if (this.character.x >= 3200 && !bossSpawned) {
+            if (this.character.x >= 300 && !bossSpawned) {
                 this.endBoss = new EndBoss();
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
+                this.finalSound();
                 clearInterval(spawnBoss);
                 this.checkEnd = setInterval(() => {
                     this.checkEndLevel();
                 }, 200);
             }
         }, 200);
+    }
+
+
+    finalSound() {
+        this.adventureTheme.pause();
+        this.finalBossSound.play();
     }
 
 
@@ -155,7 +163,7 @@ class World {
 
 
     levelSoundPlay() {
-        if (!this.isGamePause && !this.isGameOver) {
+        if (!this.isGamePause && !this.isGameOver && !this.endBoss) {
             this.levelSound.play();
             this.adventureTheme.play();
         }

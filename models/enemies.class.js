@@ -12,6 +12,6 @@ class Enemies extends MovableObject {
 
     constructor() {
         super();
-        this.applySwim(); 
+        // this.applySwim(); 
     }
 }

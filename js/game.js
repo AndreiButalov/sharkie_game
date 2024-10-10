@@ -42,12 +42,19 @@ function setupPauseButton() {
 function soundsPause() {
     world.levelSound.pause();
     world.adventureTheme.pause();
+    if(world.endBoss) {
+        world.finalBossSound.pause();
+    }    
 }
 
 
 function soundsPlay() {
     world.levelSound.play();
-    world.adventureTheme.play();
+    if(!world.endBoss){
+        world.adventureTheme.play();
+    }else {
+        world.finalBossSound.play();
+    } 
 }
 
 
