@@ -8,11 +8,12 @@ class Character extends MovableObject {
     isAttacking = false;
     attackStartTime = 0;
 
+    
     offset = {
-        top: 120,
-        left: 50,
-        bottom: 40,
-        right: 40
+        top: 150,
+        left: 55,
+        bottom: 70,
+        right: 65
     };
 
     waterSlapping = new Audio('audio/waterSlapping.mp3');

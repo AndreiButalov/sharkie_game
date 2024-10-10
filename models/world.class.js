@@ -58,8 +58,8 @@ class World {
         this.drawCharacterAndEnemies();
         this.drawMiscellaneousObjects();
         this.drawStatusBars();
-        this.drawFinalBackgroundIfNeeded();
         this.resetCameraTranslation();
+        this.drawFinalBackgroundIfNeeded();
         this.requestNextFrame();
     }
 
@@ -445,6 +445,7 @@ class World {
         }
 
         parameter.draw(this.ctx);
+        // parameter.drawFrame(this.ctx);///hier
         if (parameter.otherDirection) {
             this.flipImageBack(parameter,)
         }
