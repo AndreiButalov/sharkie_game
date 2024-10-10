@@ -31,6 +31,7 @@ class World {
     coinSound = new Audio('audio/coin.mp3');
     drinkingPoison = new Audio('audio/drinkingPoison.mp3');
     finalBossSound = new Audio('audio/finalBossSound.mp3');
+    laughterBoss = new Audio('audio/laughterBoss.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -149,6 +150,7 @@ class World {
 
     finalSound() {
         this.adventureTheme.pause();
+        this.laughterBoss.play();
         this.finalBossSound.play();
     }
 
