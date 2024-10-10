@@ -103,12 +103,14 @@ class World {
 
 
     drawStatusBars() {
+        this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         if (this.statusBarBoss) {
             this.addToMap(this.statusBarBoss);
         }
         this.addToMap(this.coinBar);
         this.addToMap(this.poisonBar);
+        this.ctx.translate(this.camera_x, 0);
     }
 
 
