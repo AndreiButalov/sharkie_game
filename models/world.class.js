@@ -25,6 +25,7 @@ class World {
     poisonCollect = new PoisonCollect();
 
     levelSound = new Audio('audio/underwater flow.mp3');
+    adventureTheme = new Audio('audio/adventureTheme.mp3');
     bubbleHighSound = new Audio('audio/bubble_high.mp3');
     bubbleLowSound = new Audio('audio/bubble_low.mp3');
     coinSound = new Audio('audio/coin.mp3');
@@ -154,6 +155,7 @@ class World {
     levelSoundPlay() {
         if (!this.isGamePause && !this.isGameOver) {
             this.levelSound.play();
+            this.adventureTheme.play();
         }
     }
 
