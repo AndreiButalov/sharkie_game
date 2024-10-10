@@ -17,7 +17,6 @@ const repetitions = 5;
 // };
 
 
-
 const intervals = {
     greenFish: [1750, 1440, 2160, 2880, 3500],
     redFish: [1800, 1240, 2160, 2880, 3500],
