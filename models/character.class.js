@@ -162,9 +162,9 @@ class Character extends MovableObject {
 
 
     handleCharacterDeath() {
+        this.world.sound.stopAllSounds();
         this.characterIsDead();
-        this.world.sound.levelSound.pause();
-        this.world.sound.waterSlapping.pause();
+        this.world.sound.fatality.play();
         this.world.isGameOver = true;
     }
 

@@ -30,22 +30,12 @@ function setupPauseButton() {
     buttonPause.addEventListener('click', function() { 
         world.isGamePause = !world.isGamePause; 
         this.innerHTML = world.isGamePause ? '<img src="img/Daco_1000848.png"/>' : '<img src="img/Daco_4414172.png"/> '; 
-        world.isGamePause ? soundsPause() : soundsPlay(); 
+        world.isGamePause ? world.sound.stopAllSounds() : soundsPlay(); 
     });
 
     buttonPause.addEventListener('keydown', function(e) {
         e.preventDefault();
     });
-}
-
-
-function soundsPause() {
-    // world.sound.levelSound.pause();
-    // world.sound.adventureTheme.pause();
-    // if(world.endBoss) { 
-    //     world.sound.finalBossSound.pause();
-    // }    
-    world.sound.stopAllSounds();
 }
 
 

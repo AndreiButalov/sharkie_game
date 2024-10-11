@@ -15,6 +15,7 @@ class Sound {
         this.bossAttackSound = new Audio('audio/bossAttack.mp3');
         this.bossDeathSound = new Audio('audio/bossDeathSound.mp3');
         this.yourWin = new Audio('audio/yourWin.mp3');
+        this.fatality = new Audio('audio/fatality.mp3');
 
         this.sounds = [
             this.levelSound,
@@ -30,7 +31,8 @@ class Sound {
             this.electricShock,
             this.bossAttackSound,
             this.bossDeathSound,
-            this.yourWin
+            this.yourWin,
+            this.fatality
         ];
     }
 
@@ -42,11 +44,4 @@ class Sound {
         });
     }
 
-
-    playAllSounds() {
-        this.sounds.forEach(sound => {
-            sound.play(); 
-            sound.currentTime = 0;
-        });
-    }
 }

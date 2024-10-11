@@ -152,7 +152,7 @@ class World {
 
 
     levelSoundPlay() {
-        if (!this.isGamePause && !this.endBoss) { //isGameOver
+        if (!this.isGamePause && !this.endBoss && !this.isGameOver) {
             this.sound.levelSound.play();
             this.sound.adventureTheme.play();
         }
