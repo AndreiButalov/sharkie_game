@@ -40,11 +40,12 @@ function setupPauseButton() {
 
 
 function soundsPause() {
-    world.sound.levelSound.pause();
-    world.sound.adventureTheme.pause();
-    if(world.endBoss) { 
-        world.sound.finalBossSound.pause();
-    }    
+    // world.sound.levelSound.pause();
+    // world.sound.adventureTheme.pause();
+    // if(world.endBoss) { 
+    //     world.sound.finalBossSound.pause();
+    // }    
+    world.sound.stopAllSounds();
 }
 
 

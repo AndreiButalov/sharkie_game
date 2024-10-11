@@ -40,4 +40,11 @@ class Sound {
             sound.currentTime = 0; // Setze die Wiedergabeposition auf den Anfang
         });
     }
+
+    playAllSounds() {
+        this.sounds.forEach(sound => {
+            sound.play(); // Stoppe den Sound
+            sound.currentTime = 0; // Setze die Wiedergabeposition auf den Anfang
+        });
+    }
 }
