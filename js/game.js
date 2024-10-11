@@ -40,20 +40,20 @@ function setupPauseButton() {
 
 
 function soundsPause() {
-    world.levelSound.pause();
-    world.adventureTheme.pause();
-    if(world.endBoss) {
-        world.finalBossSound.pause();
+    world.sound.levelSound.pause();
+    world.sound.adventureTheme.pause();
+    if(world.endBoss) { 
+        world.sound.finalBossSound.pause();
     }    
 }
 
 
 function soundsPlay() {
-    world.levelSound.play();
+    world.sound.levelSound.play();
     if(!world.endBoss){
-        world.adventureTheme.play();
+        world.sound.adventureTheme.play();
     }else {
-        world.finalBossSound.play();
+        world.sound.finalBossSound.play();
     } 
 }
 

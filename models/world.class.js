@@ -23,16 +23,7 @@ class World {
     throwBubble = [new BubbleAttack()];
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
-    
-    levelSound = new Audio('audio/underwater flow.mp3');
-    adventureTheme = new Audio('audio/adventureTheme.mp3');
-    bubbleHighSound = new Audio('audio/bubble_high.mp3');
-    bubbleLowSound = new Audio('audio/bubble_low.mp3');
-    coinSound = new Audio('audio/coin.mp3');
-    drinkingPoison = new Audio('audio/drinkingPoison.mp3');
-    finalBossSound = new Audio('audio/finalBossSound.mp3');
-    laughterBoss = new Audio('audio/laughterBoss.mp3');
-    bossDamage = new Audio('audio/bossDamage.mp3');
+    sound = new Sound();
     
 
     constructor(canvas, keyboard) {
@@ -54,7 +45,6 @@ class World {
 
     draw() {
         this.clearCanvas();
-        this.translateCamera();
         this.drawBackgroundObjects();
         this.drawCharacterAndEnemies();
         this.drawMiscellaneousObjects();
@@ -67,10 +57,6 @@ class World {
 
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
-    }
-
-
-    translateCamera() {
         this.ctx.translate(this.camera_x, 0);
     }
 
@@ -150,9 +136,9 @@ class World {
 
 
     finalSound() {
-        this.adventureTheme.pause();
-        this.laughterBoss.play();
-        this.finalBossSound.play();
+        this.sound.adventureTheme.pause();
+        this.sound.laughterBoss.play();
+        this.sound.finalBossSound.play();
     }
 
 
@@ -167,8 +153,8 @@ class World {
 
     levelSoundPlay() {
         if (!this.isGamePause && !this.endBoss) { //isGameOver
-            this.levelSound.play();
-            this.adventureTheme.play();
+            this.sound.levelSound.play();
+            this.sound.adventureTheme.play();
         }
     }
 
@@ -215,7 +201,7 @@ class World {
         this.level.poisonButtle.forEach((bottle) => {
             if (this.character.isCollidingPoison(bottle)) {
                 this.addPoison(bottle);
-                this.drinkingPoison.play();
+                this.sound.drinkingPoison.play();
             }
         })
     }
@@ -225,7 +211,7 @@ class World {
         this.level.coin.forEach((coin) => {
             if (this.character.isCollidingPoison(coin)) {
                 this.addCoin();
-                this.coinSound.play();
+                this.sound.coinSound.play();
                 this.coinBar.setPercentage(this.coinCount);
             }
         });
@@ -289,7 +275,7 @@ class World {
             if (enemy instanceof JellyFish) {
                 this.throwBubble.forEach((bubble) => {
                     if (bubble.isCollidingBubble(enemy)) {
-                        this.bubbleHighSound.play();
+                        this.sound.bubbleHighSound.play();
                         this.downBubble(bubble);
                         enemy.jellyFishDead();
                         this.enemyDisable(enemy);
@@ -314,8 +300,8 @@ class World {
             if (trowPoison.isCollidingBubbleBossFish(enemy)) {
                 enemy.energyEnemie -= 20;
                 enemy.hitEnemies();
-                this.bossDamage.play();
-                this.bubbleHighSound.play();
+                this.sound.bossDamage.play();
+                this.sound.bubbleHighSound.play();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubblePoison(trowPoison);
                 if (enemy.energyEnemie <= 0) {
@@ -331,8 +317,8 @@ class World {
             if (bubble.isCollidingBubbleBossFish(enemy)) {
                 enemy.energyEnemie -= 10;
                 enemy.hitEnemies();
-                this.bossDamage.play();
-                this.bubbleHighSound.play();
+                this.sound.bossDamage.play();
+                this.sound.bubbleHighSound.play();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
                 if (enemy.energyEnemie <= 0) {
@@ -345,7 +331,7 @@ class World {
 
     checkHitEnemiesPoisonAttack(enemy) {
         enemy.energyEnemie -= 100;
-        this.bubbleLowSound.play();
+        this.sound.bubbleLowSound.play();
         if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {
             if (enemy.energyEnemie <= 0) {
                 enemy.playBubbleFishDead();
@@ -358,10 +344,10 @@ class World {
     checkHitEnemiesBubbleAttack(enemy) {
         if (enemy instanceof GreenBubbleFish) {
             enemy.energyEnemie -= 100;
-            this.bubbleHighSound.play();
+            this.sound.bubbleHighSound.play();
         } else {
             enemy.energyEnemie -= 50;
-            this.bubbleHighSound.play();
+            this.sound.bubbleHighSound.play();
         }
         if (enemy.energyEnemie <= 0) {
             enemy.playBubbleFishDead();

@@ -16,9 +16,6 @@ class Character extends MovableObject {
         right: 65
     };
 
-    waterSlapping = new Audio('audio/waterSlapping.mp3');
-    electricShock = new Audio('audio/electricShock.mp3');
-
 
     SHARKIE_SWIM = [
         'img/1.Sharkie/3.Swim/1.png',
@@ -166,30 +163,30 @@ class Character extends MovableObject {
 
     handleCharacterDeath() {
         this.characterIsDead();
-        world.levelSound.pause();
-        this.waterSlapping.pause();
+        this.world.sound.levelSound.pause();
+        this.world.sound.waterSlapping.pause();
         this.world.isGameOver = true;
     }
 
 
     handleCharacterHurt() {
         this.playAnimation(this.SHARKIE_HURT);
-        this.electricShock.play();
-        this.waterSlapping.pause();
+        this.world.sound.electricShock.play();
+        this.world.sound.waterSlapping.pause();
     }
 
 
     handleCharacterMovement() {
         this.playAnimation(this.SHARKIE_SWIM);
-        this.waterSlapping.play();
-        this.electricShock.pause();
+        this.world.sound.waterSlapping.play();
+        this.world.sound.electricShock.pause();
     }
 
 
     handleCharacterIdle() {
         this.playAnimation(this.SHARKIE_STAND);
-        this.electricShock.pause();
-        this.waterSlapping.pause();
+        this.world.sound.electricShock.pause();
+        this.world.sound.waterSlapping.pause();
     }
 
 
