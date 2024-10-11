@@ -23,7 +23,7 @@ class World {
     throwBubble = [new BubbleAttack()];
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
-
+    
     levelSound = new Audio('audio/underwater flow.mp3');
     adventureTheme = new Audio('audio/adventureTheme.mp3');
     bubbleHighSound = new Audio('audio/bubble_high.mp3');
@@ -32,7 +32,8 @@ class World {
     drinkingPoison = new Audio('audio/drinkingPoison.mp3');
     finalBossSound = new Audio('audio/finalBossSound.mp3');
     laughterBoss = new Audio('audio/laughterBoss.mp3');
-
+    bossDamage = new Audio('audio/bossDamage.mp3');
+    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -165,7 +166,7 @@ class World {
 
 
     levelSoundPlay() {
-        if (!this.isGamePause && !this.isGameOver && !this.endBoss) {
+        if (!this.isGamePause && !this.endBoss) { //isGameOver
             this.levelSound.play();
             this.adventureTheme.play();
         }
@@ -313,6 +314,7 @@ class World {
             if (trowPoison.isCollidingBubbleBossFish(enemy)) {
                 enemy.energyEnemie -= 20;
                 enemy.hitEnemies();
+                this.bossDamage.play();
                 this.bubbleHighSound.play();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubblePoison(trowPoison);
@@ -329,6 +331,7 @@ class World {
             if (bubble.isCollidingBubbleBossFish(enemy)) {
                 enemy.energyEnemie -= 10;
                 enemy.hitEnemies();
+                this.bossDamage.play();
                 this.bubbleHighSound.play();
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
