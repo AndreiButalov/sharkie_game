@@ -26,7 +26,6 @@ function renderUI() {
 
 function setupPauseButton() { 
     const buttonPause = document.getElementById('btn_pause'); 
-
     buttonPause.addEventListener('click', function() { 
         world.isGamePause = !world.isGamePause; 
         this.innerHTML = world.isGamePause ? '<img src="img/Daco_1000848.png"/>' : '<img src="img/Daco_4414172.png"/> '; 

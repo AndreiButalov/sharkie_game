@@ -372,6 +372,7 @@ class World {
     trowPoison() {
         if (!this.isGamePause) {
             if (this.keyboard.SPACE) {
+                this.sound.blowingBubble.play();
                 if (this.poisonCount > 0) {
                     this.trowPoisonAttack();
                 } else {

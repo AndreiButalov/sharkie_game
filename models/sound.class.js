@@ -16,6 +16,7 @@ class Sound {
         this.bossDeathSound = new Audio('audio/bossDeathSound.mp3');
         this.yourWin = new Audio('audio/yourWin.mp3');
         this.fatality = new Audio('audio/fatality.mp3');
+        this.blowingBubble = new Audio('audio/blowingBubble.mp3');
 
         this.sounds = [
             this.levelSound,
@@ -32,7 +33,8 @@ class Sound {
             this.bossAttackSound,
             this.bossDeathSound,
             this.yourWin,
-            this.fatality
+            this.fatality,
+            this.blowingBubble
         ];
     }
 
