@@ -60,6 +60,7 @@ function soundsPlay() {
 
 
 function tryAgain() {
+    world.sound.stopAllSounds();
     startGames();
     document.getElementById('you_win').style.display = "none";
     document.getElementById('game_over').style.display = "none";

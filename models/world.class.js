@@ -121,7 +121,7 @@ class World {
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
-            if (this.character.x >= 300 && !bossSpawned) {
+            if (this.character.x >= 3200 && !bossSpawned) {
                 this.endBoss = new EndBoss();
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
@@ -162,6 +162,8 @@ class World {
     checkEndLevel() {
         if (this.endBoss.endLevel) {
             this.finalBackground = new FinalBackground();
+            world.sound.stopAllSounds();
+            world.sound.yourWin.play();
             clearInterval(this.checkEnd);
             this.youWin = true;
         }

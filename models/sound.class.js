@@ -14,8 +14,8 @@ class Sound {
         this.electricShock = new Audio('audio/electricShock.mp3');
         this.bossAttackSound = new Audio('audio/bossAttack.mp3');
         this.bossDeathSound = new Audio('audio/bossDeathSound.mp3');
+        this.yourWin = new Audio('audio/yourWin.mp3');
 
-        // Speichere alle Sounds in einem Array
         this.sounds = [
             this.levelSound,
             this.adventureTheme,
@@ -29,22 +29,24 @@ class Sound {
             this.waterSlapping,
             this.electricShock,
             this.bossAttackSound,
-            this.bossDeathSound
+            this.bossDeathSound,
+            this.yourWin
         ];
     }
 
-    // Methode um alle Sounds zu stoppen
+
     stopAllSounds() {
         this.sounds.forEach(sound => {
-            sound.pause(); // Stoppe den Sound
-            sound.currentTime = 0; // Setze die Wiedergabeposition auf den Anfang
+            sound.pause();
+            sound.currentTime = 0;
         });
     }
 
+
     playAllSounds() {
         this.sounds.forEach(sound => {
-            sound.play(); // Stoppe den Sound
-            sound.currentTime = 0; // Setze die Wiedergabeposition auf den Anfang
+            sound.play(); 
+            sound.currentTime = 0;
         });
     }
 }
