@@ -8,7 +8,7 @@ class Character extends MovableObject {
     isAttacking = false;
     attackStartTime = 0;
 
-    
+
     offset = {
         top: 150,
         left: 55,
@@ -164,29 +164,37 @@ class Character extends MovableObject {
     handleCharacterDeath() {
         this.world.sound.stopAllSounds();
         this.characterIsDead();
-        this.world.sound.fatality.play();
+        if (!this.world.sound.isMuted) {
+            this.world.sound.fatality.play();
+        }
         this.world.isGameOver = true;
     }
 
 
     handleCharacterHurt() {
         this.playAnimation(this.SHARKIE_HURT);
-        this.world.sound.electricShock.play();
-        this.world.sound.waterSlapping.pause();
+        if (!this.world.sound.isMuted) {
+            this.world.sound.electricShock.play();
+            this.world.sound.waterSlapping.pause();
+        }
     }
 
 
     handleCharacterMovement() {
         this.playAnimation(this.SHARKIE_SWIM);
-        this.world.sound.waterSlapping.play();
-        this.world.sound.electricShock.pause();
+        if (!this.world.sound.isMuted) {
+            this.world.sound.waterSlapping.play();
+            this.world.sound.electricShock.pause();
+        }
     }
 
 
     handleCharacterIdle() {
         this.playAnimation(this.SHARKIE_STAND);
-        this.world.sound.electricShock.pause();
-        this.world.sound.waterSlapping.pause();
+        if (!this.world.sound.isMuted) {
+            this.world.sound.electricShock.pause();
+            this.world.sound.waterSlapping.pause();
+        }
     }
 
 

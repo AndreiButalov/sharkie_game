@@ -9,7 +9,7 @@ class EndBoss extends MovableObject {
     amplitudeX = 11;
     amplitudeY = 4;
     isDead = false;
-    endLevel = false;    
+    endLevel = false;
 
     offset = {
         top: 220,
@@ -175,7 +175,9 @@ class EndBoss extends MovableObject {
             clearInterval(this.swimInterval);
             this.bossAttack();
             this.attackInterval = setInterval(() => {
-                world.sound.bossAttackSound.play();
+                if (!world.sound.isMuted) {
+                    world.sound.bossAttackSound.play();
+                }
                 if (!world.isGamePause) {
                     if (!this.isDead && !this.isHurt()) {
                         this.playAnimation(this.BOSS_ATTACK);
@@ -194,7 +196,9 @@ class EndBoss extends MovableObject {
         clearInterval(interval);
         this.amplitudeX = 0;
         this.amplitudeY = 2;
-        world.sound.bossDeathSound.play();
+        if (!world.sound.isMuted) {
+            world.sound.bossDeathSound.play();
+        }
         this.bossDeadInterval = setInterval(() => {
             this.playAnimation(this.BOSS_DEAD);
         }, 200)
@@ -227,7 +231,9 @@ class EndBoss extends MovableObject {
             this.amplitudeY = 4;
             this.bossAttackMinus();
             this.attackInterval = setInterval(() => {
-                world.sound.bossAttackSound.play();
+                if (!world.sound.isMuted) {
+                    world.sound.bossAttackSound.play();
+                }
                 if (!world.isGamePause) {
                     if (!this.isDead && !this.isHurt()) {
                         this.playAnimation(this.BOSS_ATTACK);

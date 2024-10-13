@@ -24,7 +24,7 @@ class World {
     objectsCollection = new ObjectCollection();
     poisonCollect = new PoisonCollect();
     sound = new Sound();
-    
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -35,6 +35,10 @@ class World {
         this.bubbleFishTransition();
         this.setWorld();
         this.run();
+        // Event Listener für den Button
+        document.getElementById('btn_sound').addEventListener('click', () => {
+            this.sound.toggleMute(); // Mute/unmute beim Button-Klick
+        });
     }
 
 
@@ -135,10 +139,12 @@ class World {
     }
 
 
-    finalSound() {
-        this.sound.adventureTheme.pause();
-        this.sound.laughterBoss.play();
-        this.sound.finalBossSound.play();
+    finalSound() {/////////////////////////////////////////////
+        if (!this.sound.isMuted) {
+            this.sound.adventureTheme.pause();
+            this.sound.laughterBoss.play();
+            this.sound.finalBossSound.play();
+        }
     }
 
 
@@ -147,12 +153,13 @@ class World {
             this.checkCollisions();
             this.trowPoison();
             this.levelSoundPlay();
+            // console.log(this.sound.isMuted)
         }, 200);
     }
 
 
     levelSoundPlay() {
-        if (!this.isGamePause && !this.endBoss && !this.isGameOver) {
+        if (!this.isGamePause && !this.endBoss && !this.isGameOver && !this.sound.isMuted) {
             this.sound.levelSound.play();
             this.sound.adventureTheme.play();
         }
@@ -163,7 +170,9 @@ class World {
         if (this.endBoss.endLevel) {
             this.finalBackground = new FinalBackground();
             world.sound.stopAllSounds();
-            world.sound.yourWin.play();
+            if (!this.sound.isMuted) {
+                world.sound.yourWin.play();
+            }
             clearInterval(this.checkEnd);
             this.youWin = true;
         }
@@ -203,7 +212,9 @@ class World {
         this.level.poisonButtle.forEach((bottle) => {
             if (this.character.isCollidingPoison(bottle)) {
                 this.addPoison(bottle);
-                this.sound.drinkingPoison.play();
+                if (!this.sound.isMuted) {
+                    this.sound.drinkingPoison.play();
+                }
             }
         })
     }
@@ -213,7 +224,9 @@ class World {
         this.level.coin.forEach((coin) => {
             if (this.character.isCollidingPoison(coin)) {
                 this.addCoin();
-                this.sound.coinSound.play();
+                if (!this.sound.isMuted) {
+                    this.sound.coinSound.play();
+                }
                 this.coinBar.setPercentage(this.coinCount);
             }
         });
@@ -277,7 +290,9 @@ class World {
             if (enemy instanceof JellyFish) {
                 this.throwBubble.forEach((bubble) => {
                     if (bubble.isCollidingBubble(enemy)) {
-                        this.sound.bubbleHighSound.play();
+                        if (!this.sound.isMuted) {
+                            this.sound.bubbleHighSound.play();
+                        }
                         this.downBubble(bubble);
                         enemy.jellyFishDead();
                         this.enemyDisable(enemy);
@@ -302,8 +317,10 @@ class World {
             if (trowPoison.isCollidingBubbleBossFish(enemy)) {
                 enemy.energyEnemie -= 20;
                 enemy.hitEnemies();
-                this.sound.bossDamage.play();
-                this.sound.bubbleHighSound.play();
+                if (!this.sound.isMuted) {
+                    this.sound.bossDamage.play();
+                    this.sound.bubbleHighSound.play();
+                }
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubblePoison(trowPoison);
                 if (enemy.energyEnemie <= 0) {
@@ -319,8 +336,10 @@ class World {
             if (bubble.isCollidingBubbleBossFish(enemy)) {
                 enemy.energyEnemie -= 10;
                 enemy.hitEnemies();
-                this.sound.bossDamage.play();
-                this.sound.bubbleHighSound.play();
+                if (!this.sound.isMuted) {
+                    this.sound.bossDamage.play();
+                    this.sound.bubbleHighSound.play();
+                }
                 this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
                 if (enemy.energyEnemie <= 0) {
@@ -333,7 +352,9 @@ class World {
 
     checkHitEnemiesPoisonAttack(enemy) {
         enemy.energyEnemie -= 100;
-        this.sound.bubbleLowSound.play();
+        if (!this.sound.isMuted) {
+            this.sound.bubbleLowSound.play();
+        }
         if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {
             if (enemy.energyEnemie <= 0) {
                 enemy.playBubbleFishDead();
@@ -346,10 +367,14 @@ class World {
     checkHitEnemiesBubbleAttack(enemy) {
         if (enemy instanceof GreenBubbleFish) {
             enemy.energyEnemie -= 100;
-            this.sound.bubbleHighSound.play();
+            if (!this.sound.isMuted) {
+                this.sound.bubbleHighSound.play();
+            }
         } else {
             enemy.energyEnemie -= 50;
-            this.sound.bubbleHighSound.play();
+            if (!this.sound.isMuted) {
+                this.sound.bubbleHighSound.play();
+            }
         }
         if (enemy.energyEnemie <= 0) {
             enemy.playBubbleFishDead();
@@ -372,7 +397,9 @@ class World {
     trowPoison() {
         if (!this.isGamePause) {
             if (this.keyboard.SPACE) {
-                this.sound.blowingBubble.play();
+                if (!this.sound.isMuted) {
+                    this.sound.blowingBubble.play();
+                }
                 if (this.poisonCount > 0) {
                     this.trowPoisonAttack();
                 } else {

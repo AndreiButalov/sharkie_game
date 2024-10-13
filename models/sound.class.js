@@ -36,6 +36,7 @@ class Sound {
             this.fatality,
             this.blowingBubble
         ];
+        this.isMuted = false;
     }
 
 
@@ -44,6 +45,17 @@ class Sound {
             sound.pause();
             sound.currentTime = 0;
         });
+    }
+    
+
+    toggleMute() {
+        this.isMuted = !this.isMuted;
+        if (this.isMuted) {
+            this.stopAllSounds();
+        } else {
+            // this.levelSound.play();
+            // this.adventureTheme.play(); 
+        }
     }
 
 }

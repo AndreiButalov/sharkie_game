@@ -24,38 +24,41 @@ function renderUI() {
 }
 
 
-function setupPauseButton() { 
-    const buttonPause = document.getElementById('btn_pause'); 
-    buttonPause.addEventListener('click', function() { 
-        world.isGamePause = !world.isGamePause; 
-        this.innerHTML = world.isGamePause ? '<img src="img/Daco_1000848.png"/>' : '<img src="img/Daco_4414172.png"/> '; 
-        world.isGamePause ? world.sound.stopAllSounds() : soundsPlay(); 
+function setupPauseButton() {
+    const buttonPause = document.getElementById('btn_pause');
+    buttonPause.addEventListener('click', function () {
+        world.isGamePause = !world.isGamePause;
+        this.innerHTML = world.isGamePause ? '<img src="img/Daco_1000848.png"/>' : '<img src="img/Daco_4414172.png"/> ';
+        world.isGamePause ? world.sound.stopAllSounds() : soundsPlay();
     });
 
-    buttonPause.addEventListener('keydown', function(e) {
+    buttonPause.addEventListener('keydown', function (e) {
         e.preventDefault();
     });
 }
 
 
 function soundsPlay() {
-    world.sound.levelSound.play();
-    if(!world.endBoss){
-        world.sound.adventureTheme.play();
-    }else {
-        world.sound.finalBossSound.play();
-    } 
+    if (!world.sound.isMuted) {
+        world.sound.levelSound.play();
+        if (!world.endBoss) {
+            world.sound.adventureTheme.play();
+        } else {
+            world.sound.finalBossSound.play();
+        }
+    }
 }
 
 
 function tryAgain() {
     world.sound.stopAllSounds();
+    world.sound.isGamePause = false;
     startGames();
     document.getElementById('you_win').style.display = "none";
     document.getElementById('game_over').style.display = "none";
     world.youWin = false;
     world.isGameOver = false;
-    
+
 }
 
 
