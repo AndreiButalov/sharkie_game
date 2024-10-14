@@ -150,8 +150,6 @@ class World {
             this.checkCollisions();
             this.trowPoison();
             this.levelSoundPlay();
-            console.log(this.isGameOver);
-            
         }, 200);
     }
 
