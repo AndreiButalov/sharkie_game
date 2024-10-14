@@ -175,7 +175,7 @@ class Character extends MovableObject {
 
 
     handleCharacterDeath() {
-        this.world.sound.stopAllSounds();
+        this.world.sound.stopAllSoundsEndLevel();
         this.characterIsDead();
         if (!this.world.isMuted) {
             this.world.sound.fatality.play();

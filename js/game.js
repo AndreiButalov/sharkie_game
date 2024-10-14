@@ -44,7 +44,7 @@ function setupPauseButton() {
     buttonPause.addEventListener('click', function () {
         world.isGamePause = !world.isGamePause;
         this.innerHTML = world.isGamePause ? '<img src="img/Daco_1000848.png"/>' : '<img src="img/Daco_4414172.png"/> ';
-        world.isGamePause ? world.sound.stopAllSounds() : soundsPlay();
+        world.isGamePause ? world.sound.stopAllSoundsEndLevel() : soundsPlay();
     });
 
     buttonPause.addEventListener('keydown', function (e) {
