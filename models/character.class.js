@@ -120,44 +120,30 @@ class Character extends MovableObject {
 
     animateCharacterSwim() {
         setInterval(() => {
-            if (this.canAnimate()) {
-                this.handleMovement();
-                this.updateCamera();
+            if (!this.world.isGamePause && !this.world.isGameOver && !this.world.youWin) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                    this.moveRight();
+                }
+                if (this.world.keyboard.LEFT && this.x > 0) {
+                    this.moveLeft();
+                    this.otherDirection = true;
+                }
+                if (this.world.keyboard.UP && this.y > -40) {
+                    this.moveUp();
+                }
+                if (this.world.keyboard.DOWN && this.y < 250) {
+                    this.moveDown();
+                }
+                this.world.camera_x = -this.x + 50;
             }
         }, 1000 / 30);
-    }
-    
-    
-    canAnimate() {
-        return !this.world.isGamePause && !this.world.isGameOver && !this.world.youWin;
-    }
-    
-
-    handleMovement() {
-        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-            this.moveRight();
-        }
-        if (this.world.keyboard.LEFT && this.x > 0) {
-            this.moveLeft();
-            this.otherDirection = true;
-        }
-        if (this.world.keyboard.UP && this.y > -40) {
-            this.moveUp();
-        }
-        if (this.world.keyboard.DOWN && this.y < 250) {
-            this.moveDown();
-        }
-    }
-    
-
-    updateCamera() {
-        this.world.camera_x = -this.x + 50;
     }
 
 
     animateCharacter() {
         this.animateCharacterSwim();
         this.animateCharacter = setInterval(() => {
+            if (world.isGamePause) return;
             if (this.isDead()) {
                 this.handleCharacterDeath();
             } else if (this.isHurt()) {
