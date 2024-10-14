@@ -440,7 +440,7 @@ class World {
 
 
     addCoin() {
-        if (this.coinCount <= 4) {
+        if (this.coinCount <= 9) {
             this.coinCount++;
             this.level.coin = this.level.coin.filter((coin) => !this.character.isCollidingPoison(coin));
         }

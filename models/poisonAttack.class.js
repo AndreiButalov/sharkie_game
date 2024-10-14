@@ -44,7 +44,7 @@ class PoisonAttack extends MovableObject {
         this.y = y + 120;
         setInterval(() => {
             if (!world.isGamePause) {
-                this.x += 3;// speeed
+                this.x += 3;
             }
         }, 50);
     }

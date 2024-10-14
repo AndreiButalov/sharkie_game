@@ -1,7 +1,7 @@
 class GreenJellyFish extends JellyFish {
 
-    // frequency = 0.09;
-    // amplitude = 12;    
+    frequency = 0.09;
+    amplitude = 12;    
 
     JELLYFISH_SWIM = [
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png',

@@ -23,7 +23,7 @@ class PoisonBar extends DrawableObject {
 
 
     setPercentage(poisonCount) {
-        let imageIndex = Math.floor(poisonCount);  //2
+        let imageIndex = Math.floor(poisonCount);
         imageIndex = Math.min(imageIndex, this.IMAGES.length - 1);
         this.img = this.imageCache[this.IMAGES[imageIndex]];
     }

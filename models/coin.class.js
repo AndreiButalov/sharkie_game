@@ -18,6 +18,6 @@ class Coin extends ObjectCollection {
         this.x = x
         this.initialY = 90 + Math.random() * 300;
         this.y = this.initialY;
-        this.ObjecktAnimate(this.OBJECTIMAGES);
+        this.objecktAnimate(this.OBJECTIMAGES);
     }    
 }

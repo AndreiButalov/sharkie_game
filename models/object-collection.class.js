@@ -8,7 +8,7 @@ class ObjectCollection extends MovableObject {
         this.applySwim();
     }    
 
-    ObjecktAnimate(image) {
+    objecktAnimate(image) {
         setInterval(() => {
             this.playAnimation(image)
         }, 300)
