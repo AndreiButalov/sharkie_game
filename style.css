@@ -163,6 +163,10 @@ span {
     align-items: center;
 }
 
+#btn_sound:hover img {
+    filter: brightness(0) invert(1);
+}
+
 .button_try_again {
     top: 369px;
     left: 411px;
