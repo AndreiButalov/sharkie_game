@@ -1,7 +1,5 @@
 class Sound {
 
-    isMuted = false;
-
     constructor() {
         this.levelSound = new Audio('audio/underwater flow.mp3');
         this.adventureTheme = new Audio('audio/adventureTheme.mp3');
@@ -43,7 +41,7 @@ class Sound {
 
 
     stopAllSounds() {
-        this.isMuted = true;
+        // this.isMuted = true;
         this.sounds.forEach(sound => {
             sound.pause();
             sound.currentTime = 0;
@@ -51,14 +49,14 @@ class Sound {
     }
     
 
-    toggleMute() {
-        // this.isMuted = !this.isMuted;
-        if (this.isMuted) {
-            this.stopAllSounds();
-        } else {
-            // this.levelSound.play();
-            // this.adventureTheme.play(); 
-        }
-    }
+    // toggleMute() {
+    //     // this.isMuted = !this.isMuted;
+    //     if (this.isMuted) {
+    //         this.stopAllSounds();
+    //     } else {
+    //         // this.levelSound.play();
+    //         // this.adventureTheme.play(); 
+    //     }
+    // }
 
 }

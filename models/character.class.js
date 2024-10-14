@@ -164,7 +164,7 @@ class Character extends MovableObject {
     handleCharacterDeath() {
         this.world.sound.stopAllSounds();
         this.characterIsDead();
-        if (!this.world.sound.isMuted) {
+        if (!this.world.isMuted) {
             this.world.sound.fatality.play();
         }
         this.world.isGameOver = true;
@@ -173,7 +173,7 @@ class Character extends MovableObject {
 
     handleCharacterHurt() {
         this.playAnimation(this.SHARKIE_HURT);
-        if (!this.world.sound.isMuted) {
+        if (!this.world.isMuted) {
             this.world.sound.electricShock.play();
             this.world.sound.waterSlapping.pause();
         }
@@ -182,7 +182,7 @@ class Character extends MovableObject {
 
     handleCharacterMovement() {
         this.playAnimation(this.SHARKIE_SWIM);
-        if (!this.world.sound.isMuted) {
+        if (!this.world.isMuted) {
             this.world.sound.waterSlapping.play();
             this.world.sound.electricShock.pause();
         }
@@ -191,7 +191,7 @@ class Character extends MovableObject {
 
     handleCharacterIdle() {
         this.playAnimation(this.SHARKIE_STAND);
-        if (!this.world.sound.isMuted) {
+        if (!this.world.isMuted) {
             this.world.sound.electricShock.pause();
             this.world.sound.waterSlapping.pause();
         }
