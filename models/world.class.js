@@ -311,13 +311,13 @@ class World {
     checkBossPoisonAttack(enemy) {
         this.throwPoisons.forEach((trowPoison) => {
             if (trowPoison.isCollidingBubbleBossFish(enemy)) {
+                this.statusBarBoss.setPercentage(enemy.energyEnemie);
                 enemy.energyEnemie -= 20;
                 enemy.hitEnemies();
                 if (!this.isMuted) {
                     this.sound.bossDamage.play();
                     this.sound.bubbleHighSound.play();
                 }
-                this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubblePoison(trowPoison);
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
@@ -330,13 +330,13 @@ class World {
     checkBossBubbleAttack(enemy) {
         this.throwBubble.forEach((bubble) => {
             if (bubble.isCollidingBubbleBossFish(enemy)) {
-                enemy.energyEnemie -= 10;
+                this.statusBarBoss.setPercentage(enemy.energyEnemie);
+                enemy.energyEnemie -= 5;
                 enemy.hitEnemies();
                 if (!this.isMuted) {
                     this.sound.bossDamage.play();
                     this.sound.bubbleHighSound.play();
                 }
-                this.statusBarBoss.setPercentage(this.endBoss.energyEnemie);
                 this.downBubble(bubble);
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
