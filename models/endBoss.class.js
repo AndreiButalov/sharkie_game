@@ -109,7 +109,7 @@ class EndBoss extends MovableObject {
     bossAttack() {
         let time = 0;
         setInterval(() => {
-            if (!world.isGamePause) {
+            if (!world.isGamePause && !world.isGameOver) {
                 this.x = this.x - Math.sin(time) * this.amplitudeX;
                 this.y = this.y + Math.sin(time) * this.amplitudeY;
                 time += this.frequency;
@@ -121,7 +121,7 @@ class EndBoss extends MovableObject {
     bossAttackMinus() {
         let time = 0;
         setInterval(() => {
-            if (!world.isGamePause) {
+            if (!world.isGamePause && !world.isGameOver) {
                 this.x = this.x - Math.sin(time) * this.amplitudeX;
                 this.y = this.y - Math.sin(time) * this.amplitudeY;
                 time += this.frequency;
@@ -133,12 +133,13 @@ class EndBoss extends MovableObject {
     bossSwimAnimate() {
         this.startSwimmingAnimation();
         this.bossFinalAttack();
+
     }
 
 
-    bossFinalAttack() {        
+    bossFinalAttack() {
         this.firstAttack();
-        this.secondAttack();        
+        this.secondAttack();
     }
 
 
@@ -182,7 +183,7 @@ class EndBoss extends MovableObject {
 
     startSwimmingAnimation() {
         this.swimInterval = setInterval(() => {
-            if (!world.isGamePause) {
+            if (!world.isGamePause && !world.isGameOver) {
                 if (!this.isDead && !this.isHurt()) {
                     this.playAnimation(this.BOSS_SWIM);
                 } else if (this.isHurt()) {
@@ -196,14 +197,14 @@ class EndBoss extends MovableObject {
 
 
     startAttackAnimation() {
-        if (!this.isDead) {
+        if (!this.isDead && !world.isGameOver) {
             clearInterval(this.swimInterval);
             this.bossAttack();
             this.attackInterval = setInterval(() => {
-                if (!world.isMuted) {
+                if (!world.isMuted && !world.isGameOver && !world.isGamePauser) {
                     world.sound.bossAttackSound.play();
                 }
-                if (!world.isGamePause) {
+                if (!world.isGamePause && !world.isGameOver) {
                     if (!this.isDead && !this.isHurt()) {
                         this.playAnimation(this.BOSS_ATTACK);
                     } else if (this.isHurt()) {
@@ -239,7 +240,7 @@ class EndBoss extends MovableObject {
 
 
     resetToSwimming() {
-        if (!this.isDead) {
+        if (!this.isDead && !world.isGameOver) {
             clearInterval(this.attackInterval);
             this.y = 0;
             this.amplitudeX = 0;
@@ -250,16 +251,16 @@ class EndBoss extends MovableObject {
 
 
     startSecondAttackAnimation() {
-        if (!this.isDead) {
+        if (!this.isDead && !world.isGameOver) {
             clearInterval(this.swimInterval);
             this.amplitudeX = 11;
             this.amplitudeY = 4;
             this.bossAttackMinus();
             this.attackInterval = setInterval(() => {
-                if (!world.isMuted) {
+                if (!world.isMuted && !world.isGameOver && !world.isGamePause) {
                     world.sound.bossAttackSound.play();
                 }
-                if (!world.isGamePause) {
+                if (!world.isGamePause && !world.isGameOver) {
                     if (!this.isDead && !this.isHurt()) {
                         this.playAnimation(this.BOSS_ATTACK);
                     } else if (this.isHurt()) {
