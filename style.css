@@ -152,6 +152,17 @@ span {
     filter: brightness(0) invert(1);
 }
 
+#btn_sound img {
+    width: 22px;
+    margin-left: 1px;
+}
+
+#btn_sound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .button_try_again {
     top: 369px;
     left: 411px;

@@ -35,10 +35,6 @@ class World {
         this.bubbleFishTransition();
         this.setWorld();
         this.run();
-        // Event Listener für den Button
-        document.getElementById('btn_sound').addEventListener('click', () => {
-            this.sound.toggleMute(); // Mute/unmute beim Button-Klick
-        });
     }
 
 
@@ -153,7 +149,7 @@ class World {
             this.checkCollisions();
             this.trowPoison();
             this.levelSoundPlay();
-            // console.log(this.sound.isMuted)
+            console.log(this.sound.isMuted)
         }, 200);
     }
 

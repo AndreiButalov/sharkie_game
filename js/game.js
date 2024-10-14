@@ -6,6 +6,7 @@ let keyboard = new Keyboard();
 function init() {
     renderUI();
     setupPauseButton();
+    soundOffOnButton();
 }
 
 
@@ -38,6 +39,23 @@ function setupPauseButton() {
 }
 
 
+
+function soundOffOnButton() {
+    const buttonSound = document.getElementById('btn_sound');
+    buttonSound.addEventListener('click', function () {
+        world.sound.isMuted = !world.sound.isMuted;
+        this.innerHTML = world.sound.isMuted ? '<img src="img/pngwing.com (off).png"/>' : '<img src="img/pngwing.com.png"/> ';
+        world.sound.isMuted ? world.sound.stopAllSounds() : soundsPlay();
+        world.sound.isMuted ? world.sound.stopAllSounds() : soundsPlay();
+
+    });
+
+    buttonSound.addEventListener('keydown', function (e) {
+        e.preventDefault();
+    });
+}
+
+
 function soundsPlay() {
     if (!world.sound.isMuted) {
         world.sound.levelSound.play();
@@ -47,12 +65,13 @@ function soundsPlay() {
             world.sound.finalBossSound.play();
         }
     }
+    // world.sound.isMuted = false;
 }
 
 
 function tryAgain() {
     world.sound.stopAllSounds();
-    world.sound.isGamePause = false;
+    world.sound.isMuted = false;
     startGames();
     document.getElementById('you_win').style.display = "none";
     document.getElementById('game_over').style.display = "none";
@@ -64,6 +83,7 @@ function tryAgain() {
 
 function startGames() {
     initialGames();
+    document.getElementById('btn_sound').innerHTML  ='<img src="img/pngwing.com.png"/> ';
     document.getElementById('start_view').style.display = 'none';
     document.getElementById('nav_bar_button').style.visibility = 'initial';
     const canvas = document.getElementById('canvas');
