@@ -25,7 +25,7 @@ class CoinBar extends DrawableObject {
 
 
     setPercentage(coinCount) {
-        let imageIndex = Math.floor(coinCount / 2);  //2
+        let imageIndex = Math.floor(coinCount / 2);
         imageIndex = Math.min(imageIndex, this.IMAGES.length - 1);
         this.img = this.imageCache[this.IMAGES[imageIndex]];
     }  

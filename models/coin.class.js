@@ -10,6 +10,7 @@ class Coin extends ObjectCollection {
         'img/4. Marcadores/1. Coins/3.png',
         'img/4. Marcadores/1. Coins/4.png',
     ];
+    
 
     constructor(x) {
         super().loadImage('img/4. Marcadores/1. Coins/1.png');

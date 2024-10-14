@@ -1,6 +1,5 @@
 class BarrierDown extends Barrier {
     
-    // x = 300;
     y = 350;
     height = 140;
 

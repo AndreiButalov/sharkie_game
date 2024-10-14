@@ -132,7 +132,13 @@ class EndBoss extends MovableObject {
 
     bossSwimAnimate() {
         this.startSwimmingAnimation();
+        this.bossFinalAttack();
+    }
+
+
+    bossFinalAttack() {        
         this.firstAttack();
+        this.secondAttack();        
     }
 
 
@@ -152,6 +158,25 @@ class EndBoss extends MovableObject {
         setTimeout(() => {
             this.resetToSwimming();
         }, 17300);
+    }
+
+
+    secondAttack() {
+        setTimeout(() => {
+            this.startSecondAttackAnimation();
+        }, 22000);
+
+        setTimeout(() => {
+            this.resetToSwimming();
+        }, 27300);
+
+        setTimeout(() => {
+            this.startSecondAttackAnimation();
+        }, 32000);
+
+        setTimeout(() => {
+            this.resetToSwimming();
+        }, 37300);
     }
 
 
