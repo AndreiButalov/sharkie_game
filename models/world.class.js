@@ -136,7 +136,7 @@ class World {
     }
 
 
-    finalSound() {/////////////////////////////////////////////
+    finalSound() {
         if (!this.isMuted) {
             this.sound.adventureTheme.pause();
             this.sound.laughterBoss.play();
@@ -150,7 +150,6 @@ class World {
             this.checkCollisions();
             this.trowPoison();
             this.levelSoundPlay();
-            console.log(this.isMuted)
         }, 200);
     }
 
@@ -166,7 +165,7 @@ class World {
     checkEndLevel() {
         if (this.endBoss.endLevel) {
             this.finalBackground = new FinalBackground();
-            world.sound.stopAllSounds();
+            world.sound.stopAllSoundsEndLevel();
             if (!this.isMuted) {
                 world.sound.yourWin.play();
             }
@@ -461,7 +460,6 @@ class World {
         }
 
         parameter.draw(this.ctx);
-        // parameter.drawFrame(this.ctx);///hier
         if (parameter.otherDirection) {
             this.flipImageBack(parameter,)
         }

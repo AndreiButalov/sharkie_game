@@ -28,14 +28,4 @@ class DrawableObject {
         });
     }
 
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof ObjectCollection || this instanceof Bubblefish || this instanceof EndBoss  || this instanceof Barrier) {
-            ctx.beginPath();
-            ctx.lineWidth = '6';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
-
 }

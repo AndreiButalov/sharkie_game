@@ -36,27 +36,23 @@ class Sound {
             this.fatality,
             this.blowingBubble
         ];
-        // this.isMuted = false;
     }
 
 
     stopAllSounds() {
-        // this.isMuted = true;
+        this.sounds.forEach(sound => {
+            sound.pause();
+            sound.currentTime = 0;
+        });
+        world.isMuted = true;
+    }
+
+
+    stopAllSoundsEndLevel() {
         this.sounds.forEach(sound => {
             sound.pause();
             sound.currentTime = 0;
         });
     }
     
-
-    // toggleMute() {
-    //     // this.isMuted = !this.isMuted;
-    //     if (this.isMuted) {
-    //         this.stopAllSounds();
-    //     } else {
-    //         // this.levelSound.play();
-    //         // this.adventureTheme.play(); 
-    //     }
-    // }
-
 }

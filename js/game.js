@@ -45,7 +45,11 @@ function soundOffOnButton() {
     buttonSound.addEventListener('click', function () {
         world.isMuted = !world.isMuted;
         this.innerHTML = world.isMuted ? '<img src="img/pngwing.com (off).png"/>' : '<img src="img/pngwing.com.png"/> ';
-        world.isMuted ? world.sound.stopAllSounds() : soundsPlay();
+        if (world.isMuted) {
+            world.sound.stopAllSounds();
+        } else {
+            soundsPlay();
+        }
 
     });
 
@@ -61,16 +65,15 @@ function soundsPlay() {
         if (!world.endBoss) {
             world.sound.adventureTheme.play();
         } else {
-            world.sound.finalBossSound.play();//hier fehle
+            world.sound.finalBossSound.play();
         }
     }
-    // world.sound.isMuted = false;
+    world.isMuted = false;
 }
 
 
 function tryAgain() {
     world.sound.stopAllSounds();
-    world.isMuted = false;
     startGames();
     document.getElementById('you_win').style.display = "none";
     document.getElementById('game_over').style.display = "none";
