@@ -151,12 +151,6 @@ span {
     transition: filter 0.3s ease;
 }
 
-#btn_pause {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #btn_pause:hover img {
     filter: brightness(0) invert(1);
 }
@@ -166,7 +160,7 @@ span {
     margin-left: 1px;
 }
 
-#btn_sound {
+#btn_sound, #btn_fullScreen, #btn_pause {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -175,6 +169,11 @@ span {
 #btn_sound:hover img {
     filter: brightness(0) invert(1);
 }
+
+#btn_fullScreen img {
+    width: 17px;
+}
+
 
 .button_try_again {
     top: 369px;

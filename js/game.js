@@ -32,7 +32,7 @@ function fullScreen() {
     let fullscreen = document.getElementById('fullscreen');
     bntFullScreen.addEventListener('click', function () {
         isFullScreen = !isFullScreen;
-        this.innerHTML = isFullScreen ? 'n' : 'f';
+        this.innerHTML = isFullScreen ? '<img src="img/normalScreen.png">' : '<img src="img/fullScreen.png">';
         isFullScreen ? enterFullscreen(fullscreen) : exitFullscreen(fullscreen);
     })
 
