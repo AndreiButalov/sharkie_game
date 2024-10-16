@@ -1,12 +1,14 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let isFullScreen = false;
 
 
 function init() {
     renderUI();
     setupPauseButton();
     soundOffOnButton();
+    fullScreen();
 }
 
 
@@ -22,6 +24,41 @@ function renderUI() {
         const element = document.getElementById(id);
         element.innerHTML = content;
     });
+}
+
+
+function fullScreen() {
+    let bntFullScreen = document.getElementById('btn_fullScreen');
+    let fullscreen = document.getElementById('fullscreen');
+    bntFullScreen.addEventListener('click', function () {
+        isFullScreen = !isFullScreen;
+        this.innerHTML = isFullScreen ? 'n' : 'f';
+        isFullScreen ? enterFullscreen(fullscreen) : exitFullscreen(fullscreen);
+    })
+
+    bntFullScreen.addEventListener('keydown', function (e) {
+        e.preventDefault();
+    });
+}
+
+
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {  
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) { 
+        element.webkitRequestFullscreen();
+    }
+}
+
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
 }
 
 

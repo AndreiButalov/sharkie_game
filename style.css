@@ -5,11 +5,6 @@
 
 body {
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    justify-content: center;
     font-family: 'Luckiest Guy', Arial, Helvetica, sans-serif;
     background: linear-gradient(to right, blue, cornflowerblue);
 }
@@ -20,6 +15,20 @@ canvas {
     height: 480px;
     border-radius: 10px;
     display: block;
+}
+
+:fullscreen canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#fullscreen {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
 }
 
 h1 {
@@ -208,6 +217,16 @@ span {
     position: absolute;
     width: 720px;
     height: 480px;
+}
+
+:fullscreen #mobile_panel {
+    width: 100%;
+    height: 100%;
+}
+
+#mobile_panel:fullscreen {
+    width: 100vw;
+    height: 100vh;
 }
 
 .mobile_panel {
