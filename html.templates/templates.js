@@ -54,7 +54,7 @@ function controlButtonsGenerate() {
 
 function tryAgainGenerate() {
     return /*html*/`
-        <div>
+        <div id="div_you_win">
             <button class="start_button button_try_again" onclick="tryAgain()">Try Again</button>
         </div>
     `;
@@ -63,7 +63,7 @@ function tryAgainGenerate() {
 
 function gameOverGenerate() {
     return /*html*/`
-        <div>
+        <div id="div_game_over">
             <h1>GAME OVER</h1>
             <button class="start_button button_try_again" onclick="tryAgain()">Try Again</button>
         </div>
