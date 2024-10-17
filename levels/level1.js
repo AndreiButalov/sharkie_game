@@ -25,15 +25,18 @@ const layers = {
     light: ['img/3. Background/Layers/1. Light/2.png', 'img/3. Background/Layers/1. Light/1.png'],
 };
 
+
 function createBackgroundLayer(layerImages) {
     return layerImages.flatMap((image, j) =>
         Array.from({ length: repetitions }, (_, i) => new BackgroundObject(image, initialOffset + (i * layerImages.length + j) * step))
     );
 }
 
+
 function createObjectsFromIntervals(createObjectFn, intervals) {
     return intervals.map(interval => createObjectFn(interval));
 }
+
 
 function initialGames() {
     const barrierArray = [

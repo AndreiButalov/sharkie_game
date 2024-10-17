@@ -120,7 +120,7 @@ class Character extends MovableObject {
 
     animateCharacterSwim() {
         setInterval(() => {
-            if (!this.world.isGamePause && !this.world.isGameOver && !this.world.youWin) {
+            if (this.isGameOverPause()) {
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                     this.moveRight();
                 }
@@ -137,6 +137,11 @@ class Character extends MovableObject {
                 this.world.camera_x = -this.x + 50;
             }
         }, 1000 / 30);
+    }
+
+
+    isGameOverPause() {
+        return !this.world.isGamePause && !this.world.isGameOver && !this.world.youWin;
     }
 
 
