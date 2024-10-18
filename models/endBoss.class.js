@@ -201,7 +201,7 @@ class EndBoss extends MovableObject {
             clearInterval(this.swimInterval);
             this.bossAttack();
             this.attackInterval = setInterval(() => {
-                if (!world.isMuted && !world.isGameOver && !world.isGamePauser) {
+                if (!world.isMuted && !world.isGameOver && !world.isGamePause) {
                     world.sound.bossAttackSound.play();
                 }
                 if (!world.isGamePause && !world.isGameOver) {
