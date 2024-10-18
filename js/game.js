@@ -81,7 +81,11 @@ function setupPauseButton() {
     buttonPause.addEventListener('click', function () {
         world.isGamePause = !world.isGamePause;
         this.innerHTML = world.isGamePause ? '<img src="img/Daco_1000848.png"/>' : '<img src="img/Daco_4414172.png"/> ';
-        world.isGamePause ? world.sound.stopAllSoundsEndLevel() : soundsPlay();
+        if(world.isGamePause) {
+            world.sound.stopAllSoundsEndLevel();
+        } else if (!world.isMuted) {
+            soundsPlay();
+        }
     });
 
     buttonPause.addEventListener('keydown', function (e) {
@@ -95,12 +99,7 @@ function soundOffOnButton() {
     buttonSound.addEventListener('click', function () {
         world.isMuted = !world.isMuted;
         this.innerHTML = world.isMuted ? '<img src="img/pngwing.com (off).png"/>' : '<img src="img/pngwing.com.png"/> ';
-        if (world.isMuted) {
-            world.sound.stopAllSounds();
-        } else {
-            soundsPlay();
-        }
-
+        world.isMuted ? world.sound.stopAllSounds() : soundsPlay();
     });
 
     buttonSound.addEventListener('keydown', function (e) {
