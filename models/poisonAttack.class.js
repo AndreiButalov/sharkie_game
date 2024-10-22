@@ -62,4 +62,44 @@ class PoisonAttack extends MovableObject {
             }
         }, 50);
     }
+
+
+    /**
+     * Checks for collisions between thrown poisons and enemies.
+     * If a collision is detected, the poison collision handler is triggered.
+     * 
+     * @param {Object} enemy - The enemy to check collision against.
+     */
+    checkPoisonCollisions(enemy) {
+        world.throwPoisons.forEach((trowPoison) => {
+            if (trowPoison.isCollidingBubbleBossFish(enemy)) {
+                this.handlePoisonCollision(trowPoison, enemy);
+            }
+        });
+    }
+
+
+    /**
+     * Handles the collision between thrown poison and an enemy.
+     * Reduces the enemy's health and checks if the enemy is defeated by the poison attack.
+     * 
+     * @param {Object} trowPoison - The poison object that hit the enemy.
+     * @param {Object} enemy - The enemy hit by the poison.
+     */
+    handlePoisonCollision(trowPoison, enemy) {
+        this.downBubblePoison(trowPoison);
+        enemy.hitEnemies();
+        world.checkHitEnemiesPoisonAttack(enemy);
+    }
+
+
+    /**
+     * Removes a thrown poison object from the array of active poisons.
+     * 
+     * @param {Object} trowPoison - The poison object to be removed.
+     */
+    downBubblePoison(trowPoison) {
+        world.throwPoisons = world.throwPoisons.filter((item) => item !== trowPoison);
+    }
+
 }

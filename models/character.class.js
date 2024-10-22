@@ -324,7 +324,7 @@ class Character extends MovableObject {
         this.world.throwBubble.push(bubble);
         setTimeout(() => {
             if (!this.world.isGamePause) {
-                this.world.downBubble(bubble);
+                this.world.bubble.downBubble(bubble);
             }
         }, 3800);
     }
@@ -341,7 +341,7 @@ class Character extends MovableObject {
         this.world.poisonCount--;
         setTimeout(() => {
             if (!this.world.isGamePause) {
-                this.world.downBubblePoison(poison);
+                this.world.poison.downBubblePoison(poison);
             }
         }, 4000);
     }

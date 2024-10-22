@@ -31,4 +31,35 @@ class PoisonCollect extends ObjectCollection {
         this.objecktAnimate(this.OBJECTIMAGES);
     }
 
+
+    /**
+     * Checks for collisions between the character and poison bottles.
+     * If a collision occurs, the character picks up the bottle, and the poison bar is updated.
+     * Plays a drinking sound if the game is not muted.
+     */
+    checkCollisionsBottle() {
+        world.poisonBar.setPercentage(world.poisonCount);
+        world.level.poisonButtle.forEach((bottle) => {
+            if (world.character.isCollidingPoison(bottle)) {
+                this.addPoison(bottle);
+                if (!world.isMuted) {
+                    world.sound.drinkingPoison.play();
+                }
+            }
+        });
+    }
+
+    
+    /**
+     * Adds poison to the character's inventory and removes the poison bottle from the level.
+     * 
+     * @param {Object} buttle - The poison bottle to be added.
+     */
+    addPoison(buttle) {
+        if (world.poisonCount <= 4) {
+            world.level.poisonButtle = world.level.poisonButtle.filter((item) => item !== buttle);
+            world.poisonCount++;
+        }
+    }
+
 }

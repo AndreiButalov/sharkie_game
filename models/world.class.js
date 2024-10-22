@@ -15,6 +15,8 @@ class World {
     isGamePause = false;
     isMuted = false;
 
+    bubble = new BubbleAttack();
+    poison = new PoisonAttack();
     character = new Character();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
@@ -155,9 +157,9 @@ class World {
 
 
     /**
- * Triggers the arrival of the end boss when the character reaches a specific position (3200).
- * Spawns the end boss, plays sound, and sets up a check to monitor the end of the level.
- */
+     * Triggers the arrival of the end boss when the character reaches a specific position (3200).
+     * Spawns the end boss, plays sound, and sets up a check to monitor the end of the level.
+     */
     endBossArrival() {
         let bossSpawned = false;
         const spawnBoss = setInterval(() => {
@@ -224,47 +226,11 @@ class World {
     checkCollisions() {
         this.character.checkCollisionsEmemies();
         this.character.checkCollisionsBoss();
-        this.checkCollisionsBottle();
-        this.checkCollisionsCoin();
+        this.poisonCollect.checkCollisionsBottle();
+        this.coin.checkCollisionsCoin();
         this.checkCollisionsBubblefishBubble();
         this.checkCollisionsBossAttack();
         this.checkCollisionsJellyfishBubble();
-    }
-
-
-    /**
-     * Checks for collisions between the character and poison bottles.
-     * If a collision occurs, the character picks up the bottle, and the poison bar is updated.
-     * Plays a drinking sound if the game is not muted.
-     */
-    checkCollisionsBottle() {
-        this.poisonBar.setPercentage(this.poisonCount);
-        this.level.poisonButtle.forEach((bottle) => {
-            if (this.character.isCollidingPoison(bottle)) {
-                this.addPoison(bottle);
-                if (!this.isMuted) {
-                    this.sound.drinkingPoison.play();
-                }
-            }
-        });
-    }
-
-
-    /**
-     * Checks for collisions between the character and coins.
-     * If a coin is collected, the character's coin count increases, and the coin bar is updated.
-     * Plays a coin collection sound if the game is not muted.
-     */
-    checkCollisionsCoin() {
-        this.level.coin.forEach((coin) => {
-            if (this.character.isCollidingPoison(coin)) {
-                this.addCoin();
-                if (!this.isMuted) {
-                    this.sound.coinSound.play();
-                }
-                this.coinBar.setPercentage(this.coinCount);
-            }
-        });
     }
 
 
@@ -274,69 +240,9 @@ class World {
      */
     checkCollisionsBubblefishBubble() {
         this.level.enemies.forEach((enemy) => {
-            this.checkPoisonCollisions(enemy);
-            this.checkBubbleCollisions(enemy);
+            this.poison.checkPoisonCollisions(enemy);
+            this.bubble.checkBubbleCollisions(enemy);
         });
-    }
-
-
-    /**
-     * Checks for collisions between thrown poisons and enemies.
-     * If a collision is detected, the poison collision handler is triggered.
-     * 
-     * @param {Object} enemy - The enemy to check collision against.
-     */
-    checkPoisonCollisions(enemy) {
-        this.throwPoisons.forEach((trowPoison) => {
-            if (trowPoison.isCollidingBubbleBossFish(enemy)) {
-                this.handlePoisonCollision(trowPoison, enemy);
-            }
-        });
-    }
-
-
-    /**
-     * Checks for collisions between bubbles and bubblefish enemies (Green or Red).
-     * If a collision is detected, the bubble collision handler is triggered.
-     * 
-     * @param {Object} enemy - The enemy to check collision against.
-     */
-    checkBubbleCollisions(enemy) {
-        if (enemy instanceof GreenBubbleFish || enemy instanceof RedBubbleFish) {
-            this.throwBubble.forEach((bubble) => {
-                if (bubble.isCollidingBubble(enemy)) {
-                    this.handleBubbleCollision(bubble, enemy);
-                }
-            });
-        }
-    }
-
-
-    /**
-     * Handles the collision between thrown poison and an enemy.
-     * Reduces the enemy's health and checks if the enemy is defeated by the poison attack.
-     * 
-     * @param {Object} trowPoison - The poison object that hit the enemy.
-     * @param {Object} enemy - The enemy hit by the poison.
-     */
-    handlePoisonCollision(trowPoison, enemy) {
-        this.downBubblePoison(trowPoison);
-        enemy.hitEnemies();
-        this.checkHitEnemiesPoisonAttack(enemy);
-    }
-
-
-    /**
-     * Handles the collision between a bubble and an enemy.
-     * Reduces the enemy's health and checks if the enemy is defeated by the bubble attack.
-     * 
-     * @param {Object} bubble - The bubble object that hit the enemy.
-     * @param {Object} enemy - The enemy hit by the bubble.
-     */
-    handleBubbleCollision(bubble, enemy) {
-        this.downBubble(bubble);
-        enemy.hitEnemies();
-        this.checkHitEnemiesBubbleAttack(enemy);
     }
 
 
@@ -352,7 +258,7 @@ class World {
                         if (!this.isMuted) {
                             this.sound.bubbleHighSound.play();
                         }
-                        this.downBubble(bubble);
+                        this.bubble.downBubble(bubble);
                         enemy.jellyFishDead();
                         this.enemyDisable(enemy);
                     }
@@ -391,7 +297,7 @@ class World {
                     this.sound.bossDamage.play();
                     this.sound.bubbleHighSound.play();
                 }
-                this.downBubblePoison(trowPoison);
+                this.poison.downBubblePoison(trowPoison);
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
                 }
@@ -416,7 +322,7 @@ class World {
                     this.sound.bossDamage.play();
                     this.sound.bubbleHighSound.play();
                 }
-                this.downBubble(bubble);
+                this.bubble.downBubble(bubble);
                 if (enemy.energyEnemie <= 0) {
                     enemy.playEndBossIsDead();
                 }
@@ -482,30 +388,6 @@ class World {
                 }
             });
         }, 200);
-    }
-
-
-    /**
-     * Adds poison to the character's inventory and removes the poison bottle from the level.
-     * 
-     * @param {Object} buttle - The poison bottle to be added.
-     */
-    addPoison(buttle) {
-        if (this.poisonCount <= 4) {
-            this.level.poisonButtle = this.level.poisonButtle.filter((item) => item !== buttle);
-            this.poisonCount++;
-        }
-    }
-
-
-    /**
-     * Adds a coin to the character's inventory and removes it from the level.
-     */
-    addCoin() {
-        if (this.coinCount <= 9) {
-            this.coinCount++;
-            this.level.coin = this.level.coin.filter((coin) => !this.character.isCollidingPoison(coin));
-        }
     }
 
 
@@ -596,26 +478,6 @@ class World {
         setTimeout(() => {
             this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
         }, 1000);
-    }
-
-
-    /**
-     * Removes a thrown poison object from the array of active poisons.
-     * 
-     * @param {Object} trowPoison - The poison object to be removed.
-     */
-    downBubblePoison(trowPoison) {
-        this.throwPoisons = this.throwPoisons.filter((item) => item !== trowPoison);
-    }
-
-    
-    /**
-     * Removes a thrown bubble object from the array of active bubbles.
-     * 
-     * @param {Object} bubble - The bubble object to be removed.
-     */
-    downBubble(bubble) {
-        this.throwBubble = this.throwBubble.filter((item) => item !== bubble);
     }
 
 }
