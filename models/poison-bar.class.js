@@ -21,7 +21,14 @@ class PoisonBar extends DrawableObject {
         this.setPercentage(0);
     }
 
-
+    /**
+     * Sets the displayed image based on the coin count, which determines the percentage of coins collected.
+     * The coin count is divided by 2 to find the corresponding image index.
+     * If the index exceeds the available images, it is capped at the last image.
+     * 
+     * @param {number} poisonCount - The total number of coins collected by the player.
+     * @returns {void}
+     */
     setPercentage(poisonCount) {
         let imageIndex = Math.floor(poisonCount);
         imageIndex = Math.min(imageIndex, this.IMAGES.length - 1);

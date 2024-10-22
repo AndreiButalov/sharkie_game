@@ -38,7 +38,10 @@ class Sound {
         ];
     }
 
-
+    /**
+     * Stops all currently playing sounds and resets their playback to the beginning.
+     * Sets the global muted state to true, indicating that sounds are muted.
+     */
     stopAllSounds() {
         this.sounds.forEach(sound => {
             sound.pause();
@@ -47,12 +50,16 @@ class Sound {
         world.isMuted = true;
     }
 
-
+    
+    /**
+     * Stops all currently playing sounds and resets their playback to the beginning.
+     * This method does not change the global muted state.
+     */
     stopAllSoundsEndLevel() {
         this.sounds.forEach(sound => {
             sound.pause();
             sound.currentTime = 0;
         });
     }
-    
+
 }

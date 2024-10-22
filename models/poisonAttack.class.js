@@ -22,12 +22,20 @@ class PoisonAttack extends MovableObject {
         this.bubbleSwim();
     }
 
-
+    /**
+     * Plays the animation frames for the poison effect.
+     *
+     * @param {Array<string>} image - An array of image paths for the poison animation frames.
+     */
     poisonAnimate(image) {
         this.playAnimation(image);
     }
 
 
+    /**
+     * Animates the object's vertical movement to simulate a swimming effect.
+     * The object moves up and down based on a sine wave, adjusted by a frequency and amplitude.
+     */
     bubbleSwim() {
         let time = 0;
         setInterval(() => {
@@ -38,7 +46,13 @@ class PoisonAttack extends MovableObject {
         }, 1000 / 25);
     }
 
-
+    
+    /**
+     * Throws an object to a specified position, incrementally moving it to the right.
+     *
+     * @param {number} x - The x-coordinate to which the object should be moved.
+     * @param {number} y - The y-coordinate to which the object should be moved.
+     */
     trow(x, y) {
         this.x = x + 120;
         this.y = y + 120;
