@@ -26,18 +26,37 @@ const layers = {
 };
 
 
+/**
+ * Creates background layers by repeating images at defined intervals.
+ * 
+ * @param {Array<string>} layerImages - Array of image sources for the background layer.
+ * @returns {Array<BackgroundObject>} An array of background objects created from the images.
+ */
 function createBackgroundLayer(layerImages) {
     return layerImages.flatMap((image, j) =>
-        Array.from({ length: repetitions }, (_, i) => new BackgroundObject(image, initialOffset + (i * layerImages.length + j) * step))
+        Array.from({ length: repetitions }, (_, i) =>
+            new BackgroundObject(image, initialOffset + (i * layerImages.length + j) * step)
+        )
     );
 }
 
 
+/**
+ * Generates objects at specific intervals by applying a provided creation function.
+ * 
+ * @param {Function} createObjectFn - A function to create an object for each interval.
+ * @param {Array<number>} intervals - An array of intervals for object creation.
+ * @returns {Array<Object>} An array of created objects.
+ */
 function createObjectsFromIntervals(createObjectFn, intervals) {
     return intervals.map(interval => createObjectFn(interval));
 }
 
 
+/**
+ * Initializes the game by creating barriers, enemies, coins, poison collectibles, and background objects.
+ * These objects are then used to construct the first game level.
+ */
 function initialGames() {
     const barrierArray = [
         ...createObjectsFromIntervals(interval => new BarrierDown(interval), intervals.barrierDown),
