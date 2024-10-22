@@ -62,4 +62,17 @@ class Sound {
         });
     }
 
+
+    /**
+     * Plays final sound effects when the end boss spawns, including laughter and boss music.
+     * Stops background sounds unless the game is muted.
+     */
+    finalSound() {
+        if (!world.isMuted) {
+            this.adventureTheme.pause();
+            this.laughterBoss.play();
+            this.finalBossSound.play();
+        }
+    }
+    
 }

@@ -301,6 +301,20 @@ class Character extends MovableObject {
 
 
     /**
+     * Checks for collisions between the character and the end boss.
+     * If a collision is detected and the boss is not dead, the character's hit function is triggered.
+     */
+    checkCollisionsBoss() {
+        if (this.world.endBoss && !this.world.endBoss.isDead) {
+            const enemy = this.world.endBoss;
+            if (this.isColliding(enemy)) {
+                this.checkIsColliding();
+            }
+        }
+    }
+
+
+    /**
      * Throws a bubble attack and adds it to the array of thrown bubbles.
      * Automatically removes the bubble after 3800ms if the game is not paused.
      */
@@ -324,7 +338,7 @@ class Character extends MovableObject {
         this.blowBubble(this.IMAGES_BUBBLE_POISON);
         let poison = new PoisonAttack(this.x + 100, this.y);
         this.world.throwPoisons.push(poison);
-        this.poisonCount--;
+        this.world.poisonCount--;
         setTimeout(() => {
             if (!this.world.isGamePause) {
                 this.world.downBubblePoison(poison);

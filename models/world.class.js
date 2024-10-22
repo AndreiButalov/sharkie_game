@@ -165,28 +165,13 @@ class World {
                 this.endBoss = new EndBoss();
                 this.statusBarBoss = new StatusBarBoss();
                 bossSpawned = true;
-                this.finalSound();
+                this.sound.finalSound();
                 clearInterval(spawnBoss);
-
-                // Check for level end every 200ms
                 this.checkEnd = setInterval(() => {
                     this.checkEndLevel();
                 }, 200);
             }
         }, 200);
-    }
-
-
-    /**
-     * Plays final sound effects when the end boss spawns, including laughter and boss music.
-     * Stops background sounds unless the game is muted.
-     */
-    finalSound() {
-        if (!this.isMuted) {
-            this.sound.adventureTheme.pause();
-            this.sound.laughterBoss.play();
-            this.sound.finalBossSound.play();
-        }
     }
 
 
@@ -238,7 +223,7 @@ class World {
      */
     checkCollisions() {
         this.character.checkCollisionsEmemies();
-        this.checkCollisionsBoss();
+        this.character.checkCollisionsBoss();
         this.checkCollisionsBottle();
         this.checkCollisionsCoin();
         this.checkCollisionsBubblefishBubble();
@@ -280,20 +265,6 @@ class World {
                 this.coinBar.setPercentage(this.coinCount);
             }
         });
-    }
-
-
-    /**
-     * Checks for collisions between the character and the end boss.
-     * If a collision is detected and the boss is not dead, the character's hit function is triggered.
-     */
-    checkCollisionsBoss() {
-        if (this.endBoss && !this.endBoss.isDead) {
-            const enemy = this.endBoss;
-            if (this.character.isColliding(enemy)) {
-                this.checkIsColliding();
-            }
-        }
     }
 
 
