@@ -3,6 +3,7 @@ class Bubblefish extends Enemies {
     isDead;
     frequency;
     amplitude;
+    deadAnimationPlayed = false;
 
     constructor() {
         super();
@@ -34,13 +35,10 @@ class Bubblefish extends Enemies {
 
 
     playBubbleSwim() {
-        let deadAnimationPlayed = false;
         setInterval(() => {
             if (this.isDead) {
-                if (!deadAnimationPlayed) {
-                    this.playAnimation(this.BUBBLEFISH_DEAD);
-                    deadAnimationPlayed = true;
-                    clearInterval(this.animationInterval);
+                if (!this.deadAnimationPlayed) {
+                    this.playDeathAnimation();
                 }
             } else if (!world.isGamePause) {
                 this.playAnimation(this.BUBBLEFISH_TRANSITION_SWIM);
@@ -51,26 +49,31 @@ class Bubblefish extends Enemies {
 
 
     animateEnemy() {
-        let deadAnimationPlayed = false;
-
         setInterval(() => {
             if (!world.isGamePause) {
                 if (!this.isDead) {
                     this.moveLeft();
-                } else {
-                    if (!deadAnimationPlayed) {
-                        this.playAnimation(this.BUBBLEFISH_DEAD);
-                        deadAnimationPlayed = true;
-                        clearInterval(this.animationInterval);
-                    }
+                } else if (!this.deadAnimationPlayed) {
+                    this.playDeathAnimation();
                 }
             } else {
                 this.frequency = 0;
                 this.amplitude = 0;
             }
-
         }, 1000 / 60);
+        this.setAnimationInterval();
 
+    }
+
+
+    playDeathAnimation() {
+        this.playAnimation(this.BUBBLEFISH_DEAD);
+        this.deadAnimationPlayed = true;
+        clearInterval(this.animationInterval);
+    }
+
+
+    setAnimationInterval() {
         this.animationInterval = setInterval(() => {
             if (!this.isDead && !this.isInTransition) {
                 if (!world.isGamePause) {
@@ -79,6 +82,8 @@ class Bubblefish extends Enemies {
             }
         }, 200);
     }
+
+
 
 
     playBubbleFishDead() {
