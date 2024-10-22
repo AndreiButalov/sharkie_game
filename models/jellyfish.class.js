@@ -21,6 +21,11 @@ class JellyFish extends Enemies {
     }
 
 
+    /**
+     * Animates the jellyfish by moving it left at a regular interval.
+     * If the game is paused, it stops moving and resets frequency and amplitude.
+     * It also starts the death animation check for the jellyfish.
+     */
     animateJellyFish() {
         setInterval(() => {
             if (!world.isGamePause) {
@@ -32,7 +37,16 @@ class JellyFish extends Enemies {
                 this.amplitude = 0;
             }
         }, 1000 / 60);
+        this.isJellyFishDeath();
+    }
 
+
+    /**
+     * Checks the jellyfish's state at regular intervals to play the appropriate animation.
+     * If the jellyfish is dead, it plays the dead animation; otherwise, if the game is not paused,
+     * it plays the swimming animation.
+     */
+    isJellyFishDeath() {
         setInterval(() => {
             if (this.isDead) {
                 this.playAnimation(this.JELLYFISH_DEAD);
@@ -43,7 +57,11 @@ class JellyFish extends Enemies {
     }
 
 
+    /**
+     * Marks the jellyfish as dead, which triggers the dead animation during the next state check.
+     */
     jellyFishDead() {
         this.isDead = true;
     }
+
 }
