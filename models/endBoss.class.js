@@ -88,6 +88,10 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Starts the boss animation sequence, beginning with the arrival animation.
+     * After 2 seconds, it clears the arrival animation interval and starts swimming animation.
+     */
     startBossAnimation() {
         this.bossArrivalAnimate();
         setTimeout(() => {
@@ -97,6 +101,10 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Animates the boss's arrival by playing the introduction animation
+     * at regular intervals until the game is paused.
+     */
     bossArrivalAnimate() {
         this.arrivalInterval = setInterval(() => {
             if (!world.isGamePause) {
@@ -106,6 +114,11 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Controls the boss's attack movement with sinusoidal motion.
+     * The boss moves left and up/down based on sine functions,
+     * as long as the game is not paused or over.
+     */
     bossAttack() {
         let time = 0;
         setInterval(() => {
@@ -118,6 +131,11 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Controls the boss's attack movement with downward motion.
+     * The boss moves left and down based on sine functions,
+     * as long as the game is not paused or over.
+     */
     bossAttackMinus() {
         let time = 0;
         setInterval(() => {
@@ -128,21 +146,30 @@ class EndBoss extends MovableObject {
             }
         }, 1000 / 25);
     }
+    
 
-
+    /**
+     * Starts the boss's swimming animation and triggers the final attack sequence.
+     */
     bossSwimAnimate() {
         this.startSwimmingAnimation();
         this.bossFinalAttack();
-
     }
 
 
+    /**
+     * Initiates the boss's final attack sequence, consisting of multiple attacks.
+     */
     bossFinalAttack() {
         this.firstAttack();
         this.secondAttack();
     }
 
 
+    /**
+     * Executes the first attack sequence, scheduling attack animations and 
+     * swimming resets at specific intervals.
+     */
     firstAttack() {
         setTimeout(() => {
             this.startAttackAnimation();
@@ -162,6 +189,10 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Executes the second attack sequence, scheduling attack animations and 
+     * swimming resets at specific intervals.
+     */
     secondAttack() {
         setTimeout(() => {
             this.startSecondAttackAnimation();
@@ -181,6 +212,10 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Starts the boss's swimming animation and manages its state
+     * while the game is not paused or over.
+     */
     startSwimmingAnimation() {
         this.swimInterval = setInterval(() => {
             if (!world.isGamePause && !world.isGameOver) {
@@ -196,6 +231,11 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Starts the boss's attack animation and manages attack movements.
+     * Plays the attack animation and sound effects as long as the boss is not dead
+     * and the game is not over or paused.
+     */
     startAttackAnimation() {
         if (!this.isDead && !world.isGameOver) {
             clearInterval(this.swimInterval);
@@ -218,6 +258,12 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Handles the boss's death state, stopping all animations and playing the death animation.
+     * It also plays the death sound and triggers the end level flag after a delay.
+     * 
+     * @param {number} interval - The interval ID to clear for the attack animation.
+     */
     isBossDead(interval) {
         clearInterval(interval);
         this.amplitudeX = 0;
@@ -227,18 +273,23 @@ class EndBoss extends MovableObject {
         }
         this.bossDeadInterval = setInterval(() => {
             this.playAnimation(this.BOSS_DEAD);
-        }, 200)
+        }, 200);
 
         setTimeout(() => {
             clearInterval(this.bossDeadInterval);
-        }, 700)
+        }, 700);
 
         setTimeout(() => {
             this.endLevel = true;
-        }, 1000)
+        }, 1000);
     }
 
 
+    /**
+     * Resets the boss to the swimming state by clearing the attack interval,
+     * resetting the vertical position, and the amplitude values.
+     * It starts the swimming animation if the boss is not dead and the game is not over.
+     */
     resetToSwimming() {
         if (!this.isDead && !world.isGameOver) {
             clearInterval(this.attackInterval);
@@ -250,6 +301,12 @@ class EndBoss extends MovableObject {
     }
 
 
+    /**
+     * Initiates the second attack animation for the boss. It clears the swimming
+     * interval, sets new amplitude values for the attack motion, and starts the
+     * boss's downward attack animation. The attack animation and sound are managed
+     * as long as the boss is not dead and the game is not over or paused.
+     */
     startSecondAttackAnimation() {
         if (!this.isDead && !world.isGameOver) {
             clearInterval(this.swimInterval);
@@ -273,8 +330,12 @@ class EndBoss extends MovableObject {
         }
     }
 
-
+    
+    /**
+     * Marks the boss as dead, stopping all animations and setting its dead state.
+     */
     playEndBossIsDead() {
         this.isDead = true;
     }
+
 }

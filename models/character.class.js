@@ -118,6 +118,11 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Continuously animates the character's swimming movements.
+     * Updates the character's position based on keyboard input and camera position,
+     * while ensuring the game is not paused or over.
+     */
     animateCharacterSwim() {
         setInterval(() => {
             if (this.isGameOverPause()) {
@@ -140,11 +145,20 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Checks if the game is not paused, not over, and the player has not won.
+     * 
+     * @returns {boolean} True if the game is in a playable state, false otherwise.
+     */
     isGameOverPause() {
         return !this.world.isGamePause && !this.world.isGameOver && !this.world.youWin;
     }
 
 
+    /**
+     * Starts the character animation loop, which manages different character states.
+     * Animates swimming, death, hurt, movement, and idle states.
+     */
     animateCharacter() {
         this.animateCharacterSwim();
         this.animateCharacter = setInterval(() => {
@@ -162,6 +176,10 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Handles the character's death state by stopping all sounds,
+     * playing the death animation, and setting the game over flag.
+     */
     handleCharacterDeath() {
         this.world.sound.stopAllSoundsEndLevel();
         this.characterIsDead();
@@ -172,6 +190,10 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Handles the character's hurt state by playing the hurt animation
+     * and stopping specific sound effects if not muted.
+     */
     handleCharacterHurt() {
         this.playAnimation(this.SHARKIE_HURT);
         if (!this.world.isMuted) {
@@ -181,6 +203,10 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Handles the character's movement state by playing the swim animation
+     * and managing sound effects based on the character's state.
+     */
     handleCharacterMovement() {
         this.playAnimation(this.SHARKIE_SWIM);
         if (!this.world.isMuted) {
@@ -190,6 +216,10 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Handles the character's idle state by playing the idle animation
+     * and stopping sound effects if not muted.
+     */
     handleCharacterIdle() {
         this.playAnimation(this.SHARKIE_STAND);
         if (!this.world.isMuted) {
@@ -199,12 +229,21 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Checks if the character is currently moving based on keyboard input.
+     * 
+     * @returns {boolean} True if the character is moving, false otherwise.
+     */
     isMoving() {
         return this.world.keyboard.RIGHT || this.world.keyboard.LEFT ||
             this.world.keyboard.UP || this.world.keyboard.DOWN;
     }
 
 
+    /**
+     * Marks the character as dead and initiates the death animation.
+     * Clears the animation interval and plays the dead animation.
+     */
     characterIsDead() {
         clearInterval(this.animateCharacter);
         this.characterDead = setInterval(() => {
@@ -217,6 +256,12 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Plays a bubble animation using an array of image identifiers.
+     * Updates the character's image at a set interval.
+     * 
+     * @param {Array} arr - An array of image identifiers to animate.
+     */
     blowBubble(arr) {
         let i = 0;
         const interval = setInterval(() => {
@@ -228,5 +273,6 @@ class Character extends MovableObject {
             }
         }, 40);
     }
+
 
 }
