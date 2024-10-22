@@ -275,4 +275,82 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Handles what happens when the character collides with an enemy, boss, or other harmful entity.
+     * Reduces the character's health and updates the status bar.
+     */
+    checkIsColliding() {
+        this.hitCharacter();
+        this.world.statusBar.setPercentage(this.energy);
+    }
+
+
+    /**
+     * Checks for collisions between the character and regular enemies.
+     * If a collision is detected and the enemy is not dead, it triggers the character's hit function.
+     */
+    checkCollisionsEmemies() {
+        this.world.level.enemies.forEach((enemy) => {
+            if (!enemy.isDead) {
+                if (this.isColliding(enemy)) {
+                    this.checkIsColliding();
+                }
+            }
+        });
+    }
+
+
+    /**
+     * Throws a bubble attack and adds it to the array of thrown bubbles.
+     * Automatically removes the bubble after 3800ms if the game is not paused.
+     */
+    trowBubbleAttack() {
+        this.blowBubble(this.IMAGES_BUBBLE);
+        let bubble = new BubbleAttack(this.x + 100, this.y);
+        this.world.throwBubble.push(bubble);
+        setTimeout(() => {
+            if (!this.world.isGamePause) {
+                this.world.downBubble(bubble);
+            }
+        }, 3800);
+    }
+
+
+    /**
+     * Throws a poison attack and adds it to the array of thrown poisons.
+     * Reduces the poison count and removes the poison after 4000ms if the game is not paused.
+     */
+    trowPoisonAttack() {
+        this.blowBubble(this.IMAGES_BUBBLE_POISON);
+        let poison = new PoisonAttack(this.x + 100, this.y);
+        this.world.throwPoisons.push(poison);
+        this.poisonCount--;
+        setTimeout(() => {
+            if (!this.world.isGamePause) {
+                this.world.downBubblePoison(poison);
+            }
+        }, 4000);
+    }
+
+
+    /**
+     * Throws either poison or bubble attacks when the spacebar is pressed, if the game is not paused.
+     * Plays appropriate sound effects based on the action.
+     */
+    trowPoison() {
+        if (!this.world.isGamePause) {
+            if (this.world.keyboard.SPACE) {
+                if (!this.isMuted) {
+                    this.world.sound.blowingBubble.play();
+                }
+                if (this.world.poisonCount > 0) {
+                    this.trowPoisonAttack();
+                } else {
+                    this.trowBubbleAttack();
+                }
+            }
+        }
+    }  
+
+
 }

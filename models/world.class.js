@@ -196,7 +196,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.trowPoison();
+            this.character.trowPoison();
             this.levelSoundPlay();
         }, 200);
     }
@@ -222,9 +222,9 @@ class World {
     checkEndLevel() {
         if (this.endBoss.endLevel) {
             this.finalBackground = new FinalBackground();
-            world.sound.stopAllSoundsEndLevel();
+            this.sound.stopAllSoundsEndLevel();
             if (!this.isMuted) {
-                world.sound.yourWin.play();
+                this.sound.yourWin.play();
             }
             clearInterval(this.checkEnd);
             this.youWin = true;
@@ -237,38 +237,13 @@ class World {
      * Handles collision detection for various game objects.
      */
     checkCollisions() {
-        this.checkCollisionsEmemies();
+        this.character.checkCollisionsEmemies();
         this.checkCollisionsBoss();
         this.checkCollisionsBottle();
         this.checkCollisionsCoin();
         this.checkCollisionsBubblefishBubble();
         this.checkCollisionsBossAttack();
         this.checkCollisionsJellyfishBubble();
-    }
-
-
-    /**
-     * Handles what happens when the character collides with an enemy, boss, or other harmful entity.
-     * Reduces the character's health and updates the status bar.
-     */
-    checkIsColliding() {
-        this.character.hitCharacter();
-        this.statusBar.setPercentage(this.character.energy);
-    }
-
-
-    /**
-     * Checks for collisions between the character and regular enemies.
-     * If a collision is detected and the enemy is not dead, it triggers the character's hit function.
-     */
-    checkCollisionsEmemies() {
-        this.level.enemies.forEach((enemy) => {
-            if (!enemy.isDead) {
-                if (this.character.isColliding(enemy)) {
-                    this.checkIsColliding();
-                }
-            }
-        });
     }
 
 
@@ -536,59 +511,6 @@ class World {
                 }
             });
         }, 200);
-    }
-
-
-    /**
-     * Throws either poison or bubble attacks when the spacebar is pressed, if the game is not paused.
-     * Plays appropriate sound effects based on the action.
-     */
-    trowPoison() {
-        if (!this.isGamePause) {
-            if (this.keyboard.SPACE) {
-                if (!this.isMuted) {
-                    this.sound.blowingBubble.play();
-                }
-                if (this.poisonCount > 0) {
-                    this.trowPoisonAttack();
-                } else {
-                    this.trowBubbleAttack();
-                }
-            }
-        }
-    }
-
-
-    /**
-     * Throws a bubble attack and adds it to the array of thrown bubbles.
-     * Automatically removes the bubble after 3800ms if the game is not paused.
-     */
-    trowBubbleAttack() {
-        this.character.blowBubble(this.character.IMAGES_BUBBLE);
-        let bubble = new BubbleAttack(this.character.x + 100, this.character.y);
-        this.throwBubble.push(bubble);
-        setTimeout(() => {
-            if (!this.isGamePause) {
-                this.downBubble(bubble);
-            }
-        }, 3800);
-    }
-
-
-    /**
-     * Throws a poison attack and adds it to the array of thrown poisons.
-     * Reduces the poison count and removes the poison after 4000ms if the game is not paused.
-     */
-    trowPoisonAttack() {
-        this.character.blowBubble(this.character.IMAGES_BUBBLE_POISON);
-        let poison = new PoisonAttack(this.character.x + 100, this.character.y);
-        this.throwPoisons.push(poison);
-        this.poisonCount--;
-        setTimeout(() => {
-            if (!this.isGamePause) {
-                this.downBubblePoison(poison);
-            }
-        }, 4000);
     }
 
 
