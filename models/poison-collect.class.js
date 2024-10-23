@@ -56,7 +56,7 @@ class PoisonCollect extends ObjectCollection {
      * @param {Object} buttle - The poison bottle to be added.
      */
     addPoison(buttle) {
-        if (world.poisonCount <= 4) {
+        if (world.poisonCount >= 0 && world.poisonCount < 5) {
             world.level.poisonButtle = world.level.poisonButtle.filter((item) => item !== buttle);
             world.poisonCount++;
         }

@@ -7,7 +7,7 @@ class World {
     camera_x = 0;
     endBoss;
     statusBarBoss;
-    poisonCount = 0;
+    poisonCount = 5;
     coinCount = 0;
     finalBackground;
     youWin = false;
@@ -186,6 +186,8 @@ class World {
             this.checkCollisions();
             this.character.trowPoison();
             this.levelSoundPlay();
+            console.log(this.poisonCount);
+            
         }, 200);
     }
 

@@ -329,6 +329,7 @@ class Character extends MovableObject {
             bubble.trowLeft(this.x - 150, this.y);
         }
         this.world.throwBubble.push(bubble);
+
         setTimeout(() => {
             if (!this.world.isGamePause) {
                 this.world.bubble.downBubble(bubble);
@@ -345,12 +346,13 @@ class Character extends MovableObject {
         this.blowBubble(this.IMAGES_BUBBLE_POISON);
         let poison = new PoisonAttack(this.x, this.y);
         if (!this.world.isLeft) {
-            poison.trow(this.x + 100, this.y);
+            poison.trow(this.x + 100, this.y);  // Right direction
         } else {
-            poison.trowLeft(this.x - 150, this.y);
+            poison.trowLeft(this.x - 150, this.y); 
         }
         this.world.throwPoisons.push(poison);
         this.world.poisonCount--;
+
         setTimeout(() => {
             if (!this.world.isGamePause) {
                 this.world.poison.downBubblePoison(poison);
@@ -365,7 +367,7 @@ class Character extends MovableObject {
      */
     trowPoison() {
         if (!this.world.isGamePause) {
-            if (this.world.keyboard.SPACE) {
+            if (this.world.keyboard.SPACE) { /// && !this.world.isLeft
                 if (!this.isMuted) {
                     this.world.sound.blowingBubble.play();
                 }

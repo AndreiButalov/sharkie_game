@@ -1,5 +1,5 @@
 class PoisonBar extends DrawableObject {
-    percentage = 0;
+    // percentage = 100;
 
     IMAGES = [
         'img/4. Marcadores/orange/0_ copia.png',
@@ -18,7 +18,7 @@ class PoisonBar extends DrawableObject {
         this.y = -5;
         this.width = 180;
         this.height = 50;
-        this.setPercentage(0);
+        this.setPercentage(100);
     }
 
     /**

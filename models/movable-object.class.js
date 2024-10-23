@@ -54,8 +54,8 @@ class MovableObject extends DrawableObject {
      */
     isCollidingBubble(obj) {
         return this.x + this.width > obj.x &&
-            this.y + this.height > obj.y &&
-            this.x < obj.x &&
+            this.y + this.height > obj.y  &&
+            this.x < obj.x + 100 &&
             this.y < obj.y + obj.height;
     }
 
@@ -69,7 +69,7 @@ class MovableObject extends DrawableObject {
     isCollidingBubbleBossFish(obj) {
         return this.x + this.width > obj.x + obj.offset.left &&
             this.y + this.height > obj.y + obj.offset.top &&
-            this.x < obj.x + obj.width - obj.offset.right &&
+            this.x < obj.x + obj.width - obj.offset.right +100 &&
             this.y < obj.y + obj.height - obj.offset.bottom;
     }
 
