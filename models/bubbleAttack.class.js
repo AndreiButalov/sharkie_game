@@ -54,4 +54,29 @@ class BubbleAttack extends PoisonAttack {
         world.throwBubble = world.throwBubble.filter((item) => item !== bubble);
     }
 
+
+    /**
+     * Checks if the boss is hit by a thrown bubble.
+     * Reduces the boss's health and updates the boss's status bar.
+     * 
+     * @param {Object} enemy - The boss to check for collisions.
+     */
+    checkBossBubbleAttack(enemy) {
+        world.throwBubble.forEach((bubble) => {
+            if (bubble.isCollidingBubbleBossFish(enemy)) {
+                world.statusBarBoss.setPercentage(enemy.energyEnemie);
+                enemy.energyEnemie -= 5;
+                enemy.hitEnemies();
+                if (!world.isMuted) {
+                    world.sound.bossDamage.play();
+                    world.sound.bubbleHighSound.play();
+                }
+                this.downBubble(bubble);
+                if (enemy.energyEnemie <= 0) {
+                    enemy.playEndBossIsDead();
+                }
+            }
+        });
+    }
+
 }

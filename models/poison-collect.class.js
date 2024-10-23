@@ -60,6 +60,6 @@ class PoisonCollect extends ObjectCollection {
             world.level.poisonButtle = world.level.poisonButtle.filter((item) => item !== buttle);
             world.poisonCount++;
         }
-    }
+    }     
 
 }

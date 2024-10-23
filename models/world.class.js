@@ -275,59 +275,9 @@ class World {
     checkCollisionsBossAttack() {
         if (this.endBoss) {
             const enemy = this.endBoss;
-            this.checkBossPoisonAttack(enemy);
-            this.checkBossBubbleAttack(enemy);
+            this.poison.checkBossPoisonAttack(enemy);
+            this.bubble.checkBossBubbleAttack(enemy);
         }
-    }
-
-
-    /**
-     * Checks if the boss is hit by a thrown poison.
-     * Reduces the boss's health and updates the boss's status bar.
-     * 
-     * @param {Object} enemy - The boss to check for collisions.
-     */
-    checkBossPoisonAttack(enemy) {
-        this.throwPoisons.forEach((trowPoison) => {
-            if (trowPoison.isCollidingBubbleBossFish(enemy)) {
-                this.statusBarBoss.setPercentage(enemy.energyEnemie);
-                enemy.energyEnemie -= 20;
-                enemy.hitEnemies();
-                if (!this.isMuted) {
-                    this.sound.bossDamage.play();
-                    this.sound.bubbleHighSound.play();
-                }
-                this.poison.downBubblePoison(trowPoison);
-                if (enemy.energyEnemie <= 0) {
-                    enemy.playEndBossIsDead();
-                }
-            }
-        });
-    }
-
-
-    /**
-     * Checks if the boss is hit by a thrown bubble.
-     * Reduces the boss's health and updates the boss's status bar.
-     * 
-     * @param {Object} enemy - The boss to check for collisions.
-     */
-    checkBossBubbleAttack(enemy) {
-        this.throwBubble.forEach((bubble) => {
-            if (bubble.isCollidingBubbleBossFish(enemy)) {
-                this.statusBarBoss.setPercentage(enemy.energyEnemie);
-                enemy.energyEnemie -= 5;
-                enemy.hitEnemies();
-                if (!this.isMuted) {
-                    this.sound.bossDamage.play();
-                    this.sound.bubbleHighSound.play();
-                }
-                this.bubble.downBubble(bubble);
-                if (enemy.energyEnemie <= 0) {
-                    enemy.playEndBossIsDead();
-                }
-            }
-        });
     }
 
 

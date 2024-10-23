@@ -102,4 +102,29 @@ class PoisonAttack extends MovableObject {
         world.throwPoisons = world.throwPoisons.filter((item) => item !== trowPoison);
     }
 
+
+    /**
+     * Checks if the boss is hit by a thrown poison.
+     * Reduces the boss's health and updates the boss's status bar.
+     * 
+     * @param {Object} enemy - The boss to check for collisions.
+     */
+    checkBossPoisonAttack(enemy) {
+        world.throwPoisons.forEach((trowPoison) => {
+            if (trowPoison.isCollidingBubbleBossFish(enemy)) {
+                world.statusBarBoss.setPercentage(enemy.energyEnemie);
+                enemy.energyEnemie -= 20;
+                enemy.hitEnemies();
+                if (!world.isMuted) {
+                    world.sound.bossDamage.play();
+                    world.sound.bubbleHighSound.play();
+                }
+                this.downBubblePoison(trowPoison);
+                if (enemy.energyEnemie <= 0) {
+                    enemy.playEndBossIsDead();
+                }
+            }
+        });
+    }
+
 }
