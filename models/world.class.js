@@ -14,6 +14,7 @@ class World {
     isGameOver = false;
     isGamePause = false;
     isMuted = false;
+    isLeft = false;
 
     bubble = new BubbleAttack();
     poison = new PoisonAttack();

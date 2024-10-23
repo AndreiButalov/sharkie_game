@@ -128,10 +128,12 @@ class Character extends MovableObject {
             if (this.isGameOverPause()) {
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                     this.moveRight();
+                    this.world.isLeft = false;
                 }
                 if (this.world.keyboard.LEFT && this.x > 0) {
                     this.moveLeft();
                     this.otherDirection = true;
+                    this.world.isLeft = true;
                 }
                 if (this.world.keyboard.UP && this.y > -40) {
                     this.moveUp();
@@ -318,7 +320,7 @@ class Character extends MovableObject {
      * Throws a bubble attack and adds it to the array of thrown bubbles.
      * Automatically removes the bubble after 3800ms if the game is not paused.
      */
-    trowBubbleAttack() {
+    trowBubbleAttackRight() {
         this.blowBubble(this.IMAGES_BUBBLE);
         let bubble = new BubbleAttack(this.x + 100, this.y);
         this.world.throwBubble.push(bubble);
@@ -334,7 +336,7 @@ class Character extends MovableObject {
      * Throws a poison attack and adds it to the array of thrown poisons.
      * Reduces the poison count and removes the poison after 4000ms if the game is not paused.
      */
-    trowPoisonAttack() {
+    trowPoisonAttackRight() {
         this.blowBubble(this.IMAGES_BUBBLE_POISON);
         let poison = new PoisonAttack(this.x + 100, this.y);
         this.world.throwPoisons.push(poison);
@@ -353,18 +355,16 @@ class Character extends MovableObject {
      */
     trowPoison() {
         if (!this.world.isGamePause) {
-            if (this.world.keyboard.SPACE) {
+            if (this.world.keyboard.SPACE && !this.world.isLeft) {
                 if (!this.isMuted) {
                     this.world.sound.blowingBubble.play();
                 }
                 if (this.world.poisonCount > 0) {
-                    this.trowPoisonAttack();
+                    this.trowPoisonAttackRight();
                 } else {
-                    this.trowBubbleAttack();
+                    this.trowBubbleAttackRight();
                 }
             }
         }
-    }  
-
-
+    }
 }
