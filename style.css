@@ -241,7 +241,8 @@ span {
 #mobile_panel {
     position: absolute;
     width: 720px;
-    height: 480px;
+    height: 480px;    
+    display: none;
 }
 
 :fullscreen #mobile_panel {

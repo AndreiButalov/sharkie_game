@@ -92,6 +92,7 @@ function startGames() {
     document.getElementById('btn_sound').innerHTML = '<img src="img/pngwing.com.png"/> ';
     document.getElementById('start_view').style.display = 'none';
     document.getElementById('nav_bar_button').style.visibility = 'initial';
+    document.getElementById('mobile_panel').style.display = 'block';
 
     const canvas = document.getElementById('canvas');
     scaleCanvas(canvas);
