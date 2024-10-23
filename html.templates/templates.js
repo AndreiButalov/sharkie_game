@@ -20,6 +20,9 @@ function startViewGenerate() {
                 </div>
 
             </div>
+            <div>
+                <a id="impressum" href="./impressum.html">Imressum</a>
+            </div>
         </div>
     `;
 }

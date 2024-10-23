@@ -312,6 +312,35 @@ span {
     gap: 20px;
 }
 
+#impressum {
+    position: absolute;
+    bottom: 4%;
+    left: 45%;
+    text-decoration: none;
+}
+
+.impressum h1 {
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+.impressum {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.impressum span {
+    font-size: 22px;
+}
+
+.impressum a {
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 2px #25100A;
+}
+
 
 @media only screen and (max-width: 720px) {
     canvas ,#start_view, #controls_panel, #game_over, #mobile_panel, .all_controls_button {
