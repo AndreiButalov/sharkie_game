@@ -320,10 +320,16 @@ class Character extends MovableObject {
      * Throws a bubble attack and adds it to the array of thrown bubbles.
      * Automatically removes the bubble after 3800ms if the game is not paused.
      */
-    trowBubbleAttackRight() {
-        this.blowBubble(this.IMAGES_BUBBLE);
-        let bubble = new BubbleAttack(this.x + 100, this.y);
+    trowBubbleAttack() {
+        this.blowBubble(this.IMAGES_BUBBLE); 
+        let bubble = new BubbleAttack(this.x, this.y);
+        if (!this.world.isLeft) {
+            bubble.trow(this.x + 100, this.y); 
+        } else {
+            bubble.trowLeft(this.x - 150, this.y);
+        }
         this.world.throwBubble.push(bubble);
+
         setTimeout(() => {
             if (!this.world.isGamePause) {
                 this.world.bubble.downBubble(bubble);
@@ -336,11 +342,17 @@ class Character extends MovableObject {
      * Throws a poison attack and adds it to the array of thrown poisons.
      * Reduces the poison count and removes the poison after 4000ms if the game is not paused.
      */
-    trowPoisonAttackRight() {
+    trowPoisonAttack() {
         this.blowBubble(this.IMAGES_BUBBLE_POISON);
-        let poison = new PoisonAttack(this.x + 100, this.y);
+        let poison = new PoisonAttack(this.x, this.y);
+        if (!this.world.isLeft) {
+            poison.trow(this.x + 100, this.y);
+        } else {
+            poison.trowLeft(this.x - 150, this.y);
+        }
         this.world.throwPoisons.push(poison);
         this.world.poisonCount--;
+
         setTimeout(() => {
             if (!this.world.isGamePause) {
                 this.world.poison.downBubblePoison(poison);
@@ -355,14 +367,14 @@ class Character extends MovableObject {
      */
     trowPoison() {
         if (!this.world.isGamePause) {
-            if (this.world.keyboard.SPACE && !this.world.isLeft) {
+            if (this.world.keyboard.SPACE) {
                 if (!this.isMuted) {
                     this.world.sound.blowingBubble.play();
                 }
                 if (this.world.poisonCount > 0) {
-                    this.trowPoisonAttackRight();
+                    this.trowPoisonAttack();
                 } else {
-                    this.trowBubbleAttackRight();
+                    this.trowBubbleAttack();
                 }
             }
         }

@@ -17,11 +17,11 @@ class PoisonAttack extends MovableObject {
         this.loadImages(this.IMAGES_POISON);
         this.x = x;
         this.y = y;
-        this.poisonAnimate(this.IMAGES_POISON);
-        this.trow(x, y);
+        this.poisonAnimate(this.IMAGES_POISON);        
         this.bubbleSwim();
     }
 
+    
     /**
      * Plays the animation frames for the poison effect.
      *
@@ -59,6 +59,23 @@ class PoisonAttack extends MovableObject {
         setInterval(() => {
             if (!world.isGamePause) {
                 this.x += 3;
+            }
+        }, 50);
+    }
+
+    
+    /**
+     * Throws an object to a specified position, incrementally moving it to the right.
+     *
+     * @param {number} x - The x-coordinate to which the object should be moved.
+     * @param {number} y - The y-coordinate to which the object should be moved.
+     */
+    trowLeft(x, y) {
+        this.x = x + 120;
+        this.y = y + 120;
+        setInterval(() => {
+            if (!world.isGamePause) {
+                this.x -= 3;
             }
         }, 50);
     }
