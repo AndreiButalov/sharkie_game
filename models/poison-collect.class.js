@@ -40,7 +40,7 @@ class PoisonCollect extends ObjectCollection {
     checkCollisionsBottle() {
         world.poisonBar.setPercentage(world.poisonCount);
         world.level.poisonButtle.forEach((bottle) => {
-            if (world.character.isCollidingPoison(bottle)) {
+            if (world.character.isCollidingPoison(bottle) && world.poisonCount < 5) {
                 this.addPoison(bottle);
                 if (!world.isMuted) {
                     world.sound.drinkingPoison.play();

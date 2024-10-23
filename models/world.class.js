@@ -186,8 +186,6 @@ class World {
             this.checkCollisions();
             this.character.trowPoison();
             this.levelSoundPlay();
-            console.log(this.poisonCount);
-            
         }, 200);
     }
 
