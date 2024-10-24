@@ -100,7 +100,7 @@ span {
 
 .controls {
     display: flex;
-    width: 100%;
+    height: 56%;
 }
 
 .sharkie_image {
@@ -285,6 +285,7 @@ span {
     border: 3px solid rgba(255,255,255,0.8);
     border-radius: 50%;
     cursor: pointer;
+
 }
 
 .mobile_panel button:hover {
@@ -314,7 +315,7 @@ span {
 
 #impressum {
     position: absolute;
-    bottom: 4%;
+    bottom: 0;
     left: 45%;
     text-decoration: none;
 }
@@ -340,7 +341,6 @@ span {
     letter-spacing: 4px;
     text-shadow: 2px 2px 2px #25100A;
 }
-
 
 @media only screen and (max-width: 720px) {
     canvas ,#start_view, #controls_panel, #game_over, #mobile_panel, .all_controls_button {

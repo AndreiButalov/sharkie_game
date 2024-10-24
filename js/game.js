@@ -12,7 +12,37 @@ function init() {
     setupPauseButton();
     soundOffOnButton();
     fullScreen();
+    checkDevice();
 }
+
+
+function checkDevice() {
+    const deviceWarning = document.getElementById('device_warning');
+    const canvas = document.getElementById('canvas');
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    // Überprüfe, ob die Breite des Geräts kleiner als 1024px ist (Tablet und Smartphone)
+    if (width < 1024) {
+        canvas.style.display = 'none';
+        deviceWarning.style.display = 'flex';
+        deviceWarning.style.color = 'white';
+        deviceWarning.style.justifyContent = 'center';
+        deviceWarning.style.alignItems = 'center';
+        deviceWarning.style.textAlign = 'center';
+        deviceWarning.style.fontSize = '30px';
+        deviceWarning.style.backgroundColor = 'rgba(25, 31, 52, 0.8)';
+        deviceWarning.style.height = '100vh';
+        deviceWarning.style.width = '100vw';
+        deviceWarning.style.zIndex = '999';
+    } else {
+        canvas.style.display = 'block';
+        deviceWarning.style.display = 'none';
+    }
+}
+
+// Listen für Größenänderungen hinzufügen
+window.addEventListener('resize', checkDevice);
 
 
 /**
