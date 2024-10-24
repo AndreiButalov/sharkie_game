@@ -11,7 +11,7 @@ const intervals = {
     greenjellyFish: [1500, 1840, 2900],
     lilajellyFish: [1600, 2100, 3100],
     coin: [820, 1100, 1290, 1440, 2160, 2300, 2480, 2530, 2680, 3000],
-    poison: [480, 1240, 2260, 2700, 3000],
+    poison: [980, 1240, 2260, 2700, 3000],
     barrierDown: [500, 3000],
     barrierDownUp: [1700],
 };

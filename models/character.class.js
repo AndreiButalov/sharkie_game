@@ -368,7 +368,7 @@ class Character extends MovableObject {
     trowPoison() {
         if (!this.world.isGamePause) {
             if (this.world.keyboard.SPACE) { /// && !this.world.isLeft
-                if (!this.isMuted) {
+                if (!this.world.isMuted) {
                     this.world.sound.blowingBubble.play();
                 }
                 if (this.world.poisonCount > 0) {
