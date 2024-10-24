@@ -16,35 +16,6 @@ function init() {
 }
 
 
-function checkDevice() {
-    const deviceWarning = document.getElementById('device_warning');
-    const canvas = document.getElementById('canvas');
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    
-    // Überprüfe, ob die Breite des Geräts kleiner als 1024px ist (Tablet und Smartphone)
-    if (width < 1024) {
-        canvas.style.display = 'none';
-        deviceWarning.style.display = 'flex';
-        deviceWarning.style.color = 'white';
-        deviceWarning.style.justifyContent = 'center';
-        deviceWarning.style.alignItems = 'center';
-        deviceWarning.style.textAlign = 'center';
-        deviceWarning.style.fontSize = '30px';
-        deviceWarning.style.backgroundColor = 'rgba(25, 31, 52, 0.8)';
-        deviceWarning.style.height = '100vh';
-        deviceWarning.style.width = '100vw';
-        deviceWarning.style.zIndex = '999';
-    } else {
-        canvas.style.display = 'block';
-        deviceWarning.style.display = 'none';
-    }
-}
-
-// Listen für Größenänderungen hinzufügen
-window.addEventListener('resize', checkDevice);
-
-
 /**
  * Renders various UI components by setting the inner HTML of specific elements.
  * Calls different functions to generate content for each element.
@@ -251,3 +222,47 @@ function scaleCanvas(canvas) {
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
 }
+
+
+/**
+ * Checks the device's screen width and height to determine if the device is suitable
+ * for displaying the content. If the screen dimensions indicate a small or unsuitable 
+ * device, it hides the canvas and displays a warning message. Otherwise, it shows the canvas.
+ *
+ * This function targets two main elements in the DOM:
+ * 1. `canvas`: The main content element that is displayed or hidden based on the screen size.
+ * 2. `deviceWarning`: A warning element that is shown if the device size is not optimal.
+ *
+ * Display Conditions:
+ * - If the screen width is less than 1024 and less than 667, or
+ * - If the screen height is greater than 1023 and the width is less than or equal to 1024,
+ *   the canvas is hidden and a device warning is displayed.
+ * Otherwise, the canvas is shown, and the warning is hidden.
+ *
+ * The device warning is styled to cover the entire viewport with a message in the center.
+ */
+function checkDevice() {
+    const deviceWarning = document.getElementById('device_warning');
+    const canvas = document.getElementById('canvas');
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    if ((width < 1024 && width < 667) || height > 1023 && width <= 1024) {
+        canvas.style.display = 'none';
+        deviceWarning.style.display = 'flex';
+    } else {
+        canvas.style.display = 'block';
+        deviceWarning.style.display = 'none';
+    }
+}
+
+/**
+ * Adds an event listener to the window that triggers the `checkDevice` function
+ * whenever the window is resized. This allows the application to dynamically check
+ * the device's screen dimensions and adjust the visibility of the canvas and 
+ * the device warning message accordingly.
+ * 
+ * The `checkDevice` function will be executed on each resize event, ensuring
+ * that users receive the appropriate display based on the current window size.
+ */
+window.addEventListener('resize', checkDevice);

@@ -6,10 +6,10 @@ const repetitions = 5;
 
 
 const intervals = {
-    greenFish: [750, 1440, 2160, 2500, 3100, 3600],
-    redFish: [1100, 1850, 2400, 2880, 3600],
-    greenjellyFish: [1200, 1740, 2900],
-    lilajellyFish: [900, 2100, 3100],
+    greenFish: [750, 1440, 900, 2500, 3100, 3600],
+    redFish: [1100, 1250, 2400, 2880, 3600],
+    greenjellyFish: [1500, 1840, 2900],
+    lilajellyFish: [1600, 2100, 3100],
     coin: [820, 1100, 1290, 1440, 2160, 2300, 2480, 2530, 2680, 3000],
     poison: [480, 1240, 2260, 2700, 3000],
     barrierDown: [500, 3000],

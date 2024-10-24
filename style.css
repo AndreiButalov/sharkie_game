@@ -342,6 +342,23 @@ span {
     text-shadow: 2px 2px 2px #25100A;
 }
 
+#device_warning {
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    background-color: rgba(25, 31, 52, 0.8);
+    height: 100vh;
+    width: 100vw;
+    z-index: 999;
+}
+
+#device_warning img {
+    width: 250px;
+    filter: brightness(0) invert(1);
+}
+
 @media only screen and (max-width: 720px) {
     canvas ,#start_view, #controls_panel, #game_over, #mobile_panel, .all_controls_button {
         width: 100%;
