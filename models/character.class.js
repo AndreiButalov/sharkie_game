@@ -265,7 +265,15 @@ class Character extends MovableObject {
      * @param {Array} arr - An array of image identifiers to animate.
      */
     blowBubble(arr) {
-        this.playAnimation(arr);
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i < arr.length) {
+                this.img = this.imageCache[arr[i]];
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 1000 / 40);
     }
 
 
