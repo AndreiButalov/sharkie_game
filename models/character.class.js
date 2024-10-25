@@ -71,16 +71,6 @@ class Character extends MovableObject {
     ];
 
 
-    SHARKIE_POISONED = [
-        'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
-        'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
-        'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
-        'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
-        'img/1.Sharkie/5.Hurt/1.Poisoned/5.png',
-
-    ];
-
-
     IMAGES_BUBBLE_POISON = [
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
@@ -111,7 +101,6 @@ class Character extends MovableObject {
         this.loadImages(this.SHARKIE_STAND);
         this.loadImages(this.SHARKIE_DEAD);
         this.loadImages(this.SHARKIE_HURT);
-        this.loadImages(this.SHARKIE_POISONED);
         this.loadImages(this.IMAGES_BUBBLE_POISON);
         this.loadImages(this.IMAGES_BUBBLE);
         this.animateCharacter();
@@ -263,18 +252,22 @@ class Character extends MovableObject {
      * Updates the character's image at a set interval.
      * 
      * @param {Array} arr - An array of image identifiers to animate.
-     */
+     */    
     blowBubble(arr) {
+        if (this.bubbleInterval) {
+            clearInterval(this.bubbleInterval); // Очистка предыдущего интервала
+        }
+    
         let i = 0;
-        const interval = setInterval(() => {
+        this.bubbleInterval = setInterval(() => {
             if (i < arr.length) {
                 this.img = this.imageCache[arr[i]];
                 i++;
             } else {
-                clearInterval(interval);
+                clearInterval(this.bubbleInterval); // Очистка текущего интервала после завершения
             }
         }, 1000 / 40);
-    }
+    }        
 
 
     /**
@@ -346,7 +339,7 @@ class Character extends MovableObject {
         this.blowBubble(this.IMAGES_BUBBLE_POISON);
         let poison = new PoisonAttack(this.x, this.y);
         if (!this.world.isLeft) {
-            poison.trow(this.x + 100, this.y);  // Right direction
+            poison.trow(this.x + 100, this.y);  
         } else {
             poison.trowLeft(this.x - 150, this.y); 
         }
@@ -367,7 +360,8 @@ class Character extends MovableObject {
      */
     trowPoison() {
         if (!this.world.isGamePause) {
-            if (this.world.keyboard.SPACE) { /// && !this.world.isLeft
+            if (this.world.keyboard.SPACE && !this.bubbleInProgress) { 
+                this.bubbleInProgress = true; 
                 if (!this.world.isMuted) {
                     this.world.sound.blowingBubble.play();
                 }
@@ -376,7 +370,10 @@ class Character extends MovableObject {
                 } else {
                     this.trowBubbleAttack();
                 }
-            }
-        }
+                setTimeout(() => {
+                    this.bubbleInProgress = false;
+                }, 100);
+            }
+        }
     }
 }
