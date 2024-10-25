@@ -41,14 +41,12 @@ class World {
         this.run();
     }
 
-
     /**
      * Sets the world for the character.
      */
     setWorld() {
         this.character.world = this;
     }
-
 
     /**
      * Draws all elements of the game on the canvas. This includes clearing the canvas,
@@ -66,7 +64,6 @@ class World {
         this.requestNextFrame();
     }
 
-
     /**
      * Clears the canvas and applies the camera translation.
      */
@@ -75,14 +72,12 @@ class World {
         this.ctx.translate(this.camera_x, 0);
     }
 
-
     /**
      * Resets the camera translation after drawing the elements.
      */
     resetCameraTranslation() {
         this.ctx.translate(-this.camera_x, 0);
     }
-    
 
     /**
      * Draws all background objects on the canvas by adding them to the map.
@@ -91,7 +86,6 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
     }
 
-
     /**
      * Draws the character and all enemies on the canvas by adding them to the map.
      */
@@ -99,7 +93,6 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
     }
-
 
     /**
      * Draws miscellaneous objects on the canvas. These objects include coins, poison bottles, thrown poisons, bubbles, barriers, and the end boss (if available).
@@ -118,7 +111,6 @@ class World {
         }
     }
 
-
     /**
      * Draws status bars (character status, boss status, coin, and poison bars) by adding them to the map.
      * Also resets and applies camera translation for status bars.
@@ -134,7 +126,6 @@ class World {
         this.ctx.translate(this.camera_x, 0);
     }
 
-
     /**
      * Draws the final background if needed by adding it to the map.
      */
@@ -143,7 +134,6 @@ class World {
             this.addToMap(this.finalBackground);
         }
     }
-
 
     /**
      * Requests the next animation frame for continuous rendering of the game. 
@@ -155,7 +145,6 @@ class World {
             self.draw();
         });
     }
-
 
     /**
      * Triggers the arrival of the end boss when the character reaches a specific position (3200).
@@ -177,7 +166,6 @@ class World {
         }, 200);
     }
 
-
     /**
      * Runs the game loop to check for collisions, throw poison, and play level sounds every 200ms.
      */
@@ -189,7 +177,6 @@ class World {
         }, 200);
     }
 
-
     /**
      * 
      * Plays the level background music if the game is not paused, the boss has not appeared, the game is not over, and sound is not muted.
@@ -200,7 +187,6 @@ class World {
             this.sound.adventureTheme.play();
         }
     }
-
 
     /**
      * Checks if the level has ended by verifying if the end boss is defeated.
@@ -218,8 +204,6 @@ class World {
             this.youWin = true;
         }
     }
-
-
     /**
      * Checks for all types of collisions between the character and enemies, bosses, bottles, coins, and attacks.
      * Handles collision detection for various game objects.
@@ -233,8 +217,6 @@ class World {
         this.checkCollisionsBossAttack();
         this.checkCollisionsJellyfishBubble();
     }
-
-
     /**
      * Checks for collisions between the character and bubblefish bubbles.
      * Handles collision detection for both poisons and bubbles against bubblefish enemies.
@@ -245,8 +227,6 @@ class World {
             this.bubble.checkBubbleCollisions(enemy);
         });
     }
-
-
     /**
      * Checks for collisions between bubbles and jellyfish enemies.
      * Plays sound and removes the enemy if defeated by the bubble attack.
@@ -267,8 +247,6 @@ class World {
             }
         });
     }
-
-
     /**
      * Checks for the boss being attacked by poison or bubble and processes the attack.
      * If the boss is hit, it reduces the boss's health and plays appropriate sounds.
@@ -280,8 +258,6 @@ class World {
             this.bubble.checkBossBubbleAttack(enemy);
         }
     }
-
-
     /**
      * Handles enemy hit by poison attack, reducing their health.
      * Plays sound and disables the enemy if their health reaches zero.
@@ -300,8 +276,6 @@ class World {
             }
         }
     }
-
-
     /**
      * Handles enemy hit by bubble attack, reducing their health.
      * Plays sound and disables the enemy if their health reaches zero.
@@ -325,8 +299,6 @@ class World {
             this.enemyDisable(enemy);
         }
     }
-
-
     /**
      * Handles the transition state of bubblefish enemies.
      * Runs at an interval of 200ms and triggers the transition for green and red bubblefish if they are alive.
@@ -341,7 +313,6 @@ class World {
         }, 200);
     }
 
-
     /**
      * Adds multiple objects to the map by calling `addToMap` for each object.
      * 
@@ -352,7 +323,6 @@ class World {
             this.addToMap(o);
         });
     }
-
 
     /**
      * Draws the object on the canvas. If the object has the `otherDirection` flag, it flips the image.
@@ -370,7 +340,6 @@ class World {
         }
     }
 
-
     /**
      * Flips the image of a given parameter horizontally before drawing it on the canvas.
      * Saves the current context, translates and scales the image.
@@ -384,7 +353,6 @@ class World {
         parameter.x = parameter.x * -1;
     }
 
-
     /**
      * Restores the image to its original orientation after drawing.
      * Reverses the x position and restores the canvas context.
@@ -396,7 +364,6 @@ class World {
         this.ctx.restore();
     }
 
-
     /**
      * Checks if the given enemy is a GreenBubbleFish and is within 550 units of the character's position.
      * 
@@ -407,7 +374,6 @@ class World {
         return fish.x - this.character.x < 550 && fish instanceof GreenBubbleFish;
     }
 
-
     /**
      * Checks if the given enemy is a RedBubbleFish and is within 450 units of the character's position.
      * 
@@ -417,7 +383,6 @@ class World {
     isRedBubbleFish(fish) {
         return fish.x - this.character.x < 450 && fish instanceof RedBubbleFish;
     }
-
 
     /**
      * Disables an enemy by removing it from the game's level after a 1000ms delay.
@@ -430,5 +395,4 @@ class World {
             this.level.enemies = this.level.enemies.filter((item) => item !== enemy);
         }, 1000);
     }
-
 }

@@ -386,3 +386,9 @@ span {
         visibility: hidden;
     }
 }
+
+@media only screen and (max-height: 1024px) {
+    .mobile_panel {
+        visibility: initial;
+    }
+}
