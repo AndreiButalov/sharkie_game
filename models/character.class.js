@@ -4,6 +4,7 @@ class Character extends MovableObject {
     speed = 5;
     height = 250;
     width = 250;
+    debounceTimer = null
 
     isAttacking = false;
     attackStartTime = 0;
@@ -266,7 +267,7 @@ class Character extends MovableObject {
             } else {
                 clearInterval(this.bubbleInterval); // Очистка текущего интервала после завершения
             }
-        }, 1000 / 40);
+        }, 1000 / 50);
     }        
 
 
@@ -376,4 +377,4 @@ class Character extends MovableObject {
             }
         }
     }
-}
+}     
