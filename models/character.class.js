@@ -306,10 +306,10 @@ class Character extends MovableObject {
             } else {
                 clearInterval(this.bubbleInterval);
             }
-        }, 1000 / 30);  
+        }, 1000 / 50);  
         setTimeout(() => {
             this.isBubble = false;
-        }, 600);
+        }, 750);
     }
 
 
