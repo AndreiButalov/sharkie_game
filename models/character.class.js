@@ -4,8 +4,8 @@ class Character extends MovableObject {
     speed = 5;
     height = 250;
     width = 250;
-    debounceTimer = null
-
+    debounceTimer = null;
+    isBubble = false;
     isAttacking = false;
     attackStartTime = 0;
 
@@ -255,8 +255,9 @@ class Character extends MovableObject {
      * @param {Array} arr - An array of image identifiers to animate.
      */    
     blowBubble(arr) {
+        this.isBubble = true;
         if (this.bubbleInterval) {
-            clearInterval(this.bubbleInterval); // Очистка предыдущего интервала
+            clearInterval(this.bubbleInterval);
         }
     
         let i = 0;
@@ -265,9 +266,12 @@ class Character extends MovableObject {
                 this.img = this.imageCache[arr[i]];
                 i++;
             } else {
-                clearInterval(this.bubbleInterval); // Очистка текущего интервала после завершения
+                clearInterval(this.bubbleInterval);
             }
-        }, 1000 / 50);
+        }, 1000 / 30);  
+        setTimeout(() => {
+            this.isBubble = false;
+        }, 500);
     }        
 
 
@@ -361,7 +365,7 @@ class Character extends MovableObject {
      */
     trowPoison() {
         if (!this.world.isGamePause) {
-            if (this.world.keyboard.SPACE && !this.bubbleInProgress) { 
+            if (this.world.keyboard.SPACE && !this.bubbleInProgress && ! this.isBubble) { 
                 this.bubbleInProgress = true; 
                 if (!this.world.isMuted) {
                     this.world.sound.blowingBubble.play();
@@ -373,7 +377,7 @@ class Character extends MovableObject {
                 }
                 setTimeout(() => {
                     this.bubbleInProgress = false;
-                }, 100);
+                }, 50);
             }
         }
     }
