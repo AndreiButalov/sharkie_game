@@ -319,19 +319,21 @@ class Character extends MovableObject {
      */
     trowBubbleAttack() {
         this.blowBubble(this.IMAGES_BUBBLE); 
-        let bubble = new BubbleAttack(this.x, this.y);
-        if (!this.world.isLeft) {
-            bubble.trow(this.x + 100, this.y); 
-        } else {
-            bubble.trowLeft(this.x - 150, this.y);
-        }
-        this.world.throwBubble.push(bubble);
-
         setTimeout(() => {
-            if (!this.world.isGamePause) {
-                this.world.bubble.downBubble(bubble);
+            let bubble = new BubbleAttack(this.x, this.y);
+            if (!this.world.isLeft) {
+                bubble.trow(this.x + 100, this.y); 
+            } else {
+                bubble.trowLeft(this.x - 150, this.y);
             }
-        }, 3800);
+            this.world.throwBubble.push(bubble);
+    
+            setTimeout(() => {
+                if (!this.world.isGamePause) {
+                    this.world.bubble.downBubble(bubble);
+                }
+            }, 3800);
+        }, 200);
     }
 
 
@@ -341,20 +343,22 @@ class Character extends MovableObject {
      */
     trowPoisonAttack() {
         this.blowBubble(this.IMAGES_BUBBLE_POISON);
-        let poison = new PoisonAttack(this.x, this.y);
-        if (!this.world.isLeft) {
-            poison.trow(this.x + 100, this.y);  
-        } else {
-            poison.trowLeft(this.x - 150, this.y); 
-        }
-        this.world.throwPoisons.push(poison);
-        this.world.poisonCount--;
-
         setTimeout(() => {
-            if (!this.world.isGamePause) {
-                this.world.poison.downBubblePoison(poison);
+            let poison = new PoisonAttack(this.x, this.y);
+            if (!this.world.isLeft) {
+                poison.trow(this.x + 100, this.y);  
+            } else {
+                poison.trowLeft(this.x - 150, this.y); 
             }
-        }, 4000);
+            this.world.throwPoisons.push(poison);
+            this.world.poisonCount--;
+    
+            setTimeout(() => {
+                if (!this.world.isGamePause) {
+                    this.world.poison.downBubblePoison(poison);
+                }
+            }, 4000);
+        }, 200);
     }
 
 
