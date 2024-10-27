@@ -249,33 +249,6 @@ class Character extends MovableObject {
 
 
     /**
-     * Plays a bubble animation using an array of image identifiers.
-     * Updates the character's image at a set interval.
-     * 
-     * @param {Array} arr - An array of image identifiers to animate.
-     */    
-    blowBubble(arr) {
-        this.isBubble = true;
-        if (this.bubbleInterval) {
-            clearInterval(this.bubbleInterval);
-        }
-    
-        let i = 0;
-        this.bubbleInterval = setInterval(() => {
-            if (i < arr.length) {
-                this.img = this.imageCache[arr[i]];
-                i++;
-            } else {
-                clearInterval(this.bubbleInterval);
-            }
-        }, 1000 / 30);  
-        setTimeout(() => {
-            this.isBubble = false;
-        }, 500);
-    }        
-
-
-    /**
      * Handles what happens when the character collides with an enemy, boss, or other harmful entity.
      * Reduces the character's health and updates the status bar.
      */
@@ -311,6 +284,32 @@ class Character extends MovableObject {
                 this.checkIsColliding();
             }
         }
+    }
+
+
+    /**
+     * Plays a bubble animation using an array of image identifiers.
+     * Updates the character's image at a set interval.
+     * 
+     * @param {Array} arr - An array of image identifiers to animate.
+     */    
+    blowBubble(arr) {
+        this.isBubble = true;
+        if (this.bubbleInterval) {
+            clearInterval(this.bubbleInterval);
+        }    
+        let i = 0;
+        this.bubbleInterval = setInterval(() => {
+            if (i < arr.length) {
+                this.img = this.imageCache[arr[i]];
+                i++;
+            } else {
+                clearInterval(this.bubbleInterval);
+            }
+        }, 1000 / 30);  
+        setTimeout(() => {
+            this.isBubble = false;
+        }, 600);
     }
 
 
